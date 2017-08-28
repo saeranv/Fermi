@@ -1,0 +1,5 @@
+#scientific python
+
+
+http://www.dsf.unica.it/~fiore/psc.pdf
+https://github.com/hplgit
