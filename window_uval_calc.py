@@ -1,4 +1,6 @@
 #uval_calcs
+
+"""
 %matplotlib inline
 import pandas as pd
 import os
@@ -7,14 +9,8 @@ import matplotlib.pyplot as plt
 import matplotlib
 from IPython.display import clear_output
 from mpl_toolkits.mplot3d import Axes3D
-
 import math
-
-#Define graph constants
-plt.xlabel('X')
-plt.ylabel('Y')
-plt.title("X vs Y")
-plt.grid()
+"""
 
 
 # -------------------------------------------------------------------------
@@ -28,22 +24,29 @@ SHGC = 0.54     # Window Assembly Solar Heat Gain Factor [-]
 # LOVETT HALL WINDOW
 # Steel Frame
 # -------------------------------------------------------------------------
-k_frame = 2.5   # [W m-2 K-1] from Engineering Toolbox Reference
-A_frame = 10.0  # [m2] from CAD
+k_steel = 2.5   # Conductance [W m-2 K-1] from Engineering Toolbox Reference
+A_glass = 0.4
+A_window = 0.5
+A_steel = A_window - A_glass
+WK_window = U_DOE * A_window # W K-1
 
+# Derive conductance of glass
+WK_frame = k_steel * A_steel
+WK_glass = WK_window - WK_frame
+k_glass = WK_glass / A_glass
+U_steel_window = U_DOE
 
-#def calculate_k_from_U(U_base_):
-U_partial_component_ = A_partial_component_ * k_partial_component_
-U_base
+# -------------------------------------------------------------------------
+# LOVETT HALL WINDOW
+# Wood Frame
+# -------------------------------------------------------------------------
+k_wood = 1.0                    # Conductance [W m-2 K-1] from Engineering Toolbox Reference
+A_glass = 0.3
+A_window = 0.6
+A_wood = A_glass - A_window
 
-x = np.arange(-50,50,1)
+# Derive window U value
+U_wood_window = k_glass * A_glass + k_wood * A_wood
 
-#natural decay y=e-kt
-y1 = map(lambda x_: math.pow(math.e,x_*-1), x)
-plt.plot(x,y1,'k')
-#natural growth y=ekt
-y2 = map(lambda x_: math.pow(math.e,x_), x)
-plt.plot(x,y2,'k:')
-#plot graphics
-plt.axis([-5,20,0,10])
-plt.show()
+print U_wood_window
+print U_steel_window
