@@ -75,19 +75,18 @@ A_window_wood = 4.3530
 # CALCULATIONS
 # -------------------------------------------------------------------------
 
-
-
 C_glass = glass_conductivity_from_frame_and_window(U_steel_window,C_steel,A_window_steel,A_window_steel - A_glass_steel)
 U_wood_window = u_value_from_area_and_conductance(C_wood,C_glass,A_window_wood - A_glass_wood,A_glass_wood)
 
-print U_steel_window # 5.84
-print U_wood_window # 2.5056
+#print U_steel_window # 5.84
+#print U_wood_window # 2.5056
 
 
 #Parameterizing conductivities for testing
 
 C_steel_lst = np.arange(5,15,.5) # C_steel = 10.1073
 C_glass_lst = map(lambda C_steel: glass_conductivity_from_frame_and_window(U_steel_window,C_steel,A_window_steel,A_window_steel - A_glass_steel), C_steel_lst)
+
 
 
 #Calculating wood frame u values
@@ -106,6 +105,47 @@ plt.xlabel('Steel Conductivity [W m-2 K-1]')
 plt.ylabel('Window U-Value [W m-2 K-1]')
 plt.title("Steel Frame vs Wood Frame")
 plt.show()
+
+
+# -------------------------------------------------------------------------
+# RETROFIT
+# Keep Frame the same, but max out window u-value
+# -------------------------------------------------------------------------
+#Replacement Windows
+ip2si = lambda ip: ip * 5.678263337 # from HB
+#C_glass_exist == 3.83455351126
+C_glass_new = ip2si((0.61+0.47)/2.) # 3.06626220198
+
+#Calculating wood frame u values
+U_wood_window_retrofit =  u_value_from_area_and_conductance(C_wood,C_glass_new,A_window_wood - A_glass_wood,A_glass_wood)
+
+#Calculating steel frame u values
+U_steel_window_retrofit = u_value_from_area_and_conductance(C_steel,C_glass_new,A_window_steel - A_glass_steel,A_glass_steel)
+
+#print U_wood_window_retrofit # 2.09248488025
+#print U_steel_window_retrofit # 5.3173374773
+
+
+
+# -------------------------------------------------------------------------
+# NEW
+# Swap Frame the same, but max out window u-value
+# -------------------------------------------------------------------------
+#Replacement Windows
+ip2si = lambda ip: ip * 5.678263337  # from LB
+#C_glass_exist == 3.83455351126
+C_glass_new = ip2si((0.61+0.47)/2.) # 3.06626220198 # from VIRACO VE-85 RoomSided Laminated
+C_wood = ip2si(0.37)  #Wood with inuslated spacer double pane
+C_steel = ip2si(0.86) #Thermal Broken aluminum Double pane with insulated spacer
+#Calculating wood frame u values
+U_wood_window_retrofit =  u_value_from_area_and_conductance(C_wood,C_glass_new,A_window_wood - A_glass_wood,A_glass_wood)
+
+#Calculating steel frame u values
+U_steel_window_retrofit = u_value_from_area_and_conductance(C_steel,C_glass_new,A_window_steel - A_glass_steel,A_glass_steel)
+
+print U_wood_window_retrofit # 2.85624602986
+print U_steel_window_retrofit # 3.64718557476
+
 
 
 
