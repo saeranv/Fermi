@@ -1,19 +1,15 @@
 """ Fermi Plots!
-
 Args:
     fx:    # list of function arguments
     x1:    # start domain
     x2:    # end domain
     y1:    # start range
     y2:    # end range
-
 Returns:
     A matplotlib.pyplot
-
 How to add this to systems path
 import sys
 sys.path.append("..")
-
 """
 
 import matplotlib.pyplot as plt
