@@ -17,34 +17,12 @@ import numpy as np
 import math
 
 
-
-linestyle = [
-'-',      # solid line style
-'--',     # dashed line style
-'-.',     # dash-dot line style
-':',      # dotted line style
-'.',      # point marker
-',',      # pixel marker
-'o',      # circle marker
-'v',      # triangle_down marker
-'^',      # triangle_up marker
-'<',      # triangle_left marker
-'>',      # triangle_right marker
-'1',      # tri_down marker
-'2',      # tri_up marker
-'3',      # tri_left marker
-'4',      # tri_right marker
-'s',      # square marker
-'p',      # pentagon marker
-'*',      # star marker
-'h',      # hexagon1 marker
-'H',      # hexagon2 marker
-'+',      # plus marker
-'x',      # x marker
-'D',      # diamond marker
-'d',      # thin_diamond marker
-'|',      # vline marker
-'_'       # hline marker
+color_lst = ['b','g','r','c','m','y','k','w']
+style_lst = [
+'-','--','-.',':','.',',',
+'o','v','^','<','>','1','2',
+'3','4','s','p','*','h','H',
+'+','x','D','d','|','_'
 ]
 
 
@@ -55,30 +33,39 @@ def xy_matrix(xlst_,ylst_):
     #    print xy
     #print '--0.5'
 
-def plot(fxlst,x1=-10,x2=10,y1=-5,y2=10.0):
+def plot(fx_lst_,x1=-10,x2=10,y1=-5,y2=10.0):
     xlst = np.arange(x1,x2+1,1)
-    if type(fxlst) != type([]):
-        fxlst = [fxlst]
+    if type(fx_lst_) != type([]):
+        fx_lst_ = [fx_lst_]
 
     # define the axis
     x_axis_lst = map(lambda x: 0, xlst)
     plt.plot(xlst,x_axis_lst,'r-')
     plt.plot([0]*len(xlst),xlst,'r-')
 
-    for i in xrange(len(fxlst)):
-        fx = fxlst[i]
-        ylst = map(lambda x: fx(x), xlst)
-        plt.plot(xlst,ylst,'k'+linestyle[i])
-        print 'fx {}'.format(i)
-        xy_matrix(xlst,ylst)
+    for i in xrange(len(fx_lst_)):
+        fx = fx_lst_[i]
+        ylst = map(lambda xin_: fx(xin_), xlst)
+        plt.plot(xlst,ylst,'k'+style_lst[i%len(style_lst)])
+        #print 'fx {}'.format(i)
+        #xy_matrix(xlst,ylst)
 
     plt.axis([x1,x2,y1,y2])
     plt.grid()
     plt.show()
 
 if __name__ == "__main__":
-    print 'Remember: if use log make sure to change x constraints'
+    fx_lst = []
+    for k in range(2,4,1):
+        print 1/float(k)
+        func = lambda x_: math.pow(math.e, 1/float(k) * x_)
+        fx_lst.append(func)
+    #fx_lst = [lambda x: math.pow(math.e, frac * x) for x in range(100)]
+    #for i in fx_lst:
+    #    for j in range(10):
+    #        print i(j)
+    #    print 'end'
     fx_1 = lambda x: math.pow(math.e,0.5*x)
-    fx_2 = lambda x: math.pow(math.e,0.25*x)
-    fx_lst = [fx_1,fx_2]
-    plot(fx_lst,x1=0,x2=20,y2=50)
+    fx_2 = lambda x: math.pow(math.e,0.33*x)
+    fx_lst += [fx_1,fx_2]
+    plot(fx_lst,0,10,0,20)
