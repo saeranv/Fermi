@@ -10,6 +10,10 @@ Returns:
 How to add this to systems path
 import sys
 sys.path.append("..")
+
+
+https://stackoverflow.com/questions/3402168/permanently-add-a-directory-to-pythonpath
+
 """
 
 import matplotlib.pyplot as plt
