@@ -14,6 +14,8 @@ access to it.
 
 """
 
+print 'git check'
+
 # explaination
 # https://mtomassoli.wordpress.com/2012/03/18/currying-in-python/
 
