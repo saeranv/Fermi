@@ -20,7 +20,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 
-
 color_lst = ['b','g','r','c','m','y','k','w']
 style_lst = [
 '-','--','-.',':','.',',',
