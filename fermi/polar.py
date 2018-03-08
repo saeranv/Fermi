@@ -17,19 +17,34 @@ def cheat():
 
 def rsq_deep():
     # https://stackoverflow.com/questions/4788892/draw-square-with-polar-coordinates
-    ce = 60
+    ce = 360
     st = 5
     rsq = [1]*((ce)/st)
     for phi in np.arange(0,ce,st):
-        print  "deg ", phi, (phi+45)%90-45, "cos ", math.cos(phi)
-        phi_ = ((phi+45)%90-45)/180.*math.pi
-        radius = 10./math.cos(phi_)
+        phi_ = ((phi+45)%90-45)/180.0*math.pi
+        radius = 1./math.cos(phi_)
         rsq[int(phi/st)] = radius
+        phi = phi/180.*math.pi
+        print  "phi: ", phi*180./math.pi
+        print "sqphi: ", (phi*180./math.pi+45)%90-45
+        print 'rad ', radius
+        if not (abs(phi%90)<1e-10):
+            print "xof phi: ", round(math.cos(phi),2), " * ", round(1/math.cos(phi),2),\
+                " = ", math.cos(phi)#(1./math.cos(phi))
+        else:
+            print "xof phi: zero div error"
+        print "xof sqphi: ", round(math.cos(phi),2), " * ", round(1/math.cos(phi_),2),\
+            " = ", math.cos(phi)*(1./math.cos(phi_))
+        print "yof sqphi: ", round(math.sin(phi),2), " * ", round(1/math.cos(phi_),2),\
+            " = ", math.sin(phi)*(1./math.cos(phi_))
+
+
+        print '---------------------'
 
     theta = np.arange(0,ce/st)
 
-    x = map(lambda t: math.cos(t*st*math.pi/180.)*rsq[t], theta)
-    y = map(lambda t: math.sin(t*st*math.pi/180.)*rsq[t], theta)
+    x = map(lambda t: math.cos(t*st*math.pi/180.)*rsq[t]*10, theta)
+    y = map(lambda t: math.sin(t*st*math.pi/180.)*rsq[t]*10, theta)
     plt.plot(x,y,'r')
 
 
