@@ -17,12 +17,21 @@ def cheat():
 
 def rsq_deep():
     # https://stackoverflow.com/questions/4788892/draw-square-with-polar-coordinates
-    for phi in np.arange(0,361,5):
-        print phi, (phi+45)%90-45
+    ce = 60
+    st = 5
+    rsq = [1]*((ce)/st)
+    for phi in np.arange(0,ce,st):
+        print  "deg ", phi, (phi+45)%90-45, "cos ", math.cos(phi)
         phi_ = ((phi+45)%90-45)/180.*math.pi
         radius = 10./math.cos(phi_)
-        #plt.plot(np.arange(
-        #plt.plot(
+        rsq[int(phi/st)] = radius
+
+    theta = np.arange(0,ce/st)
+
+    x = map(lambda t: math.cos(t*st*math.pi/180.)*rsq[t], theta)
+    y = map(lambda t: math.sin(t*st*math.pi/180.)*rsq[t], theta)
+    plt.plot(x,y,'r')
+
 
 def main():
     """
