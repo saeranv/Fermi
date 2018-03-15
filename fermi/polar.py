@@ -17,27 +17,31 @@ def cheat():
     #print vecdot
 
 def rsq_deep():
-    # https://stackoverflow.com/questions/4788892/draw-square-with-polar-coordinates
-    ce = 360
+    """ https://stackoverflow.com/questions/4788892/draw-square-with-polar-coordinates """
     st = 5
+    ce = 360 + st
     rad = []
     c = 0
+    sqlen = 10
     for phi in np.arange(0,ce,st):
-        #print c
-        #c+=1
         #print  "deg ", phi, (phi+45)%90-45, "cos ", math.cos(phi)
         phi_ = ((phi+45)%90-45)/180.*math.pi
         #phi_ = phi*180.*math.pi
-        r = 5./math.cos(phi_)
+        r = sqlen/math.cos(phi_)
         rad.append(r)
 
     theta = np.arange(0,ce/st)
 
-    for inc in xrange(3):
+    max_inc = 7
+    for inc in xrange(max_inc):
         inc = inc
-        x = map(lambda t: math.cos(t*st*math.pi/180.)*(rad[t] - (5.+rad[t])), theta)
-        y = map(lambda t: math.sin(t*st*math.pi/180.)*(rad[t] - (5.+rad[t])), theta)
-
+        x = [1]*len(theta)
+        y = [1]*len(theta)
+        for t in xrange(len(theta)):
+            delta = (rad[t] - sqlen)
+            r = rad[t] - delta*inc/(max_inc-1)
+            x[t] = math.cos(t*st*math.pi/180.)*r
+            y[t] = math.sin(t*st*math.pi/180.)*r
         plt.plot(x,y,'r')
 
 
