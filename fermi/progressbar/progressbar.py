@@ -41,4 +41,4 @@ for i, item in enumerate(items):
     printProgressBar(i + 1, l, prefix = 'Progress:', suffix = 'Complete', length = 50)
 
 # Sample Output
-Progress: |█████████████████████████████████████████████-----| 90.0% Complete
+#Progress: |█████████████████████████████████████████████-----| 90.0% Complete
