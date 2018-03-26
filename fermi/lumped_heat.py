@@ -5,6 +5,27 @@ import pandas as pd
 import sys
 
 def main():
+
+    """
+    Newton's law is derivative of Temp relative to time
+    is proportional (k) to difference between T of object and
+    constant T surroundings.
+
+    dT/dt = k(T - Ts)
+
+    Solve for T by recognizing derivative of e property:
+
+    y = T - Ts
+    dy/dt = T'(t) # b/c Ts is constant
+    dT/dt = dy/dt = ky # this should look familiar!
+    T(t) = Ce^kt # b/c y(x) = Ce^kt, and y'(x) = k(Ce^kt) == y'(x) = ky
+         = (T(0)-Ts) * e^kt
+
+    Using this I demonstrate here how if the T(0) changes based on outdoor temp
+    then over time the object temperature gradually approaches zero.
+
+    """
+
     #sin
     theta = np.arange(0,359)
     tinit = 2 # C
