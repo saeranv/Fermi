@@ -8,7 +8,7 @@ def main():
     mat = np.array([[1.,2.,3.],[4.,5.,6.]])
     vec2 = np.arange(3)
     mat2 = np.arange(12).reshape(4,3)
-    pdb.set_trace()
+    #pdb.set_trace()
     # We can perform vectorized functions on this!
     vec *= 2
     #print vec

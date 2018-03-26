@@ -3,13 +3,12 @@ import sys
 
 import math
 import numpy as np
-import pandas
+import pandas as pd
 import matplotlib.pyplot as plt
 
 import openstudio_python
 
 import pprint
-
 pp = lambda p: pprint.pprint(p)
 
 def plot_flux():
@@ -24,7 +23,8 @@ def plot_flux():
 
     L = map(lambda s:s.vertices(),surf_vector)
 
-    pp(L)
+    L = pd.Series(L)
+    print L
     """
     for i in xrange(len(surf_vector)):
         pt_vector = surf_vector[i].vertices()
