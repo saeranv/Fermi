@@ -42,9 +42,11 @@ def main():
 
     import UWG
 
-    epw_directory = "P:\\890 UTM New Science Building\\2. Design\\2.5 Research\\2.5.1 RED Report\\Macro_Climate_Break_Out\\CAN_ON_Toronto.716240_CWEC\\"
     CURR_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
-    epw_filename = "CAN_ON_Toronto.716240_CWEC.epw"      # EPW file name
+    #epw_directory = "P:\\890 UTM New Science Building\\2. Design\\2.5 Research\\2.5.1 RED Report\\Macro_Climate_Break_Out\\CAN_ON_Toronto.716240_CWEC\\"
+    #epw_filename = "CAN_ON_Toronto.716240_CWEC.epw"      # EPW file name
+    epw_directory = "C:\\Users\\user\\Desktop\\downloads"
+    epw_filename = "SRB_Belgrade.132720_IWEC.epw"
     uwg_param_directory = CURR_DIRECTORY                # .uwg file directory
     uwg_param_filename = "initialize.uwg"               # .uwg file name
 

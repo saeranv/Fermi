@@ -1,0 +1,40 @@
+efficiency = tight coupling 
+resilience = loose coupling 
+goal build up utilities to couple to geometry and material
+
+Geometry
+radiance utility of sky dome matrix w/ some subdividision (spherical)
+dome utility map avg matrix -> wind/temp/ground/solar flux
+graph utility of matplot lib 0 - 2pi (360), rate of flux
+graph utility of heatmap 0 - 2pi (36), rate of flux, by day
+polar utility circle to square abstraction based on rate
+projection utility of cosine-weighted rays to a geometry inside
+transformation utility of subdivided mesh surface
+transf utility of straight skeleton
+transf utility of floor slices
+projection utlity: epw spherical flux projected to surface
+projection utility: epw spherical flux multiplied by area
+
+Passive Energy
+epw utility matrix of: dry bulb, dewpoint, RH, udir, ustar, GHR, DNR
+heatmap utllity of data matrix by time
+passive strategy from balance temp and epw 
+schedule matrix -> mixed-mode schedule -> heatmap
+Active Energy
+latent and sensible heat loads from outdoor temp and balance temperature
+vent/infil -> passive + recirculation for active energy 
+benchmark/DOE utilitity of data for all other loads/schedules
+object utility of systems with schedule
+Renewable Energy
+photovoltaic surface area utility
+geothermal ground mass utility
+Analysis
+benchmark utilitity of data for outputs
+
+Bem Obj
+object utility for class of zone, subidivided facade
+object utility construction, material assembly
+object utility add zone data from openstudio(?) or bem(?) for balance temperature
+object utility add HVAC system to each building w/ efficiencies, and peak load
+use schedule from epw matrix to feed equipment loads
+simulation utility = energy calculation from loads

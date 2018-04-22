@@ -33,9 +33,5 @@ def plot_flux():
             print pt_vector[i].x(), pt
     """
 
-
-
-
-
 if __name__ == "__main__":
     out = plot_flux()
