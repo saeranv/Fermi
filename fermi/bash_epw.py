@@ -48,7 +48,7 @@ def main():
     epw_filename = "CAN_ON_Toronto.716240_CWEC.epw"      # EPW file name
     uwg_param_directory = CURR_DIRECTORY                # .uwg file directory
     uwg_param_filename = "initialize.uwg"               # .uwg file name
-
+    
     # Initialize the UWG object
     uwg = UWG.UWG(epw_directory, epw_filename, uwg_param_directory, uwg_param_filename)
     uwg.read_epw()
