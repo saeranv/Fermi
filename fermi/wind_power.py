@@ -24,7 +24,7 @@ def main():
 
     # windshare specs
     turbine_ht_array = [25.,45.,65.]#np.arange(25.)#15.,60.,15.)   # m
-    turbine_radius_array = [3.,9.]#25. # m length of blade
+    turbine_radius_array = [3.,12,21.]#25. # m length of blade
 
     #turbine_swept_area = 7.5  # m2
     #turbine_dir = 3*math.pi/2. # West in radians
@@ -36,7 +36,7 @@ def main():
     #wind_prof = uwg.RSM.windProf
     x_val = np.array(range(8760))
 
-    v_z = lambda v_epw: v_epw * math.ln((turbine_ht-zero_plane)/z0)/von_karman
+    #v_z = lambda v_epw: v_epw * math.ln((turbine_ht-zero_plane)/z0)/von_karman
 
     u_spd = np.array(epw.staUmod) # m/s
     u_dir = np.array(map(lambda d: d*math.pi/180., epw.staUdir)) # deg to radians
