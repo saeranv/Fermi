@@ -46,9 +46,10 @@ def main():
     #epw_directory = "P:\\890 UTM New Science Building\\2. Design\\2.5 Research\\2.5.1 RED Report\\Macro_Climate_Break_Out\\CAN_ON_Toronto.716240_CWEC\\"
     epw_directory = os.path.join(CURR_DIRECTORY, "..", "resources", "epw")
     epw_filename = "CAN_ON_Toronto.716240_CWEC.epw"      # EPW file name
+    #epw_filename = "USA_PA_Philadelphia.Intl.AP.724080_TMY3.epw"
     uwg_param_directory = CURR_DIRECTORY                # .uwg file directory
     uwg_param_filename = "initialize.uwg"               # .uwg file name
-    
+
     # Initialize the UWG object
     uwg = UWG.UWG(epw_directory, epw_filename, uwg_param_directory, uwg_param_filename)
     uwg.read_epw()
@@ -57,6 +58,7 @@ def main():
     #
     #uwg.hvac_autosize()
     #uwg.simulate()
+    #uwg.write_epw()
 
     return uwg
 

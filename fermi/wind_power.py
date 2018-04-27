@@ -85,10 +85,11 @@ def main():
                 P[t+1] = Pcalc(turbine_radius*2, V[t+1])
                 E[t+1] = E[t] + h * P[t] # kWh
                 # Should be approx 650 kWh at 12 m/s
-                if turbine_radius > 15 and turbine_ht > 55:
+                #if turbine_radius > 15 and turbine_ht > 55:
                     #print 'tblade={} & tht={}'.format(turbine_radius, turbine_ht)
-                    print P[t+1], round(V[t+1],2), abs(math.sin(u_dir[t+1]))
+                    #print P[t+1], round(V[t+1],2), abs(math.sin(u_dir[t+1]))
 
+            print "turb_ht={},turb_blade={} | ".format(turbine_ht,turbine_radius),
             print round(E[-1],2), "kWh,", round(E[-1]/5000.0,2)
 
             #wdf = pd.DataFrame({"E":E,"P":P, "V":V})
