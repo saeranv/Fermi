@@ -1,4 +1,3 @@
 http://gmsh.info//
-https://documen.tician.de/meshpy/
 https://github.com/bfroehle/pydistmesh
 https://pypi.org/project/MeshPy/0.91/
