@@ -1,3 +1,1 @@
-http://gmsh.info//
-https://github.com/bfroehle/pydistmesh
-https://pypi.org/project/MeshPy/0.91/
+https://stackoverflow.com/questions/7975522/mesh-generation-for-computational-science-in-python
