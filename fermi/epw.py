@@ -28,10 +28,11 @@ class EPW(object):
     properties
         location  # location name
         staTemp   % air temperature (C)
+        staTdp    % dry bulb
         staRhum   % air relative humidity (%)
         staPres   % air pressure (Pa)
         staInfra  % horizontal Infrared Radiation Intensity (W m-2)
-        staHor    % horizontal radiation\n
+        staHor    % horizontal radiation
         staDir    % normal solar direct radiation (W m-2)
         staDif    % horizontal solar diffuse radiation (W m-2)
         staUdir   % wind direction ()
@@ -106,9 +107,13 @@ class EPW(object):
 
     def epw_heatmap(self):
         # https://matplotlib.org/users/pyplot_tutorial.html
-        ymtx_dbt = self.epw_mtx(self.uwg.weather.staTemp)
+        #ymtx_dbt = self.epw_mtx(self.uwg.weather.staTemp)
+        #yvec = reduce(lambda a,b: a+b, ymtx_dbt)
 
-        yvec = reduce(lambda a,b: a+b, ymtx_dbt)
+        f = lambda x: x-273.15
+
+        yvec = map(f, self.uwg.weather.staTemp)
+        #yvec = self.uwg.weather.staTdp
 
         z = np.array([[0.0]*24 for i in xrange(365)])
 
@@ -119,7 +124,19 @@ class EPW(object):
                 i += 1
 
         z = z.transpose()
-        plt.imshow(z,origin="lower",interpolation=None,aspect="auto")
+
+        im = plt.imshow(z,origin="lower",interpolation=None,aspect="auto")
+        ax = plt.gca();
+
+        # Labels for major ticks
+        #ax.set_xticklabels(np.arange(1, 6, 1))
+        #ax.set_yticklabels(np.arange(1, 12, 1))
+        # Minor ticks
+        ax.set_xticks(np.arange(0, 365, 1), minor=True)
+        ax.set_yticks(np.arange(0, 24, 1), minor=True)
+
+        #ax.grid(which='major', color='w', linestyle='-', linewidth=1)
+        ax.grid(which='minor', color='w', linestyle='-', linewidth=0.4)
 
         #plt.title("test")
         #plt.ylabel("y")
