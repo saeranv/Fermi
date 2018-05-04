@@ -8,9 +8,9 @@ X- add uwg option
 X- sort by month
 X- output: numpy matrix of epw data by month
 
-//HEATMAP_UTILITY*
+X//HEATMAP_UTILITY*
 X- read up on numpy/matplotlib dependency
-- take numpy matrix and make heatmap
+X- take numpy matrix and make heatmap
 
 //NUMPY_CONDITIONS_MATRIX
 - matrix of external conditions matrix
@@ -62,7 +62,7 @@ X- read up on numpy/matplotlib dependency
 - use that to generate new simplified zone multiplied zones
 
 - serialize surfaces and for OpenStudio
-- serialize zones for DF? - i.e vector of VF, area-weighted zones 
+- serialize zones for DF? - i.e vector of VF, area-weighted zones
 - open in BIM2BEM then ->
 
 - bonus: all these spatial parameters can be dockerized and run as surrogate model with E+ and radiance, and comfort - generate data to create form porosity/surface maps
@@ -72,4 +72,3 @@ X- read up on numpy/matplotlib dependency
 - serialize percentile view (heads up)
 - KISS -> tune the shape transformations: insert more granular data
 - KISS -> tune the HVAC system via templates
-
