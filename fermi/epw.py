@@ -105,49 +105,29 @@ class EPW(object):
         return self.ymtx
 
     def epw_heatmap(self):
-
-        #epw_mtx = w.epw_mtx(epw.staTemp)
-        x = np.arange(365)
-        y = np.arange(24)
-
+        # https://matplotlib.org/users/pyplot_tutorial.html
         ymtx_dbt = self.epw_mtx(self.uwg.weather.staTemp)
 
-        xx, yy = np.meshgrid(x, y)
-        #heat_mtx = xx+yy
-
-        #z = xx[0],yy[0]
-
-        #print len(xx[0]), len(yy[0])
-        #print xx
-        #print yy
-        #print len(z), len(z[0])
-        #print len(ymtx_dbt[0])
-
-        #print self.ppmtx(ymtx_dbt)
         yvec = reduce(lambda a,b: a+b, ymtx_dbt)
-        print yy[:2]
-        print xx[:2]
-        #for i in xrange(8760):
-        z = xx+yy
-        i_ = 0
+
+        z = np.array([[0.0]*24 for i in xrange(365)])
+
+        i = 0
         for ix in xrange(365):
             for iy in xrange(24):
-                x_ = xx[ix][iy]
-                y_ = yy[ix][iy]
-                print x_, y_
-                #z[x_][y_] = yvec[i_]
+                z[ix,iy] = yvec[i]
+                i += 1
 
-                i_+=0
+        z = z.transpose()
+        plt.imshow(z,origin="lower",interpolation=None,aspect="auto")
 
-        plt.imshow(z,interpolation=None)
+        #plt.title("test")
+        #plt.ylabel("y")
+        #plt.xlabel("x")
 
-        plt.title("test")
-        plt.ylabel("y")
-        plt.xlabel("x")
+        plt.show()
 
-        #plt.show()
-
-        # origin=’lower’)
+        # )
 
 
 if __name__ == "__main__":
