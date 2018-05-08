@@ -58,14 +58,13 @@ X- take numpy matrix and make heatmap
 - (additional update: use radiance for flux calc)
 
 - radiance point to calculate view factor from inside
-- slice the box into perimeter/core voxel and map zone subdivision strategy
-- use that to generate new simplified zone multiplied zones
-
-- serialize surfaces and for OpenStudio
-- serialize zones for DF? - i.e vector of VF, area-weighted zones
+- radiance point to calculate view factor from inside
+- calculate perimeter/core zones 
+- generate new simplified zones
+- serialize zones/surfaces for OpenStudio
+- serialize zones for DF? - i.e vector of VF, area-weighted zones 
 - open in BIM2BEM then ->
-
-- bonus: all these spatial parameters can be dockerized and run as surrogate model with E+ and radiance, and comfort - generate data to create form porosity/surface maps
+- bonus: all these spatial parameters can be dockerized and run as services from BIM2BEM 
 
 - bonus: all this is useful stuff that can be added to BIM2BEM
 
