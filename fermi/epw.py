@@ -53,7 +53,7 @@ class EPW(object):
 
     def read_epw(self):
         # Initialize the UWG object
-        self.uwg = UWG.UWG(self.epw_dir, self.epw_file, self.uwg_param_dir, self.uwg_param_file)
+        self.uwg = UWG.UWG(self.epw_file, self.uwg_param_file, self.epw_dir, self.uwg_param_dir)
         self.uwg.read_epw()
         self.uwg.read_input()
 
