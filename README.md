@@ -1,40 +1,14 @@
 ## Fermi Utilities
 
 A series of small python scripts for simple geometry and simulation processing and analysis. Using pure Cython, with efficient numpy operations whenever possible. Inspired by Ken Thompson's Unix Philosophy[1]: 
-```
-Rule of Modularity: Write simple parts connected by clean interfaces.
 
-Rule of Clarity: Clarity is better than cleverness.
+>(i) Make each program do one thing well. To do a new job, build afresh rather than complicate old programs by adding new features.
 
-Rule of Composition: Design programs to be connected to other programs.
+>(ii) Expect the output of every program to become the input to another, as yet unknown, program. Don't clutter output with extraneous information. Avoid stringently columnar or binary input formats. Don't insist on interactive input.
 
-Rule of Separation: Separate policy from mechanism; separate interfaces from engines.
+>(iii) Design and build software, even operating systems, to be tried early, ideally within weeks. Don't hesitate to throw away the clumsy parts and rebuild them.
 
-Rule of Simplicity: Design for simplicity; add complexity only where you must.
+>(iv) Use tools in preference to unskilled help to lighten a programming task, even if you have to detour to build the tools and expect to throw some of them out after you've finished using them.
 
-Rule of Parsimony: Write a big program only when it is clear by demonstration that nothing else will do.
-
-Rule of Transparency: Design for visibility to make inspection and debugging easier.
-
-Rule of Robustness: Robustness is the child of transparency and simplicity.
-
-Rule of Representation: Fold knowledge into data so program logic can be stupid and robust.
-
-Rule of Least Surprise: In interface design, always do the least surprising thing.
-
-Rule of Silence: When a program has nothing surprising to say, it should say nothing.
-
-Rule of Repair: When you must fail, fail noisily and as soon as possible.
-
-Rule of Economy: Programmer time is expensive; conserve it in preference to machine time.
-
-Rule of Generation: Avoid hand-hacking; write programs to write programs when you can.
-
-Rule of Optimization: Prototype before polishing. Get it working before you optimize it.
-
-Rule of Diversity: Distrust all claims for “one true way”.
-
-Rule of Extensibility: Design for the future, because it will be here sooner than you think.
-```
 
 1. "Chapter 1. Philosophy." Basics of Unix Philosophy. http://www.catb.org/~esr/writings/taoup/html/ch01s06.html (accessed May 16, 2018).
