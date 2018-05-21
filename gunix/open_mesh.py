@@ -38,8 +38,9 @@ def test():
         holes=[squareHole.line_loop]
         )
 
-    points, cells, point_data, cell_data, field_data = pygmsh.generate_mesh(geom, geom_order=2)
-    print 'point'
+    points, cells, point_data, cell_data, field_data = pygmsh.generate_mesh(geom)
+    """
+    print 'points'
     print points
     print 'cells'
     print cells
@@ -51,9 +52,14 @@ def test():
     # ref = 16.0
     # from helpers import compute_volume
     # assert abs(compute_volume(points, cells) - ref) < 1.0e-2 * ref
+    """
     return points, cells
+
+def view_mesh():
+    pass
 
 
 if __name__ == '__main__':
     import meshio
     meshio.write('hole_in_square.vtu', *test())
+    view_mesh()
