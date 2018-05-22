@@ -1,14 +1,14 @@
 <VTKFile byte_order="LittleEndian" compressor="vtkZLibDataCompressor" header_type="UInt32" type="UnstructuredGrid" version="0.1">
   <!--This file was created by meshio v1.11.19-->
   <UnstructuredGrid>
-    <Piece NumberOfCells="44" NumberOfPoints="21">
+    <Piece NumberOfCells="24" NumberOfPoints="20">
       <Points>
-        <DataArray Name="Points" type="Float64" NumberOfComponents="3" format="binary">AQAAAACAAAD4AQAAwgAAAA==eJxjYACBD/YMKDQMCDjgF4fRMABThxDfdPk/CGCYX3EFJMyO03xUfQhxVH0MDMqOIJIDwz3qYHEGnO5E1YcQR9XHwLDvF8g+ZofjrCAeC1z8NBuI5HQw+wmSR5gja8Nz2IDnj33+z8p5z39ywsWPfLSY31DP6WDA3nfwH8NfuL/2fwbp/2s/mRPE+wcX14i+vS33NrfDnW8Q+2Hib35A3RPgOUnF8wdcvTYPxH1NARB9MPG+Gx5gdaqOqO4HAA1uaN8=</DataArray>
+        <DataArray Name="Points" type="Float64" NumberOfComponents="3" format="binary">AQAAAACAAADgAQAAbgAAAA==eJxjYMAHRBzwixOSZ2DQPfEfCN7bo6sQ2ggS/48hHvAUJMyOYe7WTyBxfpz2YbdHxAG7PSIO2O0RcUC35yMjiBRwQPfXUXYQyYEhvoIbTGGIH5cDkR/s0cWx24MAqPYgAKo9CIBqDwMDABVCPbc=</DataArray>
       </Points>
       <Cells>
-        <DataArray Name="connectivity" type="Int64" format="binary">AQAAAACAAACAAwAAogAAAA==eJx1kUkSgzAMBMHsBgxZ/v/WHDJ9SFdFly5LljQel+4bZ7iEJVxVH8IaNuU5b2EfXuHU/cYd7ro/q48Y1XeE7z/5pjr5R3gqf6l+6N5Lec5N+afmkb9Vx1/8Yh7+4gv68YV/Qie+4K/nM5d3MId+dDKHfv8PZ/RUnfEBfexjD/rYxx7eTz96iVGcxF6cxUUs4ipu4iBWcRcd6GIfcz51sAR5</DataArray>
-        <DataArray Name="offsets" type="Int64" format="binary">AQAAAACAAABgAQAAYwAAAA==eJwtxcEGwgAAANCIGCMixoiIESMiIkaMESMmmcwkk7TV/5869N7ljUd/EwcOPfXMc0eOvfDSKydeO/XGW++898GZj85d+OTSZ1e++OraNzdufffDnZ9++e3egz/++gd2qwsJ</DataArray>
-        <DataArray Name="types" type="Int32" format="binary">AQAAAACAAACwAAAAFAAAAA==eJxjZWBgYKUjZiYRM6JhAEl4ALU=</DataArray>
+        <DataArray Name="connectivity" type="Int64" format="binary">AQAAAACAAABgAQAAPQAAAA==eJxdzzkWgCAUA0BABfcF739XC99vJs2USVL6M+KEFRtmnHHBFTcsuOOBJ1444I0PdnzRxO/YGz0f7uABgw==</DataArray>
+        <DataArray Name="offsets" type="Int64" format="binary">AQAAAACAAADAAAAAPQAAAA==eJwtxcsGgEAAAMCsrCRJkiQrydoe//99HZq5TKh+taMbt+7ce/DoybMXr96cvPvw6eziy7cfv/4AoqACTw==</DataArray>
+        <DataArray Name="types" type="Int32" format="binary">AQAAAACAAABgAAAAEQAAAA==eJxjZmBgYKYiZkTDAA4gAEE=</DataArray>
       </Cells>
     </Piece>
   </UnstructuredGrid>
