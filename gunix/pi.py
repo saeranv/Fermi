@@ -1,9 +1,9 @@
-%matplotlib inline
+#%matplotlib inline
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib
 import math
-
+import numpy as np
 # find pi = 2*pi*r / 2*r # perimeter:diameter ratio
 # r = sqrt(x2 + y2) # distance between n-dim pts
 
