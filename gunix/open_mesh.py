@@ -7,11 +7,20 @@ from mpl_toolkits import mplot3d
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
+import os
 import math
 
+from pprint import pprint
+pp = pprint
+
+
+
 def test():
+    # disable all logging calls from pygmsh
+    sys.stdout = open(os.devnull, 'w')
+
     # Characteristic length
-    lcar = 1#e-1
+    lcar = 0.125#1e-1
 
     # Coordinates of lower-left and upper-right vertices of a square domain
     xmin = 0.0
@@ -21,16 +30,11 @@ def test():
 
     # Vertices of a square hole
     squareHoleCoordinates = np.array([
-        [0,0,0],
-        [5,0,0],
-        [5,5,0],
-        [0,5,0],
+        [2, 2, 0],
+        [3, 2, 0],
+        [3, 3, 0],
+        [2, 3, 0]
         ])
-        #[1, 1, 0],
-        #[4, 1, 0],
-        #[4, 4, 0],
-        #[1, 4, 0]
-        #])
 
     # Create geometric object
     geom = pygmsh.built_in.Geometry()
@@ -42,66 +46,77 @@ def test():
         )
 
     # Create square domain with square hole
-    #geom.add_rectangle(
-    #    xmin, xmax, ymin, ymax, 0.0, lcar,
-    #    holes=[squareHole.line_loop]
-    #    )
+    geom.add_rectangle(
+        xmin, xmax, ymin, ymax, 0.0, lcar,
+        holes=[squareHole.line_loop]
+        )
 
     points, cells, point_data, cell_data, field_data = pygmsh.generate_mesh(geom)
 
-    #print 'points'
-    #print points
+    sys.stdout = sys.__stdout__
     """
+    print 'points'
+    print points
     print 'cells'
     print cells
     print 'point data'
     print point_data
     print 'field_data'
     print field_data
-    """
-    # TODO support for volumes of triangle6
-    # ref = 16.0
-    # from helpers import compute_volume
-    # assert abs(compute_volume(points, cells) - ref) < 1.0e-2 * ref
+    #"""
 
     return points, cells
 
 def view_mesh(ptvec):
 
     ig = plt.figure()
-    ax = plt.axes(projection="3d")
+    ax = plt.gca(projection="3d")
+    ax.set_aspect("equal")
+    ax.autoscale(enable=False, axis='both')
 
     # Get x,y,z coordinates as np arrays
     x = np.array([ptvec[i][0] for i in xrange(len(ptvec))])
     y = np.array([ptvec[i][1] for i in xrange(len(ptvec))])
+    z = np.ones(len(ptvec))
+    #print x
 
-    ##f = lambda x,y: np.sqrt(x**2 + y**2)
-    xx,yy = np.meshgrid(x,y)
-    #z = f(xx,yy)
-    #z = np.array([ptvec[i][2] for i in xrange(len(ptvec))])
-    zz = np.zeros((len(ptvec), len(ptvec)))
+    # revise as parallel
+    fscale = lambda x: x/5.
+    x = [fscale(x_) for x_ in x]
+    y = [fscale(y_) for y_ in y]
 
-    # This can be done in parallel
-    ln = float(len(ptvec))
-    r = 1.0
-    f = lambda x: (x/(ln-1))*(360/r)*(math.pi/180.0)
+    f = lambda s,t: (s/t)*360.0*(math.pi/180.0)
+    max_x = np.amax(x)
+    min_x = np.amin(x)
+    total_x = abs(max_x - min_x)
+
+    max_y = np.amax(y)
+    min_y = np.amin(y)
+    total_y = abs(max_y - min_y)
+
     for i in xrange(len(ptvec)):
-        theta = f(i)
-        print i, theta
-        zx = math.cos(theta)
-        for j in xrange(len(ptvec)):
-            theta = f(j)
-            zy = 0#math.sin(theta)
-            zz[i,j] = (zx)#*zy)
-    #plt.plot(xx, yy, zz, marker='.', color='k', linestyle='none')
-    ax.scatter3D(xx, yy, zz) #c=zpt, cmap="Reds")
-    #ax.plot_surface(xx,yy, rstride=1, cstride=1, cmap="viridis", edgecolor="none")
+        step = float(abs(x[i]-min_x))
+        xtheta = f(step,total_x)
+
+        step = float(abs(y[i]-min_y))
+        ytheta = f(step,total_y)
+
+        z[i] = (math.sin(ytheta) + math.cos(xtheta)) * 0.125 + 0.5
+
+    makeline = lambda x,y,z: ax.plot3D((x[i],x[i+1]), (y[i],y[i+1]), (z[i],z[i+1]), color="r")
+    #[makeline(x,y,z) for i in xrange(len(ptvec)-1)]
+
+    ax.scatter3D(x, y, z, c=z,cmap='viridis')
+
+
+def plot():
 
     plt.show()
 
-
 if __name__ == '__main__':
-    import meshio
-    meshio.write('hole_in_square.vtu', *test())
+
     pts, clls = test()
     view_mesh(pts)
+
+    if len(sys.argv) > 1 and sys.argv[1] == "p":
+        plot()
