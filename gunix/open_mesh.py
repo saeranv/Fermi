@@ -20,7 +20,7 @@ def test():
     sys.stdout = open(os.devnull, 'w')
 
     # Characteristic length
-    lcar = 0.125#1e-1
+    lcar = 0.25#1e-1
 
     # Coordinates of lower-left and upper-right vertices of a square domain
     xmin = 0.0
@@ -95,18 +95,18 @@ def view_mesh(ptvec):
     total_y = abs(max_y - min_y)
 
     for i in xrange(len(ptvec)):
-        step = float(abs(x[i]-min_x))
-        xtheta = f(step,total_x)
+        stepx = float(abs(x[i]-min_x))
+        xtheta = f(stepx,total_x)
 
-        step = float(abs(y[i]-min_y))
-        ytheta = f(step,total_y)
+        stepy = float(abs(y[i]-min_y))
+        ytheta = f(stepy,total_y)
 
         z[i] = (math.sin(ytheta) + math.cos(xtheta)) * 0.125 + 0.5
 
     makeline = lambda x,y,z: ax.plot3D((x[i],x[i+1]), (y[i],y[i+1]), (z[i],z[i+1]), color="r")
     #[makeline(x,y,z) for i in xrange(len(ptvec)-1)]
-
-    ax.scatter3D(x, y, z, c=z,cmap='viridis')
+    zz = np.ones(len(ptvec))
+    ax.scatter3D(x, y, zz, c=z,cmap='viridis')
 
 
 def plot():
