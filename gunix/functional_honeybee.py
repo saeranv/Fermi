@@ -145,13 +145,22 @@ def memoize(obj):
     return memoizer
 
 def apply2depth(L,d=-1,f=lambda x:x):
-    @memoize
+    #@memoize
     def get_depth(L_,d_):
-        # Assume balanced tree
-        if type(L_)!=type([]):
+
+        if type(L_)!=type([]): #or len(L_)<0.5:
             return d_
+        elif type(L_[0]) != type([]):
+            return d_ + 1
         else:
-            return get_depth(L_[0],d_+1)
+            # Don't assume balanced tree
+            maxv = len(L_[0])
+            maxi = 0
+            for i in xrange(len(L_)):
+                if len(L_[i]) > maxv:
+                    maxv = len(L_[i])
+                    maxi = i
+            return get_depth(L_[maxi],d_+1)
 
     def apply2depth_(L_, d_, dinc_, f_):
         # Applies function f to node d
@@ -185,9 +194,6 @@ def get_wall_by_direction(srf,refv,tol=45):
 hb_hive = sc.sticky["honeybee_Hive"]()
 zonelst = hb_hive.visualizeFromHoneybeeHive(hbzone)
 
-#-----------------------------------------------------#
-# Add hb room from honeybee_room.py
-
 # Use dictionary to sort into nested list by program
 nested_zone = nest_lst_by_prop(zonelst, lambda z: z.name.split("_")[0])
 
@@ -219,7 +225,7 @@ nested_zone = nest_lst_by_prop(zonelst, lambda z: z.name.split("_")[0])
 # or srf.punchedGeometry
 
 # Go to root (zones) and replace zone objects with list of surfaces
-nest_srf = apply2depth(nested_zone,d=-1,f=get_srf_lst)
+nest_srf = apply2depth(nested_zone,d=-1,f=lambda zone: get_srf_lst(zone))
 
 # Get ceilings
 nest_ceiling = apply2depth(nest_srf,2,lambda srflst: [s.geometry for s in srflst[7]])
@@ -247,6 +253,3 @@ exterior_wall_N = list_to_tree(nest_wall_N)
 exterior_wall_E = list_to_tree(nest_wall_E)
 exterior_wall_S = list_to_tree(nest_wall_S)
 exterior_wall_W = list_to_tree(nest_wall_W)
-
-
-# now do the data management
