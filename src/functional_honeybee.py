@@ -253,3 +253,93 @@ exterior_wall_N = list_to_tree(nest_wall_N)
 exterior_wall_E = list_to_tree(nest_wall_E)
 exterior_wall_S = list_to_tree(nest_wall_S)
 exterior_wall_W = list_to_tree(nest_wall_W)
+
+
+"""
+Reference
+
+HBSurface:
+    BC
+    BCObject
+    EPConstruction
+    Equals
+    GetHashCode
+    GetType
+    ID
+    MemberwiseClone
+    PVgenlist
+    RadMaterial
+    ReferenceEquals
+    ToString
+    addChildSrf
+    angle2North
+    basePlane
+    calculatePunchedSurface
+    cenPt
+    checkForInternalEdge
+    checkPlanarity
+    childSrfs
+    cleanName
+    cnstrSet
+    collectMeshFaces
+    construction
+    containsPVgen
+    disposeCurrentMeshes
+    extractGlzPoints
+    extractMeshPts
+    extractPoints
+    findDiscontinuity
+    geometry
+    getAngle2North
+    getArea
+    getGlazingArea
+    getOpaqueArea
+    getSrfCenPtandNormalAlternate
+    getTotalArea
+    getTypeByNormalAngle
+    getWWR
+    groundViewFactor
+    hasChild
+    hasInternalEdge
+    intCnstrSet
+    isAntiClockWise
+    isChild
+    isOnGrade
+    isPlanar
+    isPossibleChild
+    isRectangle
+    isUnderground
+    meshedFace
+    name
+    normalVector
+    num
+    numOfVertices
+    objectType
+    outdoorBCObject
+    parent
+    reEvaluateType
+    removeAllChildSrfs
+    resetID
+    setBC
+    setBCObject
+    setBCObjectToOutdoors
+    setEPConstruction
+    setName
+    setRADMaterial
+    setSunExposure
+    setType
+    setWindExposure
+    shdCntrlZoneInstructs
+    srfBC
+    srfBCByUser
+    srfSunExposure
+    srfType
+    srfTypeByUser
+    srfWindExposure
+    sunExposure
+    transform
+    type
+    windExposure
+
+
+"""
