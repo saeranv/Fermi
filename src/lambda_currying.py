@@ -12,10 +12,6 @@ variable k rather than the value associated with it. The loop
 variable k persists even after the loop, and so those lambdas have
 access to it.
 
-Currying means decomposing a function that takes multiple arguments
-into a function that takes the first argument and returns a function
-that takes the next argument, and so forth for all the arguments.
-
 """
 
 print 'git check'
