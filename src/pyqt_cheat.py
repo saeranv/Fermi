@@ -27,33 +27,53 @@ QtSql
 
 import sys
 from PyQt5 import QtGui, QtWidgets
+import pprint
+pp = pprint.pprint
+class GUI(QtWidgets.QWidget):
+
+    def __init__(self):
+        super(GUI, self).__init__()
+
+        self.initUI()
+
+    def initUI(self):
+
+        # tooltips are properties of Widget objects
+        QtWidgets.QToolTip.setFont(QtGui.QFont('SansSerif', 10))    # set font (static method)
+        self.setToolTip('This is a <b>QWidget</b> widget')          # set text
+
+        btn = QtWidgets.QPushButton('Button', self)                 # button object
+        btn.setToolTip('This is a <b>QPushButton</b> widget')
+        btn.resize(btn.sizeHint())
+        btn.move(50, 50)
+
+        # QtWidgets.QWidget is a base class for all user interface objects
+        # this is a window
+        #w = QtWidgets.QWidget()
+        #w.resize(250, 150)  # resizes window launch
+        #w.move(300,300)     # move on screen
+        self.setGeometry(300,300,250,150) # combines resize and move from obove
+        self.setWindowTitle('Icon')
+        self.setWindowIcon(QtGui.QIcon('5.jpg'))
+
+
+        self.show()
 
 
 def main():
-    # application object
-    # sys.argv = list of arguments
+
+
     app = QtWidgets.QApplication(sys.argv)
+    ex = GUI()
 
-    # base class for all user interface objects
-    # this is a window
-    w = QtWidgets.QWidget()
-    w.resize(250, 150)  # resizes window launch
-    w.move(300,300)     # move on screen
-    w.setWindowTitle('Simple')
-
-    w.show()
 
     # mainloop is where event handling occurs
     # mainloop recieves events from windows system and dispatches
     # to the application
     # it ends when we call exit() method or widget is destroyed
-    # sys.exit ensures clean exit
-    print(app.exec_.__doc__)
+    # sys.exit exits cleanly from python by raising an excpetion when window
+    # is closed
     sys.exit(app.exec_())
 
 if __name__ == "__main__":
     main()
-    #app = QtWidgets.QApplication(sys.argv)
-    #mainWin = HelloWindow()
-    #mainWin.show()
-    #sys.exit( app.exec_() )
