@@ -1,3 +1,4 @@
+from __future__ import print_function
 import math
 import numpy as np
 import pandas as pd
@@ -7,10 +8,10 @@ import os
 import pprint
 pp = pprint.pprint
 
-CURR_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
-
+CURR_DIRECTORY = os.path.abspath(os.path.dirname("__file__"))
+print(CURR_DIRECTORY)
 # Set the uwg path
-UWG_DIR = os.path.join(CURR_DIRECTORY,"..","..","urbanWeatherGen")
+UWG_DIR = os.path.join(CURR_DIRECTORY,"..","urbanWeatherGen")
 if "UWG" not in sys.modules:
     sys.path.insert(0, UWG_DIR)
 try:
@@ -42,7 +43,7 @@ class EPW(object):
     """
 
     def __init__(self,epw_file="CAN_ON_Toronto.716240_CWEC.epw", uwg_param_file="initialize.uwg", epw_dir=None,uwg_param_dir=CURR_DIRECTORY):
-        self.epw_dir = epw_dir if epw_dir!=None else os.path.join(CURR_DIRECTORY, "..", "resources", "epw")
+        self.epw_dir = epw_dir if epw_dir!=None else os.path.join(CURR_DIRECTORY, "..", "urbanWeatherGen", "resources", "epw")
         self.epw_file = epw_file
         self.uwg_param_dir = uwg_param_dir
         self.uwg_param_file = uwg_param_file
@@ -103,6 +104,13 @@ class EPW(object):
         #ydf = pd.DataFrame(np.zeros((1,12)),columns=mth_str)
         #ydf.loc[mth_str[i],:] = pd.Series(np.ones(mth_day[i]))
 
+        # It'd be good to turn this into a dataframe
+        #self.mth_str = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+
+        #ydf = pd.DataFrame()
+        #ydf["test"] = range(10)
+        #ydf["test2"] = range(11)
+
         return self.ymtx
 
     def epw_heatmap(self):
@@ -147,27 +155,61 @@ class EPW(object):
         # )
 
 
+
 if __name__ == "__main__":
 
     #Inputs
     epw_file = "USA_PA_Philadelphia.Intl.AP.724080_TMY3.epw"
-    uwg_param_file = "initialize_PHILA.uwg"
+    epw_dir_in = os.path.join(CURR_DIRECTORY,"resources","epw")
+    uwg_param_file = "initialize.uwg"
+    uwg_param_dir_in = os.path.join(CURR_DIRECTORY,"src")
     add_micro_climate = False
+
     # Run
-    w = EPW(epw_file,uwg_param_file)
+    w = EPW(epw_file,uwg_param_file,epw_dir=epw_dir_in, uwg_param_dir = uwg_param_dir_in)
     uwg = w.read_epw()
     # Expose some parameters
     w.uwg.Month = 1
     w.uwg.Day = 1
     w.uwg.nDay = 365
+
+    w.uwg.read_epw()
     w.uwg.set_input()
+    w.uwg.init_input_obj()
 
     if add_micro_climate:
         uwg = run_uwg()
 
-    epw = w.uwg.weather
-    doc = epw.__doc__
-
     # make heatmap
     #epw_mtx = w.epw_mtx(epw.staTemp)
-    w.epw_heatmap()
+    # w.epw_heatmap()
+
+    doc_1 = "{}\n".format(
+        "\nw: wrapper class obj\nepw: Weather object\ndoc: docstrings for epw."
+        )
+    doc_2 = "{}\n".format(
+        "\nTo nest by month:\n\tyrmtx = w.epw_mtx(epw.staTemp)"
+        "\nTo make dataframe:"
+        "\n\tdbT = pd.DataFrame({'temp': epw.staTemp}) # dry bulb"
+        "\n\tdnr = pd.DataFrame({'temp': epw.staDir})  # direct normal radiation"
+        )
+    doc_3 = "{}".format(
+        "\nTo export to excel:"
+        "\n\t>>> writer = pd.ExcelWriter('epw_analysis.xlsx')"
+        "\n\t>>> dbT.to_excel(writer,'Sheet1')"
+        "\n\t>>> dnr.to_excel(writer,'Sheet2')"
+        "\n\t>>> writer.save()"
+        )
+
+    doc_4 = "{}".format(
+        "\nGet max all year in dataframe:\n\tdfmax = pd.DataFrame({'tempmax': [max(month) for month in w.epw_mtx(epw.staTemp)]})"
+    )
+
+    doc_5 = "{}".format(
+        "\nTo load in qtconsole:\n\t>>ipython qtconsole\n\t>>%load src/epw.py"
+    )
+
+    epw = w.uwg.weather
+    doc = epw.__doc__ + doc_1 + doc_2 + doc_3 + doc_4
+
+    print(doc)
