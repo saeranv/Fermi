@@ -1,0 +1,15 @@
+# Byte-compiled / optimized / DLL files
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+*py.bak
+
+# Unit test / coverage reports
+.cache
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+#logs
+*.log
