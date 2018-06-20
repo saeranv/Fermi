@@ -4,18 +4,21 @@ from qtconsole.inprocess import QtInProcessKernelManager
 
 import sys
 
+
 class Test(object):
-    def __init__(self,input):
+    def __init__(self, input):
         self.input = input
+
     def __repr__(self):
         return "I am a test haha " + str(self.input)
+
 
 class ConsoleWidget(RichJupyterWidget):
     def __init__(self, customBanner=None, *args, **kwargs):
         super(ConsoleWidget, self).__init__(*args, **kwargs)
 
-        #if customBanner is not None:
-        customBanner = "Hi there saeran " + str(sys.argv[1]) + "\n\n"
+        # if customBanner is not None:
+        customBanner = "Check 'ghargs': " + str(sys.argv[1]) + "\n%load src/loadenv.py\n\n"
         self.banner = customBanner
         self.font_size = 6
         self.kernel_manager = kernel_manager = QtInProcessKernelManager()
@@ -27,7 +30,7 @@ class ConsoleWidget(RichJupyterWidget):
         # test this
         t = Test(14)
         t1 = Test(26)
-        D = {"t":t,"ti":t1,"sysarg":sys.argv}
+        D = {"t": t, "ti": t1, "ghargs": sys.argv}
         kernel = kernel_manager.kernel
         kernel.shell.push(D)
 
