@@ -9,7 +9,6 @@ import sys
 from SimpleHTTPServer import SimpleHTTPRequestHandler
 import BaseHTTPServer
 
-
 def test(HandlerClass=SimpleHTTPRequestHandler,
          ServerClass=BaseHTTPServer.HTTPServer):
 
