@@ -18,8 +18,16 @@ class ConsoleWidget(RichJupyterWidget):
         super(ConsoleWidget, self).__init__(*args, **kwargs)
 
         # if customBanner is not None:
-        customBanner = "Check 'ghargs': " + str(sys.argv[1]) + "\n%load src/loadenv.py\n\n"
-        self.banner = customBanner
+        if len(sys.argv) > 1:
+            customBanner = "{}{}{}{}{}".format(
+                "Check 'ghargs': ",
+                str(sys.argv[1]),
+                "\n%run -m src.loadenv\n",
+                "%run -m src.openstudio_python $osmfile\n",
+                "%matplotlib inline\n"
+                )
+            
+            self.banner = customBanner
         self.font_size = 6
         self.kernel_manager = kernel_manager = QtInProcessKernelManager()
         kernel_manager.start_kernel(show_banner=False)

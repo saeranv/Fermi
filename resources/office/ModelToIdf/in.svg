@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<svg width="250mm" height="200mm" viewBox="0 0   2500    1500"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events">
+<g font-family="Verdana" font-size="8" >
+  <text x="   200" y="    40">Unused Non-Parent Objects:</text>
+  <text x="   220" y="    60">ZONE_5</text>
+  <text x="   220" y="    80">ZONE_6</text>
+  <text x="   220" y="   100">ZONE_7</text>
+  <text x="   220" y="   120">ZONE_8</text>
+  <text x="   220" y="   140">ZONE_9</text>
+  <text x="   220" y="   160">ZONE_5 IDEAL LOADS AIR SYSTEM</text>
+  <text x="   220" y="   180">OutdoorAir:Node</text>
+  <text x="   220" y="   200">ZONE_6 IDEAL LOADS AIR SYSTEM</text>
+  <text x="   220" y="   220">OutdoorAir:Node</text>
+  <text x="   220" y="   240">ZONE_7 IDEAL LOADS AIR SYSTEM</text>
+  <text x="   220" y="   260">OutdoorAir:Node</text>
+  <text x="   220" y="   280">ZONE_8 IDEAL LOADS AIR SYSTEM</text>
+  <text x="   220" y="   300">OutdoorAir:Node</text>
+  <text x="   220" y="   320">ZONE_9 IDEAL LOADS AIR SYSTEM</text>
+  <text x="   220" y="   340">OutdoorAir:Node</text>
+  <text x="   200" y="   380">
+The following are not supported: objects related to controls, AirTerminal:SingleDuct:Uncontrolled, or ZoneHVAC:IdealLoadsAirSystem</text>
+</g>
+</svg>
