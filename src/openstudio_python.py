@@ -29,7 +29,7 @@ def load_osm(osm_file_path):
     """
     if openstudio_dir not in sys.path:
         sys.path.insert(0,openstudio_dir)
-    pp(sys.path)
+
     # Make sure to add openstudio dir to path before importing clr
     import clr
     clr.AddReference("OpenStudio")
@@ -40,7 +40,7 @@ def load_osm(osm_file_path):
     if not os.path.exists(osm_file_path):
         print("error at ", osm_file_path)
         return 0,ops
-
+        
     osm_path = ops.Path(osm_file_path)
 
     osm = ops.Model.load(osm_path).get()
