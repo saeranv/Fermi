@@ -1,18 +1,23 @@
 from __future__ import print_function
 import os
 import sys
+import pprint
 
+pp = pprint.pprint
 
 RESOURCE_DIR = os.path.abspath(os.path.join(os.path.dirname("__file__"), "resources"))
 OSM_TEST = os.path.join(RESOURCE_DIR,"office.osm")
 
 def load_osm(osm_file_path):
 
-    openstudio_dir_1_12 = r"C:\Program Files\OpenStudio 1.12.0\CSharp\openstudio"
-    openstudio_dir_1_10 = r"C:\Program Files\OpenStudio 1.10.0\CSharp\openstudio"
-    #openstudio_dir_1_10 = "C:\\openstudio-2.4.0\\CSharp\\openstudio"
+    #openstudio_dir = r"C:\Program Files\OpenStudio 1.12.0\CSharp\openstudio"
+    #openstudio_dir = r"C:\Program Files\OpenStudio 1.10.0\CSharp\openstudio"
+    #openstudio_dir = r"C:\openstudio-2.4.0\CSharp\openstudio"
+    openstudio_dir = r"C:\openstudio-2.5.0\CSharp\openstudio"
 
-    print(openstudio_dir_1_12)
+    print(openstudio_dir)
+    #print(openstudio_dir_1_12)
+    """
     if os.path.exists(openstudio_dir_1_12):
         print("using openstudio 1.12")
         openstudio_dir = openstudio_dir_1_12
@@ -21,10 +26,10 @@ def load_osm(osm_file_path):
         openstudio_dir = openstudio_dir_1_10
     else:
         print("No openstudio installation exists.")
-
+    """
     if openstudio_dir not in sys.path:
-        sys.path.append(openstudio_dir)
-
+        sys.path.insert(0,openstudio_dir)
+    pp(sys.path)
     # Make sure to add openstudio dir to path before importing clr
     import clr
     clr.AddReference("OpenStudio")
@@ -43,7 +48,7 @@ def load_osm(osm_file_path):
     # sql file
     sqlfile = os.path.join(RESOURCE_DIR, "office\\ModelToIdf\\in.sql")
     sqlfileops = ops.SqlFile(ops.Path(sqlfile))
-    sqlfileops.setSqlFile()
+    #sqlfileops.setSqlFile()
 
     return osm,ops
 
