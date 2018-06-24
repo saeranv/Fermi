@@ -1,8 +1,52 @@
+from __future__ import print_function
 from qtconsole.qt import QtGui
 from qtconsole.rich_jupyter_widget import RichJupyterWidget
 from qtconsole.inprocess import QtInProcessKernelManager
+import qtconsole
+
+import pprint
+pp = pprint.pprint
+
+from IPython.lib import guisupport
+#from IPython.kernel.inprocess.ipkernel import InProcessKernel
 
 import sys
+import os
+#pp(dir(qtconsole))
+#print(qtconsole.qt.__doc__)
+
+#from qtconsole import QtInProcessKernelManager
+#from qtconsole import QtKernalManager
+#from qtconsole import guisupport
+
+def print_process_id():
+    print('Process ID {}'.format(os.getpid()))
+
+def main():
+
+    print_process_id()
+
+    app = QtGui.QApplication([])
+
+    widget = ConsoleWidget()
+    monokai = qtconsole.styles.default_dark_style_sheet
+
+    #print(widget.style_sheet)
+    widget.style_sheet = monokai
+
+    widget.execute_command("%run -m src.loadenv")
+    widget.execute_command("%matplotlib inline\n")
+
+    instructions = "{}{}{}{}".format(
+        "Check 'ghargs': ",
+        str(sys.argv[1]) if len(sys.argv)>1 else "Null",
+        "%run -m src.openstudio_python $osmfile\n",
+        "PID: "+str(os.getpid())
+        )
+    widget.print_text(instructions)
+    widget.show()
+
+    app.exec_()
 
 
 class Test(object):
@@ -12,12 +56,12 @@ class Test(object):
     def __repr__(self):
         return "I am a test haha " + str(self.input)
 
-
 class ConsoleWidget(RichJupyterWidget):
     def __init__(self, customBanner=None, *args, **kwargs):
         super(ConsoleWidget, self).__init__(*args, **kwargs)
 
         # if customBanner is not None:
+        """
         if len(sys.argv) > 1:
             customBanner = "{}{}{}{}{}".format(
                 "Check 'ghargs': ",
@@ -26,8 +70,8 @@ class ConsoleWidget(RichJupyterWidget):
                 "%run -m src.openstudio_python $osmfile\n",
                 "%matplotlib inline\n"
                 )
-            
-            self.banner = customBanner
+        """
+        self.banner = "HYPER-SPACE\n\n"
         self.font_size = 6
         self.kernel_manager = kernel_manager = QtInProcessKernelManager()
         kernel_manager.start_kernel(show_banner=False)
@@ -78,7 +122,4 @@ class ConsoleWidget(RichJupyterWidget):
 
 
 if __name__ == '__main__':
-    app = QtGui.QApplication([])
-    widget = ConsoleWidget()
-    widget.show()
-    app.exec_()
+    main()

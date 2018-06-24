@@ -175,6 +175,7 @@ if __name__ == "__main__":
 
     w.uwg.read_epw()
     w.uwg.set_input()
+    w.uwg.init_BEM_obj()
     w.uwg.init_input_obj()
 
     if add_micro_climate:

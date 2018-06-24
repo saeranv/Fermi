@@ -16,6 +16,8 @@ import System
 pp = lambda p: pprint.pprint(p)
 
 BIN_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__),"..", "bin"))
+RESOURCE_DIR = os.path.abspath(os.path.join(os.path.dirname("__file__"), "resources"))
+OSM_TEST = os.path.join(RESOURCE_DIR,"office.osm")
 
 if BIN_DIR not in sys.path:
     sys.path.append(BIN_DIR)
@@ -28,8 +30,8 @@ import Rhino as rc
 
 def osm_points_from_outdoor_boundary():
 
-    osm_file_path = "C:\\ladybug\\hb_office\\OpenStudio\\hb_office.osm"
-    osm = openstudio_python.load_osm(osm_file_path)
+    osm_file_path = OSM_TEST
+    osm, ops = openstudio_python.load_osm(osm_file_path)
 
     surface_vector = np.array(
         filter(lambda s: s.outsideBoundaryCondition()=="Outdoors",

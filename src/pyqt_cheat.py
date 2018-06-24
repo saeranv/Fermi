@@ -26,10 +26,14 @@ QtSql
 """
 
 import sys
-from PyQt5 import QtGui, QtWidgets
+from PyQt4 import QtGui
+
 import pprint
 pp = pprint.pprint
-class GUI(QtWidgets.QWidget):
+
+#pp(dir(QtGui))
+
+class GUI(QtGui.QWidget):
 
     def __init__(self):
         super(GUI, self).__init__()
@@ -39,10 +43,10 @@ class GUI(QtWidgets.QWidget):
     def initUI(self):
 
         # tooltips are properties of Widget objects
-        QtWidgets.QToolTip.setFont(QtGui.QFont('SansSerif', 10))    # set font (static method)
+        QtGui.QToolTip.setFont(QtGui.QFont('SansSerif', 10))    # set font (static method)
         self.setToolTip('This is a <b>QWidget</b> widget')          # set text
 
-        btn = QtWidgets.QPushButton('Button', self)                 # button object
+        btn = QtGui.QPushButton('Button', self)                 # button object
         btn.setToolTip('This is a <b>QPushButton</b> widget')
         btn.resize(btn.sizeHint())
         btn.move(50, 50)
@@ -63,7 +67,7 @@ class GUI(QtWidgets.QWidget):
 def main():
 
 
-    app = QtWidgets.QApplication(sys.argv)
+    app = QtGui.QApplication(sys.argv)
     ex = GUI()
 
 

@@ -10,10 +10,13 @@ OSM_TEST = os.path.join(RESOURCE_DIR,"office.osm")
 
 def load_osm(osm_file_path):
 
-    #openstudio_dir = r"C:\Program Files\OpenStudio 1.12.0\CSharp\openstudio"
+    #PINVOKE ERROR
     #openstudio_dir = r"C:\Program Files\OpenStudio 1.10.0\CSharp\openstudio"
     #openstudio_dir = r"C:\openstudio-2.4.0\CSharp\openstudio"
-    openstudio_dir = r"C:\openstudio-2.5.0\CSharp\openstudio"
+
+    # WORKING
+    #openstudio_dir = r"C:\openstudio-2.5.0\CSharp\openstudio" # @kt
+    openstudio_dir = r"C:\Program Files\OpenStudio 1.12.0\CSharp\openstudio" # @home
 
     print(openstudio_dir)
     #print(openstudio_dir_1_12)
@@ -40,7 +43,7 @@ def load_osm(osm_file_path):
     if not os.path.exists(osm_file_path):
         print("error at ", osm_file_path)
         return 0,ops
-        
+
     osm_path = ops.Path(osm_file_path)
 
     osm = ops.Model.load(osm_path).get()
