@@ -4,14 +4,15 @@ from qtconsole.rich_jupyter_widget import RichJupyterWidget
 from qtconsole.inprocess import QtInProcessKernelManager
 import qtconsole
 
-import pprint
-pp = pprint.pprint
-
 from IPython.lib import guisupport
 #from IPython.kernel.inprocess.ipkernel import InProcessKernel
 
 import sys
 import os
+
+import pprint
+pp = pprint.pprint
+
 #pp(dir(qtconsole))
 #print(qtconsole.qt.__doc__)
 
@@ -29,21 +30,21 @@ def main():
     app = QtGui.QApplication([])
 
     widget = ConsoleWidget()
-    monokai = qtconsole.styles.default_dark_style_sheet
 
-    #print(widget.style_sheet)
+    monokai = qtconsole.styles.default_dark_style_sheet
     widget.style_sheet = monokai
 
     widget.execute_command("%run -m src.loadenv")
     widget.execute_command("%matplotlib inline\n")
-
+    """
     instructions = "{}{}{}{}".format(
         "Check 'ghargs': ",
         str(sys.argv[1]) if len(sys.argv)>1 else "Null",
         "%run -m src.openstudio_python $osmfile\n",
         "PID: "+str(os.getpid())
         )
-    widget.print_text(instructions)
+    """
+    #widget.print_text(instructions)
     widget.show()
 
     app.exec_()
@@ -118,7 +119,7 @@ class ConsoleWidget(RichJupyterWidget):
         """
         Execute a command in the frame of the console widget
         """
-        self._execute(command, False)
+        self._execute(command, True)
 
 
 if __name__ == '__main__':

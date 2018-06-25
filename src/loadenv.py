@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 
 import matplotlib.pyplot as plt
+plt.style.use('dark_background')
 
 import pprint
 pp = pprint.pprint
@@ -23,3 +24,7 @@ except ImportError as e:
     raise ImportError("Failed to import UWG: {}".format(e))
 
 import UWG
+
+x_example = np.arange(math.pi*2*10)
+y_example = [math.sin(x_) for x_ in x_example]
+print("\nplt.plot(x_example, y_example)")

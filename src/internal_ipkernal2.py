@@ -2,31 +2,38 @@
 # Imports
 #-----------------------------------------------------------------------------
 # https://stackoverflow.com/questions/29421936/cant-quit-pyqt5-application-with-embedded-ipython-qtconsole
-import sys
-import os
 
-from IPython.lib.kernel import connect_qtconsole
-#from IPython.kernel.zmq.kernelapp import IPKernelApp
-from ipykernel.kernelapp import IPKernelApp
-from IPython.lib import guisupport
+from __future__ import print_function
 
-from PyQt4 import QtGui, QtWebKit, QtCore
-
-# Import the console machinery from ipython
+#qtgui
 from qtconsole.rich_jupyter_widget import RichJupyterWidget
 from qtconsole.inprocess import QtInProcessKernelManager
+import qtconsole
+
+from IPython.lib import guisupport
+from IPython.lib.kernel import connect_qtconsole
+from ipykernel.kernelapp import IPKernelApp
+
+from PyQt4 import QtGui, QtWebKit, QtCore, Qt
+from PyQt4.QtCore import QFile, QTextStream
 
 import pprint
 pp = pprint.pprint
-#pprint.pprint(dir(QtGui))
+
+import qdarkstyle
+
+import sys
+import os
+
+CURR_DIRECTORY = os.path.abspath(os.path.dirname("__file__"))
 
 HTML = """
 <html>
    <head>
       <title>QtWebKit Plug-in Test</title>
    </head>
-   <body>
-      <h1>Hello, World!</h1>
+   <body bgcolor="#000">
+      <h1 style="color:white">Hello, World!</h1>
    </body>
 </html>
 """
@@ -35,22 +42,41 @@ HTML = """
 #-----------------------------------------------------------------------------
 # Functions and classes
 #-----------------------------------------------------------------------------
+"""
 def mpl_kernel(gui):
-    """Launch and return an IPython kernel with matplotlib support for the desired gui
-    """
+    #Launch and return an IPython kernel with matplotlib support for the desired gui
+
     kernel = IPKernelApp.instance()
     kernel.initialize(['python', '--matplotlib=%s' % gui,
                        #'--log-level=10'
                        ])
     return kernel
+"""
+def print_process_id():
+    print('Process ID {}'.format(os.getpid()))
 
-class QIPythonWidget(RichJupyterWidget):
-    """ Convenience class for a live IPython console widget.
-     We can replace the standard banner using the customBanner argument"""
-    def __init__(self,customBanner=None,*args,**kwargs):
-        super(QIPythonWidget, self).__init__(*args,**kwargs)
-        #if customBanner!=None: self.banner=customBanner
+class Test(object):
+    def __init__(self, input):
+        self.input = input
 
+    def __repr__(self):
+        return "I am a test haha " + str(self.input)
+
+class ConsoleWidget(RichJupyterWidget):
+    def __init__(self, customBanner=None, *args, **kwargs):
+        super(ConsoleWidget, self).__init__(*args, **kwargs)
+
+        # if customBanner is not None:
+        """
+        if len(sys.argv) > 1:
+            customBanner = "{}{}{}{}{}".format(
+                "Check 'ghargs': ",
+                str(sys.argv[1]),
+                "\n%run -m src.loadenv\n",
+                "%run -m src.openstudio_python $osmfile\n",
+                "%matplotlib inline\n"
+                )
+        """
         self.banner = "HYPER-SPACE\n\n"
         self.font_size = 6
         self.kernel_manager = kernel_manager = QtInProcessKernelManager()
@@ -58,7 +84,13 @@ class QIPythonWidget(RichJupyterWidget):
         kernel_manager.kernel.gui = 'qt'
         self.kernel_client = kernel_client = self._kernel_manager.client()
         kernel_client.start_channels()
+
+        # test this
+        t = Test(14)
+        t1 = Test(26)
+        D = {"t": t, "ti": t1, "ghargs": sys.argv}
         kernel = kernel_manager.kernel
+        kernel.shell.push(D)
 
         def stop():
             kernel_client.stop_channels()
@@ -67,22 +99,36 @@ class QIPythonWidget(RichJupyterWidget):
 
         self.exit_requested.connect(stop)
 
-    def pushVariables(self,variableDict):
-        """ Given a dictionary containing name / value pairs, push those variables to the IPython console widget """
+    def push_vars(self, variableDict):
+        """
+        Given a dictionary containing name / value pairs, push those variables
+        to the Jupyter console widget
+        """
         self.kernel_manager.kernel.shell.push(variableDict)
-    def clearTerminal(self):
-        """ Clears the terminal """
+
+    def clear(self):
+        """
+        Clears the terminal
+        """
         self._control.clear()
-    def printText(self,text):
-        """ Prints some plain text to the console """
+
+        # self.kernel_manager
+
+    def print_text(self, text):
+        """
+        Prints some plain text to the console
+        """
         self._append_plain_text(text)
-    def executeCommand(self,command):
-        """ Execute a command in the frame of the console widget """
-        self._execute(command,False)
+
+    def execute_command(self, command):
+        """
+        Execute a command in the frame of the console widget
+        """
+        self._execute(command, False)
 
 
 class ExampleWidget(QtGui.QMainWindow):
-    """ Main GUI Window including a button and IPython Console widget inside vertical layout """
+    # Main GUI Window including a button and IPython Console widget inside vertical layout
     def __init__(self, parent=None):
         super(ExampleWidget, self).__init__(parent)
         self.setWindowTitle('iPython in PyQt5 app example')
@@ -97,13 +143,28 @@ class ExampleWidget(QtGui.QMainWindow):
         viewer.setFixedSize(400, 300)
         customBanner="Welcome to the embedded ipython console\n"
 
-        ipyConsole = QIPythonWidget()
-        """
+        ipyConsole = ConsoleWidget()
+
+        monokai = qtconsole.styles.default_dark_style_sheet
+        ipyConsole.style_sheet = monokai
+
+        ipyConsole.execute_command("%run -m src.loadenv")
+        ipyConsole.execute_command("%matplotlib inline\n")
+
+        instructions = "{}{}{}{}".format(
+            "Check 'ghargs': ",
+            str(sys.argv[1]) if len(sys.argv)>1 else "Null",
+            "%run -m src.openstudio_python $osmfile\n",
+            "PID: "+str(os.getpid())
+            )
+        ipyConsole.print_text(instructions)
+
+
         ipyConsole.setFixedSize(400, 500)
 
         layout.addWidget(viewer)
         layout.addWidget(ipyConsole)
-        """
+
         #pp(dir(layout))
         # This allows the variable foo and method print_process_id to be accessed from the ipython console
         #ipyConsole.pushVariables({"foo":43,"print_process_id":print_process_id})
@@ -115,13 +176,20 @@ def print_process_id():
     print('Process ID is:', os.getpid())
 
 def main():
-    app  = QtGui.QApplication([])
-    #widget = ExampleWidget()
-    widget = QIPythonWidget()
-    #monokai_style_sheet = qtconsole.styles.default_dark_style_sheet
-    #widget.style_sheet = monokai
+    print_process_id()
+
+    app = QtGui.QApplication([])
+    #app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt())
+
+    file = QFile(os.path.join(CURR_DIRECTORY,"qdarkstyle.qss"))
+    file.open(QFile.ReadOnly | QFile.Text)
+    stream = QTextStream(file)
+    app.setStyleSheet(stream.readAll())
+
+    widget = ExampleWidget()
 
     widget.show()
+
     app.exec_()
 
 if __name__ == '__main__':
