@@ -37,10 +37,12 @@ HTML = """
    </head>
    <body bgcolor="#000">
       <!-- <p style="color:white">hyper-xspace</p> -->
-      <img src="C:/saeran/master/git/Fermi/src/img/2.jpg" width="390">
+      <img src="2.jpg" width="390">
    </body>
 </html>
 """
+
+# <img src="C:/saeran/master/git/Fermi/src/img/2.jpg" width="390">
 
 
 #-----------------------------------------------------------------------------
@@ -143,7 +145,10 @@ class ExampleWidget(QtWidgets.QMainWindow):
         #self.button = QtGui.QPushButton('Another widget')
 
         viewer = QtWebKitWidgets.QWebView()
-        viewer.setHtml(HTML)
+        viewer.setHtml("<html><head></head><body></body></html>")
+        base_url = QtCore.QUrl.fromLocalFile(os.path.join(CURR_DIRECTORY, "src", "img/"))
+        print(base_url)
+        viewer.setHtml(HTML, base_url)
         viewer.setFixedSize(410, 370)
         customBanner="Welcome to the embedded ipython console\n"
 
