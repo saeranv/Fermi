@@ -14,13 +14,15 @@ from IPython.lib import guisupport
 from IPython.lib.kernel import connect_qtconsole
 from ipykernel.kernelapp import IPKernelApp
 
-from PyQt4 import QtGui, QtWebKit, QtCore, Qt
-from PyQt4.QtCore import QFile, QTextStream
+from PyQt5 import QtWidgets, QtGui, QtWebKitWidgets, QtCore, Qt
+from PyQt5.QtCore import QFile, QTextStream
+# needs to be imported
+#from PyQt5 import QtSvg
 
 import pprint
 pp = pprint.pprint
 
-import qdarkstyle
+#import qdarkstyle
 
 import sys
 import os
@@ -129,18 +131,18 @@ class ConsoleWidget(RichJupyterWidget):
         self._execute(command, True)
 
 
-class ExampleWidget(QtGui.QMainWindow):
+class ExampleWidget(QtWidgets.QMainWindow):
     # Main GUI Window including a button and IPython Console widget inside vertical layout
     def __init__(self, parent=None):
         super(ExampleWidget, self).__init__(parent)
         self.setWindowTitle('hpr')
-        self.mainWidget = QtGui.QWidget(self)
+        self.mainWidget = QtWidgets.QWidget(self)
         self.setCentralWidget(self.mainWidget)
-        layout = QtGui.QVBoxLayout(self.mainWidget)
+        layout = QtWidgets.QVBoxLayout(self.mainWidget)
 
         #self.button = QtGui.QPushButton('Another widget')
 
-        viewer = QtWebKit.QWebView()
+        viewer = QtWebKitWidgets.QWebView()
         viewer.setHtml(HTML)
         viewer.setFixedSize(410, 370)
         customBanner="Welcome to the embedded ipython console\n"
@@ -180,9 +182,9 @@ def print_process_id():
 def main():
     print_process_id()
 
-    app = QtGui.QApplication([])
+    app = QtWidgets.QApplication([])
     #app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt())
-    app.setWindowIcon(QtGui.QIcon("C:/saeran/master/git/Fermi/src/img/logo.jpg"))
+    app.setWindowIcon(QtGui.QIcon(os.path.join(CURR_DIRECTORY,"src/img/logo.jpg")))
 
     file = QFile(os.path.join(CURR_DIRECTORY,"src","qdarkstyle.qss"))
     file.open(QFile.ReadOnly | QFile.Text)
