@@ -161,7 +161,15 @@ class ExampleWidget(QtWidgets.QMainWindow):
             "PID: "+str(os.getpid()) + "\n\n"
             )
 
-        ipyConsole = ConsoleWidget(customBanner = instructions)
+        gtd = """
+        GTD
+        1. Add filewatcher https://stackoverflow.com/questions/13518985/why-does-qfilesystemwatcher-work-for-directories-but-not-files-in-python
+        2. ???
+        3. Profit.
+        \n\n
+        """
+
+        ipyConsole = ConsoleWidget(customBanner = instructions + gtd)
 
         monokai = qtconsole.styles.default_dark_style_sheet
         ipyConsole.style_sheet = monokai
