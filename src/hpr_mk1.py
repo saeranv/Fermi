@@ -14,8 +14,13 @@ from IPython.lib import guisupport
 from IPython.lib.kernel import connect_qtconsole
 from ipykernel.kernelapp import IPKernelApp
 
-from PyQt5 import QtWidgets, QtGui, QtWebKitWidgets, QtCore, Qt
+from PyQt5 import QtWidgets, QtGui, QtCore, Qt
 from PyQt5.QtCore import QFile, QTextStream
+
+# for web dev
+from PyQt5 import QtWebKitWidgets
+#from PyQt5.QtWebEngineWidgets import QWebEngineView
+
 # needs to be imported
 #from PyQt5 import QtSvg
 
@@ -83,10 +88,10 @@ class ConsoleWidget(RichJupyterWidget):
                 "%matplotlib inline\n"
                 )
         """
-        self.banner = "HYPER-SPACE\n\n"
+        self.banner = "HYPER-SPACE\n\n" + customBanner
         self.font_size = 6
         self.kernel_manager = kernel_manager = QtInProcessKernelManager()
-        kernel_manager.start_kernel(show_banner=False)
+        kernel_manager.start_kernel(show_banner=True)
         kernel_manager.kernel.gui = 'qt'
         self.kernel_client = kernel_client = self._kernel_manager.client()
         kernel_client.start_channels()
@@ -132,7 +137,6 @@ class ConsoleWidget(RichJupyterWidget):
         """
         self._execute(command, True)
 
-
 class ExampleWidget(QtWidgets.QMainWindow):
     # Main GUI Window including a button and IPython Console widget inside vertical layout
     def __init__(self, parent=None):
@@ -142,17 +146,22 @@ class ExampleWidget(QtWidgets.QMainWindow):
         self.setCentralWidget(self.mainWidget)
         layout = QtWidgets.QVBoxLayout(self.mainWidget)
 
-        #self.button = QtGui.QPushButton('Another widget')
+        base_url = QtCore.QUrl.fromLocalFile(os.path.join(CURR_DIRECTORY, "src", "img/"))
 
         viewer = QtWebKitWidgets.QWebView()
-        viewer.setHtml("<html><head></head><body></body></html>")
-        base_url = QtCore.QUrl.fromLocalFile(os.path.join(CURR_DIRECTORY, "src", "img/"))
-        print(base_url)
+        #viewer = QWebEngineView()
+
         viewer.setHtml(HTML, base_url)
         viewer.setFixedSize(410, 370)
-        customBanner="Welcome to the embedded ipython console\n"
 
-        ipyConsole = ConsoleWidget()
+        instructions = "{}{}\n{}{}".format(
+            "Check GH args: ",
+            str(sys.argv[1]) if len(sys.argv)>1 else "None",
+            "%run -m src.openstudio_python $osmfile\n",
+            "PID: "+str(os.getpid()) + "\n\n"
+            )
+
+        ipyConsole = ConsoleWidget(customBanner = instructions)
 
         monokai = qtconsole.styles.default_dark_style_sheet
         ipyConsole.style_sheet = monokai
@@ -160,13 +169,8 @@ class ExampleWidget(QtWidgets.QMainWindow):
         ipyConsole.execute_command("%run -m src.loadenv")
         ipyConsole.execute_command("%matplotlib inline\n")
 
-        instructions = "{}{}{}{}".format(
-            "Check 'ghargs': ",
-            str(sys.argv[1]) if len(sys.argv)>1 else "Null",
-            "%run -m src.openstudio_python $osmfile\n",
-            "PID: "+str(os.getpid())
-            )
-        ipyConsole.print_text(instructions)
+
+        ipyConsole._append_plain_text(instructions)
 
 
         ipyConsole.setFixedSize(400, 500)

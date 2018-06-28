@@ -3,5 +3,4 @@
 
 from __future__ import print_function
 
-for i in xrange(1):
-    print("hello")
+print("hello")
