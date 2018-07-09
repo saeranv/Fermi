@@ -14,17 +14,18 @@ pp = pprint.pprint
 
 CURR_DIRECTORY = os.path.abspath(os.path.dirname("__file__"))
 
+"""
 # Set the uwg path
-UWG_DIR = os.path.join(CURR_DIRECTORY,"..","urbanWeatherGen")
-if "UWG" not in sys.modules:
-    sys.path.insert(0, UWG_DIR)
+uwg_DIR = os.path.join(CURR_DIRECTORY,"..","urbanWeatherGen")
+if "uwg" not in sys.modules:
+    sys.path.insert(0, uwg_DIR)
 try:
-    __import__("UWG")
+    __import__("uwg")
 except ImportError as e:
-    raise ImportError("Failed to import UWG: {}".format(e))
+    raise ImportError("Failed to import uwg: {}".format(e))
 
-import UWG
-
+import uwg
+"""
 x_example = np.arange(math.pi*2*10)
 y_example = [math.sin(x_) for x_ in x_example]
 print("\nplt.plot(x_example, y_example)")

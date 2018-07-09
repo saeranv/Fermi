@@ -35,21 +35,6 @@ import os
 CURR_DIRECTORY = os.path.abspath(os.path.dirname("__file__"))
 
 
-HTML = """
-<html>
-   <head>
-      <title>QtWebKit Plug-in Test</title>
-   </head>
-   <body bgcolor="#000">
-      <!-- <p style="color:white">hyper-xspace</p> -->
-      <img src="2.jpg" width="390">
-   </body>
-</html>
-"""
-
-# <img src="C:/saeran/master/git/Fermi/src/img/2.jpg" width="390">
-
-
 #-----------------------------------------------------------------------------
 # Functions and classes
 #-----------------------------------------------------------------------------
@@ -137,23 +122,24 @@ class ConsoleWidget(RichJupyterWidget):
         """
         self._execute(command, True)
 
-class ExampleWidget(QtWidgets.QMainWindow):
+class MainWidget(QtWidgets.QMainWindow):
     # Main GUI Window including a button and IPython Console widget inside vertical layout
     def __init__(self, parent=None):
-        super(ExampleWidget, self).__init__(parent)
+        super(MainWidget, self).__init__(parent)
         self.setWindowTitle('hpr')
         self.mainWidget = QtWidgets.QWidget(self)
         self.setCentralWidget(self.mainWidget)
         layout = QtWidgets.QVBoxLayout(self.mainWidget)
 
-        base_url = QtCore.QUrl.fromLocalFile(os.path.join(CURR_DIRECTORY, "src", "img/"))
-
+        # frontend widget
+        html_url = QtCore.QUrl.fromLocalFile(os.path.join(CURR_DIRECTORY, "src","trnco_fe","trnco_fe.html"))
         viewer = QtWebKitWidgets.QWebView()
-        #viewer = QWebEngineView()
+        #viewer.setHtml(HTML, img_url)
+        viewer.load(html_url)
+        viewer.setFixedSize(420, 470)#370)
 
-        viewer.setHtml(HTML, base_url)
-        viewer.setFixedSize(410, 370)
 
+        # console widget
         instructions = "{}{}\n{}{}".format(
             "Check GH args: ",
             str(sys.argv[1]) if len(sys.argv)>1 else "None",
@@ -161,15 +147,7 @@ class ExampleWidget(QtWidgets.QMainWindow):
             "PID: "+str(os.getpid()) + "\n\n"
             )
 
-        gtd = """
-        GTD
-        1. Add filewatcher https://stackoverflow.com/questions/13518985/why-does-qfilesystemwatcher-work-for-directories-but-not-files-in-python
-        2. ???
-        3. Profit.
-        \n\n
-        """
-
-        ipyConsole = ConsoleWidget(customBanner = instructions + gtd)
+        ipyConsole = ConsoleWidget(customBanner = instructions)
 
         monokai = qtconsole.styles.default_dark_style_sheet
         ipyConsole.style_sheet = monokai
@@ -181,7 +159,7 @@ class ExampleWidget(QtWidgets.QMainWindow):
         ipyConsole._append_plain_text(instructions)
 
 
-        ipyConsole.setFixedSize(400, 500)
+        ipyConsole.setFixedSize(400, 400)
 
         layout.addWidget(viewer)
         layout.addWidget(ipyConsole)
@@ -191,11 +169,33 @@ class ExampleWidget(QtWidgets.QMainWindow):
         #ipyConsole.pushVariables({"foo":43,"print_process_id":print_process_id})
         #ipyConsole.printText("The variable 'foo' and the method 'print_process_id()' are available. Use the 'whos' command for information.\n\nTo push variables run this before starting the UI:\n ipyConsole.pushVariables({\"foo\":43,\"print_process_id\":print_process_id})")
 
-        #self.setGeometry(10, 10, 300, 300)
+        #self.setGeometry(40, 40, 300, 300)
+        self.move(40,40)
 
+        self.show()
+
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key_Escape:
+            self.close()
+
+        # reload ui
+        """
+        key = event.key()
+        if key == Qt.Key_Enter:
+            #For Enter of keyboard number
+            print("key Enter press")
+            self.updateUi()
+        if key == Qt.Key_Return:
+            #For Enter of keyboard
+            print("key Enter press")
+            self.updateUi()
+        """
 def print_process_id():
     print('Process ID is:', os.getpid())
 
+def onFileSystemChanged(path):
+    print(path)
+    print('testing')
 def main():
     print_process_id()
 
@@ -208,11 +208,28 @@ def main():
     stream = QTextStream(file)
     app.setStyleSheet(stream.readAll())
 
-    widget = ExampleWidget()
+    widget = MainWidget()
 
-    widget.show()
+    #widget.show()
+    """
+    # file watcher
+    # https://stackoverflow.com/questions/13518985/why-does-qfilesystemwatcher-work-for-directories-but-not-files-in-python
+    # http://blog.mathieu-leplatre.info/filesystem-watch-with-pyqt4.html
+    paths = [
+        os.path.join(CURR_DIRECTORY, "src","trnco_fe","img"),
+        os.path.join(CURR_DIRECTORY, "src","trnco_fe","img","2.jpg")
+        ]
+    # Set up file system watcher
+    qfsw = QtCore.QFileSystemWatcher()
+    qfsw.addPaths(paths)
+    QtCore.QObject.connect(qfsw, QtCore.SIGNAL("directoryChanged(QString)"),onFileSystemChanged)
+    QtCore.QObject.connect(qfsw, QtCore.SIGNAL("fileChanged(QString)"),onFileSystemChanged)
 
-    app.exec_()
+    # Allow program to be interrupted with Ctrl+C
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
+    # end file watching
+    """
+    sys.exit(app.exec_())
 
 if __name__ == '__main__':
     main()
