@@ -1,0 +1,16 @@
+
+Qtotal_wedge => q_solar * |wedge_vector|
+
+So to derive Qtotal_flat from Qtotal_wedge (which we simulated):
+
+|flat_vector| => cos(theta) * |wedge_vector|  
+So (I’m pretty sure this is right):
+Qtotal_flat    => cos(theta) * Qtotal_wedge
+
+So SHGF is:
+SHGF = (Qtotal_wedge / Qtotal_flat)
+Qtotal_wedge = SHGF * Qtotal_flat
+
+SHGF = (Qtotal_wedge * (cos(theta) * Qtotal_wedge)^-1)
+
+So in essensce, all that SHGC calculation is simply projecting the Qtotal
