@@ -5,6 +5,12 @@ import scriptcontext as sc
 
 pp = pprint.pprint
 
+"""
+https://github.com/NREL/OpenStudio/search?q=intersect&unscoped_q=intersect
+https://github.com/NREL/OpenStudio/blob/7865ba413ef52e8c41b8b95d6643d68eb949f1c4/openstudiocore/sketchup_plugin/openstudio/sketchup_plugin/user_scripts/Alter%20or%20Add%20Model%20Elements/Intersect_Space_Geometry.rb
+https://github.com/NREL/OpenStudio/blob/7865ba413ef52e8c41b8b95d6643d68eb949f1c4/openstudiocore/sketchup_plugin/openstudio/sketchup_plugin/sketchup/Geom.rb
+"""
+
 def tree_to_list(input, retrieve_base = lambda x: x[0]):
     """Returns a list representation of a Grasshopper DataTree"""
     def extend_at(path, index, simple_input, rest_list):
@@ -101,7 +107,7 @@ if openStudioIsReady:
             #surf_vector.Add(osm_srf)
 
 
-    
+
     starting_surfaces = osm.getSurfaces()
     print "Starting # surfaces: ", starting_surfaces.Count
 
