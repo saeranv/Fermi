@@ -9,7 +9,6 @@ pp = pprint.pprint
 """
 https://github.com/NREL/OpenStudio/search?q=intersect&unscoped_q=intersect
 https://github.com/NREL/OpenStudio/blob/7865ba413ef52e8c41b8b95d6643d68eb949f1c4/openstudiocore/sketchup_plugin/openstudio/sketchup_plugin/user_scripts/Alter%20or%20Add%20Model%20Elements/Intersect_Space_Geometry.rb
-https://github.com/NREL/OpenStudio/blob/7865ba413ef52e8c41b8b95d6643d68eb949f1c4/openstudiocore/sketchup_plugin/openstudio/sketchup_plugin/sketchup/Geom.rb
 """
 
 if sc.sticky.has_key('honeybee_release'):
