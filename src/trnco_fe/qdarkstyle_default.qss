@@ -8,7 +8,7 @@ QToolTip {
 
 QWidget {
     color: #eff0f1;
-    background-color: #000000;
+    background-color: #31363b;
     selection-background-color: #3daee9;
     selection-color: #eff0f1;
     background-clip: border;
@@ -362,9 +362,9 @@ QScrollBar::add-page:horizontal,
 QScrollBar::sub-page:horizontal {
     background: none;
 }
-/*
+
 QScrollBar:vertical {
-    background-color: #000000;
+    background-color: #2A2929;
     width: 15px;
     margin: 15px 3px 15px 3px;
     border: 1px transparent #2A2929;
@@ -422,7 +422,6 @@ QScrollBar::add-page:vertical,
 QScrollBar::sub-page:vertical {
     background: none;
 }
-*/
 
 QTextEdit {
     background-color: #232629;

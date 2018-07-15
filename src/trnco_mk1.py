@@ -136,7 +136,6 @@ class MainWidget(QtWidgets.QMainWindow):
         viewer = QtWebKitWidgets.QWebView()
         #viewer.setHtml(HTML, img_url)
         viewer.load(html_url)
-        viewer.setFixedSize(420, 470)#370)
 
 
         # console widget
@@ -147,22 +146,30 @@ class MainWidget(QtWidgets.QMainWindow):
             "PID: "+str(os.getpid()) + "\n\n"
             )
 
-        ipyConsole = ConsoleWidget(customBanner = instructions)
+        self.ipyConsole = ConsoleWidget(customBanner = instructions)
 
         monokai = qtconsole.styles.default_dark_style_sheet
-        ipyConsole.style_sheet = monokai
+        self.ipyConsole.style_sheet = monokai
 
-        ipyConsole.execute_command("%run -m src.loadenv")
-        ipyConsole.execute_command("%matplotlib inline\n")
-
-
-        ipyConsole._append_plain_text(instructions)
+        self.ipyConsole.execute_command("%run -m src.loadenv")
+        self.ipyConsole.execute_command("%matplotlib inline\n")
 
 
-        ipyConsole.setFixedSize(400, 400)
+        self.ipyConsole._append_plain_text(instructions)
+
+
+        #self.ipyConsole.setFixedSize(400, 400)
 
         layout.addWidget(viewer)
-        layout.addWidget(ipyConsole)
+        layout.addWidget(self.ipyConsole)
+
+        # set size
+
+        viewer.setMinimumWidth(470)
+        viewer.setMinimumHeight(450)
+        viewer.setMaximumHeight(450)
+        self.ipyConsole.setMinimumHeight(300)
+        self.resize(470,750)
 
         #pp(dir(layout))
         # This allows the variable foo and method print_process_id to be accessed from the ipython console
@@ -173,6 +180,10 @@ class MainWidget(QtWidgets.QMainWindow):
         self.move(40,40)
 
         self.show()
+
+    def resizeEvent(self, event):
+        #self.resized.emit()
+        return self.ipyConsole.resizeEvent(event)
 
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Escape:
@@ -201,9 +212,9 @@ def main():
 
     app = QtWidgets.QApplication([])
     #app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt())
-    app.setWindowIcon(QtGui.QIcon(os.path.join(CURR_DIRECTORY,"src/img/logo.jpg")))
+    app.setWindowIcon(QtGui.QIcon(os.path.join(CURR_DIRECTORY,"src/trnco_fe/img/tmplogo.png")))
 
-    file = QFile(os.path.join(CURR_DIRECTORY,"src","qdarkstyle.qss"))
+    file = QFile(os.path.join(CURR_DIRECTORY,"src","trnco_fe","qdarkstyle_custom.qss"))
     file.open(QFile.ReadOnly | QFile.Text)
     stream = QTextStream(file)
     app.setStyleSheet(stream.readAll())
@@ -229,6 +240,7 @@ def main():
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     # end file watching
     """
+
     sys.exit(app.exec_())
 
 if __name__ == '__main__':

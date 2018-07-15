@@ -1,18 +1,23 @@
 //var myHeading = document.querySelector('h1');
 //myHeading.textContent = 'Hi from JS world!';
-/***
-var app = new Vue({
-  el: '#app',
+
+var app1 = new Vue({
+  el: '#app-cell-1',
   data: {
-    message: 'Hello Vue!'
+    message: '%!'
+  },
+  methods: {
+    reverseMessage: function () {
+      this.message = this.message.split('').reverse().join('')
+    }
   }
 })
-***/
 
-var app5 = new Vue({
-  el: '#app-5',
+
+var app2 = new Vue({
+  el: '#app-cell-2',
   data: {
-    message: 'hello hyperspace!'
+    message: '!?'
   },
   methods: {
     reverseMessage: function () {
