@@ -16,6 +16,7 @@ from ipykernel.kernelapp import IPKernelApp
 
 from PyQt5 import QtWidgets, QtGui, QtCore, Qt
 from PyQt5.QtCore import QFile, QTextStream
+from PyQt5.QtWidgets import QMessageBox
 
 # for web dev
 from PyQt5 import QtWebKitWidgets
@@ -143,6 +144,8 @@ class MainWidget(QtWidgets.QMainWindow):
             "Check GH args: ",
             str(sys.argv[1]) if len(sys.argv)>1 else "None",
             "%run -m src.openstudio_python $osmfile\n",
+            "%run -m src.loadenv",
+            "!clear to clear screen",
             "PID: "+str(os.getpid()) + "\n\n"
             )
 
@@ -189,18 +192,16 @@ class MainWidget(QtWidgets.QMainWindow):
         if event.key() == QtCore.Qt.Key_Escape:
             self.close()
 
-        # reload ui
-        """
-        key = event.key()
-        if key == Qt.Key_Enter:
-            #For Enter of keyboard number
-            print("key Enter press")
-            self.updateUi()
-        if key == Qt.Key_Return:
-            #For Enter of keyboard
-            print("key Enter press")
-            self.updateUi()
-        """
+        elif event.key() == QtCore.Qt.Key_Alt:
+            #error_dialog = QtWidgets.QErrorMessage()
+            #error_dialog.showMessage('Oh no!')
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle("Show")
+            msg.setText("This is a test of the Q Message.\nThis is the second line.\n")
+            #msg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
+            retval = msg.exec_()
+
+
 def print_process_id():
     print('Process ID is:', os.getpid())
 
@@ -223,7 +224,7 @@ def main():
 
     #widget.show()
     """
-    # file watcher
+    # W file watcher use this to track different images
     # https://stackoverflow.com/questions/13518985/why-does-qfilesystemwatcher-work-for-directories-but-not-files-in-python
     # http://blog.mathieu-leplatre.info/filesystem-watch-with-pyqt4.html
     paths = [
