@@ -1,5 +1,4 @@
-set arg1=%1
 git add .
-git commit -m %arg1%
+git commit -m %1
 git push
 echo Press Enter...
