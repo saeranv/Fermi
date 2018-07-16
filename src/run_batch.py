@@ -9,6 +9,7 @@ def main(ctype,msg):
     elif ctype == "start":
         script_path = "start.sh"
 
+        
     process = subprocess.Popen(script_path, shell=True, stdout=subprocess.PIPE)
 
 
