@@ -2,12 +2,12 @@ from __future__ import print_function
 import subprocess
 import sys
 
-def main(ctype):
+def main(ctype,msg):
 
     if ctype == "git":
-        script_path = "git.sh"
+        script_path = "git.sh " + msg
     elif ctype == "start":
-        print("TBD")
+        script_path = "start.sh"
 
     process = subprocess.Popen(script_path, shell=True, stdout=subprocess.PIPE)
 
@@ -16,8 +16,9 @@ def main(ctype):
 if __name__ == "__main__":
 
     if len(sys.argv) > 1:
-
-        main(sys.argv[1])
+        command_type = sys.argv[1]
+        message = sys.argv[2] if len(sys.argv)>2 else "qxt changes"
+        main(command_type, message)
 
     else:
 

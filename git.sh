@@ -1,4 +1,5 @@
+set arg1=%1
 git add .
-git commit -am "changes to qxt"
+git commit -m %arg1%
 git push
 echo Press Enter...

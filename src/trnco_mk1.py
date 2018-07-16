@@ -83,11 +83,12 @@ class ConsoleWidget(RichJupyterWidget):
         kernel_client.start_channels()
 
         # test this
-        t = Test(14)
-        t1 = Test(26)
-        D = {"t": t, "ti": t1, "ghargs": sys.argv}
-        kernel = kernel_manager.kernel
-        kernel.shell.push(D)
+        #t = Test(14)
+        #t1 = Test(26)
+        #D = {"t": t, "ti": t1, "ghargs": sys.argv}
+
+        #kernel = kernel_manager.kernel
+        #kernel.shell.push(D)
 
         def stop():
             kernel_client.stop_channels()
@@ -138,18 +139,20 @@ class MainWidget(QtWidgets.QMainWindow):
         #viewer.setHtml(HTML, img_url)
         viewer.load(html_url)
 
-
         # console widget
-        instructions = "{}{}\n{}{}".format(
-            "Check GH args: ",
-            str(sys.argv[1]) if len(sys.argv)>1 else "None",
-            "%run -m src.openstudio_python $osmfile\n",
-            "%run -m src.loadenv",
-            "!clear to clear screen",
-            "PID: "+str(os.getpid()) + "\n\n"
-            )
+        getghargs = str(sys.argv[1]) if len(sys.argv)>1 else "None"
+        doc = ("Check GH args: " + getghargs + "\n"
+        "%run -m src.openstudio_python $osmfile\n"
+        "%run -m src.loadenv\n"
+        "!clear to clear screen\n"
+        "Batch scripts:\n"
+        "%run -m src.run_batch start\n"
+        "%run -m src.run_batch git\n"
+        "PID: {}\n".format(os.getpid())
+        )
 
-        self.ipyConsole = ConsoleWidget(customBanner = instructions)
+
+        self.ipyConsole = ConsoleWidget(customBanner = doc)
 
         monokai = qtconsole.styles.default_dark_style_sheet
         self.ipyConsole.style_sheet = monokai
@@ -157,8 +160,8 @@ class MainWidget(QtWidgets.QMainWindow):
         self.ipyConsole.execute_command("%run -m src.loadenv")
         self.ipyConsole.execute_command("%matplotlib inline\n")
 
-
-        self.ipyConsole._append_plain_text(instructions)
+        self.ipyConsole.push_vars({"doc": doc})
+        #self.ipyConsole._append_plain_text(doc)
 
 
         #self.ipyConsole.setFixedSize(400, 400)
