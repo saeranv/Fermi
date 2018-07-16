@@ -5,12 +5,12 @@ import sys
 def main(ctype,msg):
 
     if ctype == "git":
-        script_path = "git.sh " + msg
+        script_path = "git.sh"
     elif ctype == "start":
         script_path = "start.sh"
 
     print("path", script_path)#
-    process = subprocess.Popen(script_path, shell=True, stdout=subprocess.PIPE)
+    process = subprocess.Popen([script_path, msg], shell=True, stdout=subprocess.PIPE)
 
 
 
