@@ -124,6 +124,14 @@ class ConsoleWidget(RichJupyterWidget):
         """
         self._execute(command, True)
 
+class GUIWidget(QtWebKitWidgets.QWebView):
+    def __init__(self, parent=None):
+        super(GUIWidget, self).__init__(parent)
+
+        html_url = QtCore.QUrl.fromLocalFile(os.path.join(CURR_DIRECTORY, "src","trnco_fe","trnco_fe.html"))
+        self.load(html_url)
+        #viewer.setHtml(HTML, img_url)
+
 class MainWidget(QtWidgets.QMainWindow):
     # Main GUI Window including a button and IPython Console widget inside vertical layout
     def __init__(self, parent=None):
@@ -134,10 +142,7 @@ class MainWidget(QtWidgets.QMainWindow):
         layout = QtWidgets.QVBoxLayout(self.mainWidget)
 
         # frontend widget
-        html_url = QtCore.QUrl.fromLocalFile(os.path.join(CURR_DIRECTORY, "src","trnco_fe","trnco_fe.html"))
-        viewer = QtWebKitWidgets.QWebView()
-        #viewer.setHtml(HTML, img_url)
-        viewer.load(html_url)
+        viewer = GUIWidget()
 
         # console widget
         getghargs = str(sys.argv[1]) if len(sys.argv)>1 else "None"
