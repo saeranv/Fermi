@@ -5,8 +5,10 @@ import pprint
 
 pp = pprint.pprint
 
-RESOURCE_DIR = os.path.abspath(os.path.join(os.path.dirname("__file__"), "resources"))
-OSM_TEST = os.path.join(RESOURCE_DIR,"office.osm")
+RESOURCE_DIR = os.path.abspath(os.path.join(os.path.dirname("__file__"), "src", "trnco_fe"))
+OSM_TEST = os.path.join(RESOURCE_DIR,"in.osm")
+
+
 
 def load_osm(osm_file_path):
 
@@ -49,22 +51,22 @@ def load_osm(osm_file_path):
     osm = ops.Model.load(osm_path).get()
 
     # sql file
-    sqlfile = os.path.join(RESOURCE_DIR, "office\\ModelToIdf\\in.sql")
-    sqlfileops = ops.SqlFile(ops.Path(sqlfile))
+    #sqlfile = os.path.join(RESOURCE_DIR, "office\\ModelToIdf\\in.sql")
+    #sqlfileops = ops.SqlFile(ops.Path(sqlfile))
     #sqlfileops.setSqlFile()
 
     return osm,ops
 
 if __name__ == "__main__":
+
     print("argv", sys.argv)
+
     if len(sys.argv) > 1:
-        #
         fpathosm = sys.argv[1]
         osm,ops = load_osm(fpathosm)
     else:
-        print("loading example osm from resources")
+        print("loading example osm from Fermi/trnco_fe")
         osm,ops = load_osm(OSM_TEST)
         thisvar = "kar"
         #print("need to add a fpath to osm file.")
-        print(osm)
-    print("hello")
+        print("osm model is 'osm' and OpenStudio lib is 'ops'")

@@ -3,7 +3,6 @@ import os
 import sys
 import clr
 
-import pprint
 
 import numpy as np
 import pandas as pd
@@ -13,7 +12,7 @@ import openstudio_python
 
 clr.AddReference("System")
 import System
-pp = lambda p: pprint.pprint(p)
+
 
 BIN_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__),"..", "bin"))
 RESOURCE_DIR = os.path.abspath(os.path.join(os.path.dirname("__file__"), "resources"))

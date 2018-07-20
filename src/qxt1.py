@@ -63,18 +63,19 @@ class ConsoleWidget(RichJupyterWidget):
     def __init__(self, customBanner=None, *args, **kwargs):
         super(ConsoleWidget, self).__init__(*args, **kwargs)
 
-        # if customBanner is not None:
-        """
-        if len(sys.argv) > 1:
-            customBanner = "{}{}{}{}{}".format(
-                "Check 'ghargs': ",
-                str(sys.argv[1]),
-                "\n%run -m src.loadenv\n",
-                "%run -m src.openstudio_python $osmfile\n",
-                "%matplotlib inline\n"
-                )
-        """
-        self.banner = "HYPER-SPACE\n\n" + customBanner
+        # console widget
+        getghargs = str(sys.argv[1]) if len(sys.argv)>1 else "None"
+        doc = ("Check GH args: " + getghargs + "\n"
+            "%run -m src.load_osm $osmfile\n"
+            "%run -m src.loadenv\n"
+            "!clear to clear screen\n"
+            "Batch scripts:\n"
+            "%run -m src.run_batch start\n"
+            "%run -m src.run_batch git\n"
+            "PID: {}\n".format(os.getpid())
+            )
+
+        self.banner = "qxt\n\n" + doc
         self.font_size = 6
         self.kernel_manager = kernel_manager = QtInProcessKernelManager()
         kernel_manager.start_kernel(show_banner=True)
@@ -89,6 +90,16 @@ class ConsoleWidget(RichJupyterWidget):
 
         #kernel = kernel_manager.kernel
         #kernel.shell.push(D)
+
+
+
+        monokai = qtconsole.styles.default_dark_style_sheet
+        self.style_sheet = monokai
+
+        self.execute_command("%run -m src.loadenv")
+        self.execute_command("%matplotlib inline\n")
+
+        self.push_vars({"doc": doc})
 
         def stop():
             kernel_client.stop_channels()
@@ -139,57 +150,25 @@ class MainWidget(QtWidgets.QMainWindow):
         self.setWindowTitle('hpr')
         self.mainWidget = QtWidgets.QWidget(self)
         self.setCentralWidget(self.mainWidget)
-        layout = QtWidgets.QVBoxLayout(self.mainWidget)
+
+        self.layout = QtWidgets.QVBoxLayout(self.mainWidget)
 
         # frontend widget
-        viewer = GUIWidget()
+        self.viewer = GUIWidget()
+        self.ipyConsole = ConsoleWidget()
 
-        # console widget
-        getghargs = str(sys.argv[1]) if len(sys.argv)>1 else "None"
-        doc = ("Check GH args: " + getghargs + "\n"
-        "%run -m src.openstudio_python $osmfile\n"
-        "%run -m src.loadenv\n"
-        "!clear to clear screen\n"
-        "Batch scripts:\n"
-        "%run -m src.run_batch start\n"
-        "%run -m src.run_batch git\n"
-        "PID: {}\n".format(os.getpid())
-        )
-
-
-        self.ipyConsole = ConsoleWidget(customBanner = doc)
-
-        monokai = qtconsole.styles.default_dark_style_sheet
-        self.ipyConsole.style_sheet = monokai
-
-        self.ipyConsole.execute_command("%run -m src.loadenv")
-        self.ipyConsole.execute_command("%matplotlib inline\n")
-
-        self.ipyConsole.push_vars({"doc": doc})
-        #self.ipyConsole._append_plain_text(doc)
-
-
-        #self.ipyConsole.setFixedSize(400, 400)
-
-        layout.addWidget(viewer)
-        layout.addWidget(self.ipyConsole)
+        # Add widgets to layout
+        self.layout.addWidget(self.viewer)
+        self.layout.addWidget(self.ipyConsole)
 
         # set size
-
-        viewer.setMinimumWidth(470)
-        viewer.setMinimumHeight(450)
-        viewer.setMaximumHeight(450)
+        self.viewer.setMinimumWidth(470)
+        self.viewer.setMinimumHeight(450)
+        self.viewer.setMaximumHeight(450)
         self.ipyConsole.setMinimumHeight(300)
+
         self.resize(470,750)
-
-        #pp(dir(layout))
-        # This allows the variable foo and method print_process_id to be accessed from the ipython console
-        #ipyConsole.pushVariables({"foo":43,"print_process_id":print_process_id})
-        #ipyConsole.printText("The variable 'foo' and the method 'print_process_id()' are available. Use the 'whos' command for information.\n\nTo push variables run this before starting the UI:\n ipyConsole.pushVariables({\"foo\":43,\"print_process_id\":print_process_id})")
-
-        #self.setGeometry(40, 40, 300, 300)
         self.move(40,40)
-
         self.show()
 
     def resizeEvent(self, event):
@@ -221,7 +200,7 @@ def main():
 
     app = QtWidgets.QApplication([])
     #app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt())
-    app.setWindowIcon(QtGui.QIcon(os.path.join(CURR_DIRECTORY,"src/trnco_fe/img/tmplogo.png")))
+    app.setWindowIcon(QtGui.QIcon(os.path.join(CURR_DIRECTORY,"src/trnco_fe/img/tmplogo_pink.png")))
 
     file = QFile(os.path.join(CURR_DIRECTORY,"src","trnco_fe","qdarkstyle_custom.qss"))
     file.open(QFile.ReadOnly | QFile.Text)
