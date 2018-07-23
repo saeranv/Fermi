@@ -1,7 +1,15 @@
 from __future__ import print_function
+from loadenv import *
 import os
 import sys
 import pprint
+
+"""
+installation instructions:
+pip install pythonnet
+# https://github.com/NREL/OpenStudio/releases?after=v1.13.2
+
+"""
 
 pp = pprint.pprint
 
@@ -52,4 +60,4 @@ if __name__ == "__main__":
         print("loading example osm from Fermi/trnco_fe")
         osm, ops = ospy.load_osm(OSM_TEST)
         print("osm model is 'osm' and OpenStudio lib is 'ops'")
-        osm_space_vector(osm, ops)
+        get_surface(osm, ops)

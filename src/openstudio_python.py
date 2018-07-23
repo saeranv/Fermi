@@ -17,8 +17,8 @@ def load_osm(osm_file_path):
     #openstudio_dir = r"C:\openstudio-2.4.0\CSharp\openstudio"
 
     # WORKING
-    #openstudio_dir = r"C:\openstudio-2.5.0\CSharp\openstudio" # @kt
-    openstudio_dir = r"C:\Program Files\OpenStudio 1.12.0\CSharp\openstudio" # @home
+    openstudio_dir = r"C:\openstudio-2.5.0\CSharp\openstudio" # @kt
+    #openstudio_dir = r"C:\Program Files\OpenStudio 1.12.0\CSharp\openstudio" # @home
 
     print(openstudio_dir)
     #print(openstudio_dir_1_12)

@@ -28,4 +28,4 @@ import uwg
 """
 x_example = np.arange(math.pi*2*10)
 y_example = [math.sin(x_) for x_ in x_example]
-print("\nplt.plot(x_example, y_example)")
+#print("\nplt.plot(x_example, y_example)")

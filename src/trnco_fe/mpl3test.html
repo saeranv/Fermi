@@ -1,0 +1,162 @@
+
+
+<style>
+
+table
+{
+  border-collapse: collapse;
+}
+th
+{
+  color: #ffffff;
+  background-color: #000000;
+}
+td
+{
+  background-color: #cccccc;
+}
+table, th, td
+{
+  font-family:Arial, Helvetica, sans-serif;
+  border: 1px solid black;
+  text-align: right;
+}
+
+</style>
+
+<div id="fig_el322201120748805044887144"></div>
+<script>
+function mpld3_load_lib(url, callback){
+  var s = document.createElement('script');
+  s.src = url;
+  s.async = true;
+  s.onreadystatechange = s.onload = callback;
+  s.onerror = function(){console.warn("failed to load library " + url);};
+  document.getElementsByTagName("head")[0].appendChild(s);
+}
+
+if(typeof(mpld3) !== "undefined" && mpld3._mpld3IsLoaded){
+   // already loaded: just create the figure
+   !function(mpld3){
+       
+    mpld3.register_plugin("htmltooltip", HtmlTooltipPlugin);
+    HtmlTooltipPlugin.prototype = Object.create(mpld3.Plugin.prototype);
+    HtmlTooltipPlugin.prototype.constructor = HtmlTooltipPlugin;
+    HtmlTooltipPlugin.prototype.requiredProps = ["id"];
+    HtmlTooltipPlugin.prototype.defaultProps = {labels:null,
+                                                hoffset:0,
+                                                voffset:10};
+    function HtmlTooltipPlugin(fig, props){
+        mpld3.Plugin.call(this, fig, props);
+    };
+
+    HtmlTooltipPlugin.prototype.draw = function(){
+       var obj = mpld3.get_element(this.props.id);
+       var labels = this.props.labels;
+       var tooltip = d3.select("body").append("div")
+                    .attr("class", "mpld3-tooltip")
+                    .style("position", "absolute")
+                    .style("z-index", "10")
+                    .style("visibility", "hidden");
+
+       obj.elements()
+           .on("mouseover", function(d, i){
+                              tooltip.html(labels[i])
+                                     .style("visibility", "visible");})
+           .on("mousemove", function(d, i){
+                  tooltip
+                    .style("top", d3.event.pageY + this.props.voffset + "px")
+                    .style("left",d3.event.pageX + this.props.hoffset + "px");
+                 }.bind(this))
+           .on("mouseout",  function(d, i){
+                           tooltip.style("visibility", "hidden");});
+    };
+    
+       mpld3.draw_figure("fig_el322201120748805044887144", {"axes": [{"xlim": [-2.178265523762095, 2.3669330759124154], "yscale": "linear", "axesbg": "#000000", "texts": [{"v_baseline": "hanging", "h_anchor": "middle", "color": "#FFFFFF", "text": "x", "coordinates": "axes", "zorder": 3, "alpha": 1, "fontsize": 10.0, "position": [0.5, -0.07921476671476671], "rotation": -0.0, "id": "el32220112783880"}, {"v_baseline": "auto", "h_anchor": "middle", "color": "#FFFFFF", "text": "y", "coordinates": "axes", "zorder": 3, "alpha": 1, "fontsize": 10.0, "position": [-0.09884632616487457, 0.5], "rotation": -90.0, "id": "el32220112854072"}, {"v_baseline": "auto", "h_anchor": "middle", "color": "#FFFFFF", "text": "HTML tooltips", "coordinates": "axes", "zorder": 3, "alpha": 1, "fontsize": 20.0, "position": [0.5, 1.0225468975468976], "rotation": -0.0, "id": "el32220112787352"}], "zoomable": true, "images": [], "xdomain": [-2.178265523762095, 2.3669330759124154], "ylim": [-2.6540477812116334, 1.3952799802973055], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": null, "grid": {"color": "#FFFFFF", "alpha": 0.3, "dasharray": "none", "gridOn": true}, "visible": true, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": null, "grid": {"color": "#FFFFFF", "alpha": 0.3, "dasharray": "none", "gridOn": true}, "visible": true, "fontsize": 10.0, "position": "left", "nticks": 10, "tickvalues": null}], "lines": [], "markers": [{"edgecolor": "#000000", "facecolor": "#0000FF", "edgewidth": 1, "yindex": 1, "coordinates": "data", "zorder": 2, "markerpath": [[[0.0, 7.5], [1.9890232500000002, 7.5], [3.896849030886401, 6.709752686911813], [5.303300858899107, 5.303300858899107], [6.709752686911813, 3.896849030886401], [7.5, 1.9890232500000002], [7.5, 0.0], [7.5, -1.9890232500000002], [6.709752686911813, -3.896849030886401], [5.303300858899107, -5.303300858899107], [3.896849030886401, -6.709752686911813], [1.9890232500000002, -7.5], [0.0, -7.5], [-1.9890232500000002, -7.5], [-3.896849030886401, -6.709752686911813], [-5.303300858899107, -5.303300858899107], [-6.709752686911813, -3.896849030886401], [-7.5, -1.9890232500000002], [-7.5, 0.0], [-7.5, 1.9890232500000002], [-6.709752686911813, 3.896849030886401], [-5.303300858899107, 5.303300858899107], [-3.896849030886401, 6.709752686911813], [-1.9890232500000002, 7.5], [0.0, 7.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]], "alpha": 0.6, "xindex": 0, "data": "data01", "id": "el32220113782912pts"}], "id": "el32220112261216", "ydomain": [-2.6540477812116334, 1.3952799802973055], "collections": [], "xscale": "linear", "bbox": [0.125, 0.10999999999999999, 0.775, 0.77]}], "height": 480.0, "width": 640.0, "plugins": [{"type": "reset"}, {"enabled": false, "button": true, "type": "zoom"}, {"enabled": false, "button": true, "type": "boxzoom"}, {"voffset": 10, "labels": ["<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 0</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>-1.971666</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>-2.469987</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>-1.709517</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 1</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>-1.390975</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.260423</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>0.148978</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>-0.406969</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>-0.957713</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>-0.944975</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 3</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>-0.014244</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.346514</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>0.331615</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 4</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>0.128916</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>-0.956258</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>0.869102</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 5</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>0.531055</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.467658</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>1.943109</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 6</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>-0.474066</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.727465</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>-0.594163</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 7</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>0.803293</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.037420</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>-0.251057</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 8</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>2.160333</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.367684</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>1.467287</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 9</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>1.943839</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>1.211220</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>-0.217806</td>\n    </tr>\n  </tbody>\n</table>"], "type": "htmltooltip", "id": "el32220113782912pts", "hoffset": 10}], "data": {"data01": [[-1.9716655874132536, -2.4699874284157723], [-1.3909754530406353, 0.26042299947610437], [-0.40696914283329405, -0.9577127206731619], [-0.014243515324395157, 0.3465136553456804], [0.12891610355297722, -0.9562584980965563], [0.5310548187390702, 0.4676582242900592], [-0.47406594020924264, 0.7274646084774319], [0.803292858809197, 0.03741966042978489], [2.160333139563574, 0.36768413682977674], [1.9438389909258527, 1.2112196275014446]]}, "id": "el32220112074880"});
+   }(mpld3);
+}else if(typeof define === "function" && define.amd){
+   // require.js is available: use it to load d3/mpld3
+   require.config({paths: {d3: "https://mpld3.github.io/js/d3.v3.min"}});
+   require(["d3"], function(d3){
+      window.d3 = d3;
+      mpld3_load_lib("https://mpld3.github.io/js/mpld3.v0.3.js", function(){
+         
+    mpld3.register_plugin("htmltooltip", HtmlTooltipPlugin);
+    HtmlTooltipPlugin.prototype = Object.create(mpld3.Plugin.prototype);
+    HtmlTooltipPlugin.prototype.constructor = HtmlTooltipPlugin;
+    HtmlTooltipPlugin.prototype.requiredProps = ["id"];
+    HtmlTooltipPlugin.prototype.defaultProps = {labels:null,
+                                                hoffset:0,
+                                                voffset:10};
+    function HtmlTooltipPlugin(fig, props){
+        mpld3.Plugin.call(this, fig, props);
+    };
+
+    HtmlTooltipPlugin.prototype.draw = function(){
+       var obj = mpld3.get_element(this.props.id);
+       var labels = this.props.labels;
+       var tooltip = d3.select("body").append("div")
+                    .attr("class", "mpld3-tooltip")
+                    .style("position", "absolute")
+                    .style("z-index", "10")
+                    .style("visibility", "hidden");
+
+       obj.elements()
+           .on("mouseover", function(d, i){
+                              tooltip.html(labels[i])
+                                     .style("visibility", "visible");})
+           .on("mousemove", function(d, i){
+                  tooltip
+                    .style("top", d3.event.pageY + this.props.voffset + "px")
+                    .style("left",d3.event.pageX + this.props.hoffset + "px");
+                 }.bind(this))
+           .on("mouseout",  function(d, i){
+                           tooltip.style("visibility", "hidden");});
+    };
+    
+         mpld3.draw_figure("fig_el322201120748805044887144", {"axes": [{"xlim": [-2.178265523762095, 2.3669330759124154], "yscale": "linear", "axesbg": "#000000", "texts": [{"v_baseline": "hanging", "h_anchor": "middle", "color": "#FFFFFF", "text": "x", "coordinates": "axes", "zorder": 3, "alpha": 1, "fontsize": 10.0, "position": [0.5, -0.07921476671476671], "rotation": -0.0, "id": "el32220112783880"}, {"v_baseline": "auto", "h_anchor": "middle", "color": "#FFFFFF", "text": "y", "coordinates": "axes", "zorder": 3, "alpha": 1, "fontsize": 10.0, "position": [-0.09884632616487457, 0.5], "rotation": -90.0, "id": "el32220112854072"}, {"v_baseline": "auto", "h_anchor": "middle", "color": "#FFFFFF", "text": "HTML tooltips", "coordinates": "axes", "zorder": 3, "alpha": 1, "fontsize": 20.0, "position": [0.5, 1.0225468975468976], "rotation": -0.0, "id": "el32220112787352"}], "zoomable": true, "images": [], "xdomain": [-2.178265523762095, 2.3669330759124154], "ylim": [-2.6540477812116334, 1.3952799802973055], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": null, "grid": {"color": "#FFFFFF", "alpha": 0.3, "dasharray": "none", "gridOn": true}, "visible": true, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": null, "grid": {"color": "#FFFFFF", "alpha": 0.3, "dasharray": "none", "gridOn": true}, "visible": true, "fontsize": 10.0, "position": "left", "nticks": 10, "tickvalues": null}], "lines": [], "markers": [{"edgecolor": "#000000", "facecolor": "#0000FF", "edgewidth": 1, "yindex": 1, "coordinates": "data", "zorder": 2, "markerpath": [[[0.0, 7.5], [1.9890232500000002, 7.5], [3.896849030886401, 6.709752686911813], [5.303300858899107, 5.303300858899107], [6.709752686911813, 3.896849030886401], [7.5, 1.9890232500000002], [7.5, 0.0], [7.5, -1.9890232500000002], [6.709752686911813, -3.896849030886401], [5.303300858899107, -5.303300858899107], [3.896849030886401, -6.709752686911813], [1.9890232500000002, -7.5], [0.0, -7.5], [-1.9890232500000002, -7.5], [-3.896849030886401, -6.709752686911813], [-5.303300858899107, -5.303300858899107], [-6.709752686911813, -3.896849030886401], [-7.5, -1.9890232500000002], [-7.5, 0.0], [-7.5, 1.9890232500000002], [-6.709752686911813, 3.896849030886401], [-5.303300858899107, 5.303300858899107], [-3.896849030886401, 6.709752686911813], [-1.9890232500000002, 7.5], [0.0, 7.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]], "alpha": 0.6, "xindex": 0, "data": "data01", "id": "el32220113782912pts"}], "id": "el32220112261216", "ydomain": [-2.6540477812116334, 1.3952799802973055], "collections": [], "xscale": "linear", "bbox": [0.125, 0.10999999999999999, 0.775, 0.77]}], "height": 480.0, "width": 640.0, "plugins": [{"type": "reset"}, {"enabled": false, "button": true, "type": "zoom"}, {"enabled": false, "button": true, "type": "boxzoom"}, {"voffset": 10, "labels": ["<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 0</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>-1.971666</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>-2.469987</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>-1.709517</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 1</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>-1.390975</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.260423</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>0.148978</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>-0.406969</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>-0.957713</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>-0.944975</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 3</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>-0.014244</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.346514</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>0.331615</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 4</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>0.128916</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>-0.956258</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>0.869102</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 5</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>0.531055</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.467658</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>1.943109</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 6</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>-0.474066</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.727465</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>-0.594163</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 7</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>0.803293</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.037420</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>-0.251057</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 8</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>2.160333</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.367684</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>1.467287</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 9</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>1.943839</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>1.211220</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>-0.217806</td>\n    </tr>\n  </tbody>\n</table>"], "type": "htmltooltip", "id": "el32220113782912pts", "hoffset": 10}], "data": {"data01": [[-1.9716655874132536, -2.4699874284157723], [-1.3909754530406353, 0.26042299947610437], [-0.40696914283329405, -0.9577127206731619], [-0.014243515324395157, 0.3465136553456804], [0.12891610355297722, -0.9562584980965563], [0.5310548187390702, 0.4676582242900592], [-0.47406594020924264, 0.7274646084774319], [0.803292858809197, 0.03741966042978489], [2.160333139563574, 0.36768413682977674], [1.9438389909258527, 1.2112196275014446]]}, "id": "el32220112074880"});
+      });
+    });
+}else{
+    // require.js not available: dynamically load d3 & mpld3
+    mpld3_load_lib("https://mpld3.github.io/js/d3.v3.min.js", function(){
+         mpld3_load_lib("https://mpld3.github.io/js/mpld3.v0.3.js", function(){
+                 
+    mpld3.register_plugin("htmltooltip", HtmlTooltipPlugin);
+    HtmlTooltipPlugin.prototype = Object.create(mpld3.Plugin.prototype);
+    HtmlTooltipPlugin.prototype.constructor = HtmlTooltipPlugin;
+    HtmlTooltipPlugin.prototype.requiredProps = ["id"];
+    HtmlTooltipPlugin.prototype.defaultProps = {labels:null,
+                                                hoffset:0,
+                                                voffset:10};
+    function HtmlTooltipPlugin(fig, props){
+        mpld3.Plugin.call(this, fig, props);
+    };
+
+    HtmlTooltipPlugin.prototype.draw = function(){
+       var obj = mpld3.get_element(this.props.id);
+       var labels = this.props.labels;
+       var tooltip = d3.select("body").append("div")
+                    .attr("class", "mpld3-tooltip")
+                    .style("position", "absolute")
+                    .style("z-index", "10")
+                    .style("visibility", "hidden");
+
+       obj.elements()
+           .on("mouseover", function(d, i){
+                              tooltip.html(labels[i])
+                                     .style("visibility", "visible");})
+           .on("mousemove", function(d, i){
+                  tooltip
+                    .style("top", d3.event.pageY + this.props.voffset + "px")
+                    .style("left",d3.event.pageX + this.props.hoffset + "px");
+                 }.bind(this))
+           .on("mouseout",  function(d, i){
+                           tooltip.style("visibility", "hidden");});
+    };
+    
+                 mpld3.draw_figure("fig_el322201120748805044887144", {"axes": [{"xlim": [-2.178265523762095, 2.3669330759124154], "yscale": "linear", "axesbg": "#000000", "texts": [{"v_baseline": "hanging", "h_anchor": "middle", "color": "#FFFFFF", "text": "x", "coordinates": "axes", "zorder": 3, "alpha": 1, "fontsize": 10.0, "position": [0.5, -0.07921476671476671], "rotation": -0.0, "id": "el32220112783880"}, {"v_baseline": "auto", "h_anchor": "middle", "color": "#FFFFFF", "text": "y", "coordinates": "axes", "zorder": 3, "alpha": 1, "fontsize": 10.0, "position": [-0.09884632616487457, 0.5], "rotation": -90.0, "id": "el32220112854072"}, {"v_baseline": "auto", "h_anchor": "middle", "color": "#FFFFFF", "text": "HTML tooltips", "coordinates": "axes", "zorder": 3, "alpha": 1, "fontsize": 20.0, "position": [0.5, 1.0225468975468976], "rotation": -0.0, "id": "el32220112787352"}], "zoomable": true, "images": [], "xdomain": [-2.178265523762095, 2.3669330759124154], "ylim": [-2.6540477812116334, 1.3952799802973055], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": null, "grid": {"color": "#FFFFFF", "alpha": 0.3, "dasharray": "none", "gridOn": true}, "visible": true, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": null, "grid": {"color": "#FFFFFF", "alpha": 0.3, "dasharray": "none", "gridOn": true}, "visible": true, "fontsize": 10.0, "position": "left", "nticks": 10, "tickvalues": null}], "lines": [], "markers": [{"edgecolor": "#000000", "facecolor": "#0000FF", "edgewidth": 1, "yindex": 1, "coordinates": "data", "zorder": 2, "markerpath": [[[0.0, 7.5], [1.9890232500000002, 7.5], [3.896849030886401, 6.709752686911813], [5.303300858899107, 5.303300858899107], [6.709752686911813, 3.896849030886401], [7.5, 1.9890232500000002], [7.5, 0.0], [7.5, -1.9890232500000002], [6.709752686911813, -3.896849030886401], [5.303300858899107, -5.303300858899107], [3.896849030886401, -6.709752686911813], [1.9890232500000002, -7.5], [0.0, -7.5], [-1.9890232500000002, -7.5], [-3.896849030886401, -6.709752686911813], [-5.303300858899107, -5.303300858899107], [-6.709752686911813, -3.896849030886401], [-7.5, -1.9890232500000002], [-7.5, 0.0], [-7.5, 1.9890232500000002], [-6.709752686911813, 3.896849030886401], [-5.303300858899107, 5.303300858899107], [-3.896849030886401, 6.709752686911813], [-1.9890232500000002, 7.5], [0.0, 7.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]], "alpha": 0.6, "xindex": 0, "data": "data01", "id": "el32220113782912pts"}], "id": "el32220112261216", "ydomain": [-2.6540477812116334, 1.3952799802973055], "collections": [], "xscale": "linear", "bbox": [0.125, 0.10999999999999999, 0.775, 0.77]}], "height": 480.0, "width": 640.0, "plugins": [{"type": "reset"}, {"enabled": false, "button": true, "type": "zoom"}, {"enabled": false, "button": true, "type": "boxzoom"}, {"voffset": 10, "labels": ["<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 0</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>-1.971666</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>-2.469987</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>-1.709517</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 1</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>-1.390975</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.260423</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>0.148978</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>-0.406969</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>-0.957713</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>-0.944975</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 3</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>-0.014244</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.346514</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>0.331615</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 4</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>0.128916</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>-0.956258</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>0.869102</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 5</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>0.531055</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.467658</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>1.943109</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 6</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>-0.474066</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.727465</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>-0.594163</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 7</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>0.803293</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.037420</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>-0.251057</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 8</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>2.160333</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>0.367684</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>1.467287</td>\n    </tr>\n  </tbody>\n</table>", "<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Row 9</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>x</th>\n      <td>1.943839</td>\n    </tr>\n    <tr>\n      <th>y</th>\n      <td>1.211220</td>\n    </tr>\n    <tr>\n      <th>z</th>\n      <td>-0.217806</td>\n    </tr>\n  </tbody>\n</table>"], "type": "htmltooltip", "id": "el32220113782912pts", "hoffset": 10}], "data": {"data01": [[-1.9716655874132536, -2.4699874284157723], [-1.3909754530406353, 0.26042299947610437], [-0.40696914283329405, -0.9577127206731619], [-0.014243515324395157, 0.3465136553456804], [0.12891610355297722, -0.9562584980965563], [0.5310548187390702, 0.4676582242900592], [-0.47406594020924264, 0.7274646084774319], [0.803292858809197, 0.03741966042978489], [2.160333139563574, 0.36768413682977674], [1.9438389909258527, 1.2112196275014446]]}, "id": "el32220112074880"});
+            })
+         });
+}
+</script>

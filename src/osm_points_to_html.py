@@ -34,7 +34,7 @@ table, th, td
 }
 """
 
-def get_html(df):
+def get_html(df,N):
     fig, ax = plt.subplots()
     ax.grid(True, alpha=0.3)
 
@@ -59,7 +59,16 @@ def get_html(df):
     #pp(dir(plugins))
     html = mpld3.fig_to_html(fig)
     #mpld3.show()
-    return html
+    #return html
+    htmlname = "mpl3test.html"
+    CURR_DIR = os.path.abspath(os.path.dirname("__file__"))
+    fname = os.path.join(CURR_DIR,"src","templates",htmlname)
+    f = open(fname,'w')
+    f.writelines(html)
+    f.close()
+
+    return htmlname
+
 if __name__ == "__main__":
     N = 50
     df = pd.DataFrame(index=range(N))
@@ -67,4 +76,4 @@ if __name__ == "__main__":
     df['y'] = np.random.randn(N)
     df['z'] = np.random.randn(N)
 
-    get_html(df)
+    get_html(df,N)
