@@ -24,6 +24,7 @@ from PyQt5 import QtWebKitWidgets
 
 # needs to be imported
 #from PyQt5 import QtSvg
+import dataframe2html as dfhtml
 
 import pprint
 pp = pprint.pprint
@@ -232,4 +233,9 @@ def main():
     sys.exit(app.exec_())
 
 if __name__ == '__main__':
+
+    df,N = dfhtml.get_temp_osm_data()
+    htmlfile = dfhtml.get_html(df,N)
+    dfhtml.to_frontend(htmlfile)
+
     main()
