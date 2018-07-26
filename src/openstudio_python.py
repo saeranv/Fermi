@@ -8,8 +8,6 @@ pp = pprint.pprint
 RESOURCE_DIR = os.path.abspath(os.path.join(os.path.dirname("__file__"), "src", "trnco_fe"))
 OSM_TEST = os.path.join(RESOURCE_DIR,"in.osm")
 
-
-
 def load_osm(osm_file_path):
 
     #PINVOKE ERROR

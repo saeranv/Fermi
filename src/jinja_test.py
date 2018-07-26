@@ -7,13 +7,13 @@ from osm_points_to_html import get_html
 CURR_DIR = os.path.abspath(os.path.dirname("__file__"))
 
 
-t = Template("Hello {{ something }}")
-out = t.render(something = "world")
+#t = Template("Hello {{ something }}")
+#out = t.render(something = "world")
 
 #print(type(out))
 
-t = Template("My favorite numbers: {% for n in range(1,10) %} {{n}} " "{% endfor %}")
-out = t.render()
+#t = Template("My favorite numbers: {% for n in range(1,10) %} {{n}} " "{% endfor %}")
+#out = t.render()
 
 #print(out)
 
@@ -39,7 +39,6 @@ templatedir = os.path.join(CURR_DIR,"src","templates")
 env = Environment(loader=FileSystemLoader(templatedir))
 template = env.get_template("trnco_fe.html")
 output = template.render()
-#print(output)
 
 fh = open(os.path.join(CURR_DIR,"src","trnco_fe","trnco_fe.html"), "w")
 fh.writelines(output)
