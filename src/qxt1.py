@@ -1,7 +1,3 @@
-#-----------------------------------------------------------------------------
-# Imports
-#-----------------------------------------------------------------------------
-# https://stackoverflow.com/questions/29421936/cant-quit-pyqt5-application-with-embedded-ipython-qtconsole
 
 from __future__ import print_function
 from loadenv import *
@@ -38,6 +34,9 @@ import os
 CURR_DIRECTORY = os.path.abspath(os.path.dirname("__file__"))
 
 
+# https://stackoverflow.com/questions/29421936/cant-quit-pyqt5-application-with-embedded-ipython-qtconsole
+
+
 #-----------------------------------------------------------------------------
 # Functions and classes
 #-----------------------------------------------------------------------------
@@ -53,13 +52,6 @@ def mpl_kernel(gui):
 """
 def print_process_id():
     print('Process ID {}'.format(os.getpid()))
-
-class Test(object):
-    def __init__(self, input):
-        self.input = input
-
-    def __repr__(self):
-        return "I am a test haha " + str(self.input)
 
 class ConsoleWidget(RichJupyterWidget):
     def __init__(self, customBanner=None, *args, **kwargs):
@@ -81,19 +73,12 @@ class ConsoleWidget(RichJupyterWidget):
 
         self.banner = "qxt\n\n" + doc
         self.font_size = 6
+
         self.kernel_manager = kernel_manager = QtInProcessKernelManager()
-        self.kernel_manager.start_kernel(show_banner=True)
-        self.kernel_manager.kernel.gui = 'qt'
+        kernel_manager.start_kernel()
+        kernel_manager.kernel.gui = 'qt'
         self.kernel_client = kernel_client = self._kernel_manager.client()
         kernel_client.start_channels()
-
-        # test this
-        #t = Test(14)
-        #t1 = Test(26)
-        #D = {"t": t, "ti": t1, "ghargs": sys.argv}
-
-        #kernel = kernel_manager.kernel
-        #kernel.shell.push(D)
 
         monokai = qtconsole.styles.default_dark_style_sheet
         self.style_sheet = monokai
@@ -104,11 +89,11 @@ class ConsoleWidget(RichJupyterWidget):
         self.push_vars({"doc": doc})
 
         def stop():
-            self.kernel_client.stop_channels()
-            self.kernel_manager.shutdown_kernel()
-            #guisupport.get_app_qt().exit()
+            kernel_client.stop_channels()
+            kernel_manager.shutdown_kernel()
+            get_app_qt5().exit()
+        #self.exit_requested.connect(stop)
 
-        self.exit_requested.connect(stop)
 
     def push_vars(self, variableDict):
         """
@@ -177,6 +162,13 @@ class MainWidget(QtWidgets.QMainWindow):
         #self.resized.emit()
         return self.ipyConsole.resizeEvent(event)
 
+    def showMsg(self, msg_text="default msg"):
+        msg = QtWidgets.QMessageBox()
+        msg.setWindowTitle("Show")
+        msg.setText(msg_text)
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
+        retval = msg.exec_()
+
     def keyPressEvent(self, event):
 
         key = event.key()
@@ -186,53 +178,58 @@ class MainWidget(QtWidgets.QMainWindow):
             if key == QtCore.Qt.Key_D:
 
                 # get json of df
-
                 df,osm,ops = parse_osm.main()
                 N = df.shape[1]
-
                 new_dict = {}
                 new_dict["df"] = df
                 new_dict["osm"] = osm
 
-                if self.ipyConsole.kernel_manager.kernel:
-                    self.ipyConsole.push_vars(new_dict)
-                else:
-                    print("no shell exists")
+
+                self.ipyConsole.push_vars(new_dict)
+                self.showMsg("pushed vars")
+
                 #N = 10
                 #df = pd.DataFrame(index=range(N))
                 #df['x'] = range(10)
                 #df['y'] = range(10)
 
-                dfhtml.get_html(df,N)
-                dfhtml.to_frontend()
+                #dfhtml.get_html(df,N)
+                #dfhtml.to_frontend()
 
-                self.viewer.load(self.viewer.html_url)
+                #self.viewer.load(self.viewer.html_url)
+
                 self.ipyConsole.print_text("'DataFrame pushed'")
+                print('hello')
 
             elif key == QtCore.Qt.Key_Q:
 
                 self.close()
 
             elif key == QtCore.Qt.Key_M:
+                self.showMsg("Msg from M")
 
-                msg = QtWidgets.QMessageBox()
-                msg.setWindowTitle("Show")
-                msg.setText("I am a message!")
-                msg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
-                retval = msg.exec_()
 
 
 
 def print_process_id():
     print('Process ID is:', os.getpid())
 
+def get_app_qt5(*args, **kwargs):
+    """Create a new qt5 app or return an existing one."""
+    app = QtWidgets.QApplication.instance()
+    if app is None:
+        if not args:
+            args = ([''],)
+        app = QtWidgets.QApplication(*args, **kwargs)
+    return app
+
 def main():
+
     print_process_id()
 
-    app = QtWidgets.QApplication([])
-    #app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt())
-    app.setWindowIcon(QtGui.QIcon(os.path.join(CURR_DIRECTORY,"src/trnco_fe/img/tmplogo_pink.png")))
+    app  = get_app_qt5()
 
+    app.setWindowIcon(QtGui.QIcon(os.path.join(CURR_DIRECTORY,"src/trnco_fe/img/tmplogo_pink.png")))
     file = QFile(os.path.join(CURR_DIRECTORY,"src","trnco_fe","qdarkstyle_custom.qss"))
     file.open(QFile.ReadOnly | QFile.Text)
     stream = QTextStream(file)
@@ -240,10 +237,9 @@ def main():
 
     widget = MainWidget()
 
-
+    widget.show()
+    #app.exec_()
     sys.exit(app.exec_())
 
 if __name__ == '__main__':
-
-
     main()
