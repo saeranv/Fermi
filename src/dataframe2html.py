@@ -13,6 +13,10 @@ import os
 from jinja2 import Template
 from jinja2 import Environment, FileSystemLoader
 
+
+import parse_osm
+
+
 CURR_DIR = os.path.abspath(os.path.dirname("__file__"))
 RESOURCE_DIR = os.path.abspath(os.path.join(os.path.dirname("__file__"), "src", "trnco_fe"))
 
@@ -70,38 +74,26 @@ def get_html(df,N):
     #mpld3.show()
     #return html
     htmlname = "mpl3test.html"
-    CURR_DIR = os.path.abspath(os.path.dirname("__file__"))
     fname = os.path.join(CURR_DIR,"src","templates",htmlname)
     f = open(fname,'w')
     f.writelines(html)
     f.close()
 
-    return htmlname
 
-def get_temp_osm_data():
-
-    N = 50
-    df = pd.DataFrame(index=range(N))
-    df['x'] = np.random.randn(N)
-    df['y'] = np.random.randn(N)
-    df['z'] = np.random.randn(N)
-
-    return df, N
-
-def to_frontend(htmlfilename):
+def to_frontend():
 
     templatedir = os.path.join(CURR_DIR,"src","templates")
     env = Environment(loader=FileSystemLoader(templatedir))
-    template = env.get_template(htmlfilename)
+    template = env.get_template("trnco_fe.html")
     output = template.render()
 
-    fh = open(os.path.join(CURR_DIR,"src","trnco_fe",htmlfilename), "w")
+    fh = open(os.path.join(CURR_DIR,"src","trnco_fe","trnco_fe.html"), "w")
     fh.writelines(output)
     fh.close()
 
 
 if __name__ == "__main__":
 
-    df,N = get_temp_osm_data()
-    htmlfile = get_html(df,N)
-    to_frontend(htmlfile)
+    df,N,osm,ops = parse_osm.main()
+    get_html(df,N)
+    to_frontend()

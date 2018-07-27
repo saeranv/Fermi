@@ -4,7 +4,7 @@
 # https://stackoverflow.com/questions/29421936/cant-quit-pyqt5-application-with-embedded-ipython-qtconsole
 
 from __future__ import print_function
-
+from loadenv import *
 #qtgui
 from qtconsole.rich_jupyter_widget import RichJupyterWidget
 from qtconsole.inprocess import QtInProcessKernelManager
@@ -25,6 +25,7 @@ from PyQt5 import QtWebKitWidgets
 # needs to be imported
 #from PyQt5 import QtSvg
 import dataframe2html as dfhtml
+import parse_osm
 
 import pprint
 pp = pprint.pprint
@@ -67,20 +68,22 @@ class ConsoleWidget(RichJupyterWidget):
         # console widget
         getghargs = str(sys.argv[1]) if len(sys.argv)>1 else "None"
         doc = ("Check GH args: " + getghargs + "\n"
-            "%run -m src.load_osm $osmfile\n"
+            "%run -m src.load_osm $osmfile DEPRECATED!\n"
             "%run -m src.loadenv\n"
             "!clear to clear screen\n"
             "Batch scripts:\n"
             "%run -m src.run_batch start\n"
             "%run -m src.run_batch git\n"
+            "Ctrl A: reload html\n"
+            "Ctrl Q: quit\n"
             "PID: {}\n".format(os.getpid())
             )
 
         self.banner = "qxt\n\n" + doc
         self.font_size = 6
         self.kernel_manager = kernel_manager = QtInProcessKernelManager()
-        kernel_manager.start_kernel(show_banner=True)
-        kernel_manager.kernel.gui = 'qt'
+        self.kernel_manager.start_kernel(show_banner=True)
+        self.kernel_manager.kernel.gui = 'qt'
         self.kernel_client = kernel_client = self._kernel_manager.client()
         kernel_client.start_channels()
 
@@ -92,8 +95,6 @@ class ConsoleWidget(RichJupyterWidget):
         #kernel = kernel_manager.kernel
         #kernel.shell.push(D)
 
-
-
         monokai = qtconsole.styles.default_dark_style_sheet
         self.style_sheet = monokai
 
@@ -103,9 +104,9 @@ class ConsoleWidget(RichJupyterWidget):
         self.push_vars({"doc": doc})
 
         def stop():
-            kernel_client.stop_channels()
-            kernel_manager.shutdown_kernel()
-            guisupport.get_app_qt().exit()
+            self.kernel_client.stop_channels()
+            self.kernel_manager.shutdown_kernel()
+            #guisupport.get_app_qt().exit()
 
         self.exit_requested.connect(stop)
 
@@ -140,8 +141,8 @@ class GUIWidget(QtWebKitWidgets.QWebView):
     def __init__(self, parent=None):
         super(GUIWidget, self).__init__(parent)
 
-        html_url = QtCore.QUrl.fromLocalFile(os.path.join(CURR_DIRECTORY, "src","trnco_fe","trnco_fe.html"))
-        self.load(html_url)
+        self.html_url = QtCore.QUrl.fromLocalFile(os.path.join(CURR_DIRECTORY, "src","trnco_fe","trnco_fe.html"))
+        self.load(self.html_url)
         #viewer.setHtml(HTML, img_url)
 
 class MainWidget(QtWidgets.QMainWindow):
@@ -177,25 +178,54 @@ class MainWidget(QtWidgets.QMainWindow):
         return self.ipyConsole.resizeEvent(event)
 
     def keyPressEvent(self, event):
-        if event.key() == QtCore.Qt.Key_Escape:
-            self.close()
 
-        elif event.key() == QtCore.Qt.Key_Alt:
-            #error_dialog = QtWidgets.QErrorMessage()
-            #error_dialog.showMessage('Oh no!')
-            msg = QtWidgets.QMessageBox()
-            msg.setWindowTitle("Show")
-            msg.setText("This is a test of the Q Message.\nThis is the second line.\n")
-            #msg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
-            retval = msg.exec_()
+        key = event.key()
+        modifier = QtWidgets.QApplication.keyboardModifiers()
+
+        if modifier == QtCore.Qt.ControlModifier:
+            if key == QtCore.Qt.Key_D:
+
+                # get json of df
+
+                df,osm,ops = parse_osm.main()
+                N = df.shape[1]
+
+                new_dict = {}
+                new_dict["df"] = df
+                new_dict["osm"] = osm
+
+                if self.ipyConsole.kernel_manager.kernel:
+                    self.ipyConsole.push_vars(new_dict)
+                else:
+                    print("no shell exists")
+                #N = 10
+                #df = pd.DataFrame(index=range(N))
+                #df['x'] = range(10)
+                #df['y'] = range(10)
+
+                dfhtml.get_html(df,N)
+                dfhtml.to_frontend()
+
+                self.viewer.load(self.viewer.html_url)
+                self.ipyConsole.print_text("'DataFrame pushed'")
+
+            elif key == QtCore.Qt.Key_Q:
+
+                self.close()
+
+            elif key == QtCore.Qt.Key_M:
+
+                msg = QtWidgets.QMessageBox()
+                msg.setWindowTitle("Show")
+                msg.setText("I am a message!")
+                msg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
+                retval = msg.exec_()
+
 
 
 def print_process_id():
     print('Process ID is:', os.getpid())
 
-def onFileSystemChanged(path):
-    print(path)
-    print('testing')
 def main():
     print_process_id()
 
@@ -210,32 +240,10 @@ def main():
 
     widget = MainWidget()
 
-    #widget.show()
-    """
-    # W file watcher use this to track different images
-    # https://stackoverflow.com/questions/13518985/why-does-qfilesystemwatcher-work-for-directories-but-not-files-in-python
-    # http://blog.mathieu-leplatre.info/filesystem-watch-with-pyqt4.html
-    paths = [
-        os.path.join(CURR_DIRECTORY, "src","trnco_fe","img"),
-        os.path.join(CURR_DIRECTORY, "src","trnco_fe","img","2.jpg")
-        ]
-    # Set up file system watcher
-    qfsw = QtCore.QFileSystemWatcher()
-    qfsw.addPaths(paths)
-    QtCore.QObject.connect(qfsw, QtCore.SIGNAL("directoryChanged(QString)"),onFileSystemChanged)
-    QtCore.QObject.connect(qfsw, QtCore.SIGNAL("fileChanged(QString)"),onFileSystemChanged)
-
-    # Allow program to be interrupted with Ctrl+C
-    signal.signal(signal.SIGINT, signal.SIG_DFL)
-    # end file watching
-    """
 
     sys.exit(app.exec_())
 
 if __name__ == '__main__':
 
-    df,N = dfhtml.get_temp_osm_data()
-    htmlfile = dfhtml.get_html(df,N)
-    dfhtml.to_frontend(htmlfile)
 
     main()

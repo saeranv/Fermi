@@ -7,12 +7,15 @@ import pandas as pd
 import numpy as np
 
 import matplotlib.pyplot as plt
-plt.style.use('dark_background')
+#plt.style.use('dark_background')
+
+import itertools as it
+#print list(imap(lambda x: x * x, xrange(10)))
 
 import pprint
 pp = pprint.pprint
 
-CURR_DIRECTORY = os.path.abspath(os.path.dirname("__file__"))
+CURR_DIR = os.path.abspath(os.path.dirname("__file__"))
 
 """
 # Set the uwg path

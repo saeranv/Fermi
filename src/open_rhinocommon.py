@@ -14,7 +14,7 @@ clr.AddReference("System")
 import System
 
 
-BIN_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__),"..", "bin"))
+BIN_DIR = os.path.abspath(CURR_DIR,"..", "bin"))
 RESOURCE_DIR = os.path.abspath(os.path.join(os.path.dirname("__file__"), "resources"))
 OSM_TEST = os.path.join(RESOURCE_DIR,"office.osm")
 
