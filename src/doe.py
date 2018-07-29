@@ -75,14 +75,14 @@ if __name__ == "__main__":
     # no serializeation
     bld, bem, sched = readDOE(False)
 
-    indexdocstr = ""
+    doedoc = ""
 
     padding = lambda x: "----" if x==0 else "-"*abs(int(math.log10(x))-4)
-    indexdocstr += "BLDTYPE\n"
+    doedoc += "BLDTYPE\n"
     for i in xrange(16): indexdocstr += "{0}{1}{2}".format(i, padding(i) , BLDTYPE[i]+"\n")
-    indexdocstr += "BUILTERA\n"
+    doedoc += "BUILTERA\n"
     for i in xrange(3): indexdocstr += "{0}{1}{2}".format(i, padding(i) , BUILTERA[i]+"\n")
-    indexdocstr += "ZONETYPE\n"
+    doedoc += "ZONETYPE\n"
     for i in xrange(16): indexdocstr += "{0}{1}{2}".format(i, padding(i) , ZONETYPE[i]+"\n")
 
-    print("Created bld, bem, sched => 3d matrices of building, BEMdef, and Schedule objects.\nindexdocstr => Matrix index table.")
+    print("Created bld, bem, sched => 3d matrices of building, BEMdef, and Schedule objects.\ndoedoc => Matrix index table.")

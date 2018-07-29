@@ -211,6 +211,6 @@ if __name__ == "__main__":
     )
 
     epw = w.uwg.weather
-    doc = epw.__doc__ + doc_1 + doc_2 + doc_3 + doc_4
+    epwdoc = epw.__doc__ + doc_1 + doc_2 + doc_3 + doc_4
 
-    print(doc)
+    print(epwdoc)

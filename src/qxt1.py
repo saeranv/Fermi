@@ -20,7 +20,7 @@ from PyQt5 import QtWebKitWidgets
 
 # needs to be imported
 #from PyQt5 import QtSvg
-import dataframe2html as dfhtml
+import dataframe2matplotlib as dfmpl
 import parse_osm
 
 import pprint
@@ -61,13 +61,16 @@ class ConsoleWidget(RichJupyterWidget):
         getghargs = str(sys.argv[1]) if len(sys.argv)>1 else "None"
         doc = ("Check GH args: " + getghargs + "\n"
             "%run -m src.load_osm $osmfile DEPRECATED!\n"
-            "%run -m src.loadenv\n"
+            "%run -m src.loadenv - DEPRECATED\n"
+            "%run -m src.epw - print(epwdoc)\n"
+            "%run -m src.doe - print(doedoc)\n"
             "!clear to clear screen\n"
             "Batch scripts:\n"
             "%run -m src.run_batch start\n"
             "%run -m src.run_batch git\n"
-            "Ctrl A: reload html\n"
             "Ctrl Q: quit\n"
+            "df.to_json(jsonpath) # pushes df to json\n"
+            "Ctrl D: reload html\n"
             "PID: {}\n".format(os.getpid())
             )
 
@@ -128,7 +131,10 @@ class GUIWidget(QtWebKitWidgets.QWebView):
 
         self.html_url = QtCore.QUrl.fromLocalFile(os.path.join(CURR_DIRECTORY, "src","trnco_fe","trnco_fe.html"))
         self.load(self.html_url)
-        #viewer.setHtml(HTML, img_url)
+
+     #def create(self, mimeType, url, names, values):
+    #    if mimeType == "x-pyqt/widget":
+    #        return WebWidget()
 
 class MainWidget(QtWidgets.QMainWindow):
     # Main GUI Window including a button and IPython Console widget inside vertical layout
@@ -137,6 +143,8 @@ class MainWidget(QtWidgets.QMainWindow):
         self.setWindowTitle('hpr')
         self.mainWidget = QtWidgets.QWidget(self)
         self.setCentralWidget(self.mainWidget)
+
+        self.jsonpath = os.path.join(CURR_DIR,"src","trnco_fe","qxt.json")
 
         self.layout = QtWidgets.QVBoxLayout(self.mainWidget)
 
@@ -153,6 +161,7 @@ class MainWidget(QtWidgets.QMainWindow):
         self.viewer.setMinimumHeight(450)
         self.viewer.setMaximumHeight(450)
         self.ipyConsole.setMinimumHeight(300)
+        self.ipyConsole.push_vars({"jsonpath":self.jsonpath})
 
         self.resize(470,750)
         self.move(40,40)
@@ -177,29 +186,45 @@ class MainWidget(QtWidgets.QMainWindow):
         if modifier == QtCore.Qt.ControlModifier:
             if key == QtCore.Qt.Key_D:
 
-                # get json of df
-                df,osm,ops = parse_osm.main()
-                N = df.shape[1]
-                new_dict = {}
-                new_dict["df"] = df
-                new_dict["osm"] = osm
+                df,osm,ops = parse_osm.main() # should load this differently
 
+                new_dict = {
+                    "df":df,
+                    "osm":osm
+                    }
 
                 self.ipyConsole.push_vars(new_dict)
-                self.showMsg("pushed vars")
 
-                #N = 10
-                #df = pd.DataFrame(index=range(N))
+                #import random
+                #df = pd.DataFrame(index=range(10))
                 #df['x'] = range(10)
                 #df['y'] = range(10)
+                #for i in range(10): df['x'][i] = random.randrange(10)
+                #for i in range(10): df['y'][i] = random.randrange(10)
 
-                #dfhtml.get_html(df,N)
-                #dfhtml.to_frontend()
+                dfmpl.scatterplot(df)
 
-                #self.viewer.load(self.viewer.html_url)
+                self.viewer.reload()
 
-                self.ipyConsole.print_text("'DataFrame pushed'")
-                print('hello')
+                self.ipyConsole.print_text("df, osm loaded into memory")
+
+                print('finished ctrl D-ing')
+
+            elif key == QtCore.Qt.Key_W:
+
+                # get json of df
+                df = pd.read_json(self.jsonpath)
+
+                self.ipyConsole.push_vars({"df": df})
+
+                dfmpl.scatterplot(df)
+
+                self.viewer.reload()
+
+                self.ipyConsole.print_text("df loaded into memory")
+
+                print('finished ctrl W-ing')
+
 
             elif key == QtCore.Qt.Key_Q:
 

@@ -20,8 +20,9 @@ import parse_osm
 CURR_DIR = os.path.abspath(os.path.dirname("__file__"))
 RESOURCE_DIR = os.path.abspath(os.path.join(os.path.dirname("__file__"), "src", "trnco_fe"))
 
-def get_html(df,N):
+def get_html(df):
 
+    N = df.shape[1]
     #width = 5 #pixels
     width = 400-20 #pixels
     height = 360-20 # pixels
@@ -78,8 +79,7 @@ def get_html(df,N):
     f = open(fname,'w')
     f.writelines(html)
     f.close()
-
-
+    
 def to_frontend():
 
     templatedir = os.path.join(CURR_DIR,"src","templates")
