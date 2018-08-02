@@ -1,4 +1,3 @@
-
 from __future__ import print_function
 from loadenv import *
 #qtgui
@@ -21,20 +20,13 @@ from PyQt5 import QtWebKitWidgets
 # needs to be imported
 #from PyQt5 import QtSvg
 import dataframe2matplotlib as dfmpl
-import parse_osm
-
-import pprint
-pp = pprint.pprint
+import osm_parse
+import osm_load
 
 #import qdarkstyle
-
-import sys
-import os
-
-CURR_DIRECTORY = os.path.abspath(os.path.dirname("__file__"))
-
-
 # https://stackoverflow.com/questions/29421936/cant-quit-pyqt5-application-with-embedded-ipython-qtconsole
+
+
 
 
 #-----------------------------------------------------------------------------
@@ -54,27 +46,31 @@ def print_process_id():
     print('Process ID {}'.format(os.getpid()))
 
 class ConsoleWidget(RichJupyterWidget):
+
+    qdoc = ("%run -m src.osm_parse $-default # osm from default dir\n"
+    "pp(filter(lambda o: 'Space' in o, oman)) # search osm\n"
+    "%run -m src.epw - print(epwdoc)\n"
+    "%run -m src.doe - print(doedoc)\n"
+    "!clear to clear screen\n"
+    "Batch scripts:\n"
+    "%run -m src.run_batch start\n"
+    "%run -m src.run_batch git\n"
+    "Ctrl Q: quit\n"
+    "df.to_json(jsonpath) # pushes df to json\n"
+    "Ctrl D: reload html\n"
+    )
+
     def __init__(self, customBanner=None, *args, **kwargs):
         super(ConsoleWidget, self).__init__(*args, **kwargs)
 
-        # console widget
+        # Add to DOC
         getghargs = str(sys.argv[1]) if len(sys.argv)>1 else "None"
-        doc = ("Check GH args: " + getghargs + "\n"
-            "%run -m src.load_osm $osmfile DEPRECATED!\n"
-            "%run -m src.loadenv - DEPRECATED\n"
-            "%run -m src.epw - print(epwdoc)\n"
-            "%run -m src.doe - print(doedoc)\n"
-            "!clear to clear screen\n"
-            "Batch scripts:\n"
-            "%run -m src.run_batch start\n"
-            "%run -m src.run_batch git\n"
-            "Ctrl Q: quit\n"
-            "df.to_json(jsonpath) # pushes df to json\n"
-            "Ctrl D: reload html\n"
+        self.qdoc += (
+            "Check GH args: " + getghargs + "\n"
             "PID: {}\n".format(os.getpid())
             )
 
-        self.banner = "qxt\n\n" + doc
+        self.banner = "qxt\n" + self.qdoc
         self.font_size = 6
 
         self.kernel_manager = kernel_manager = QtInProcessKernelManager()
@@ -89,7 +85,7 @@ class ConsoleWidget(RichJupyterWidget):
         self.execute_command("%run -m src.loadenv")
         self.execute_command("%matplotlib inline\n")
 
-        self.push_vars({"doc": doc})
+        self.push_vars({"qdoc": self.qdoc})
 
         def stop():
             kernel_client.stop_channels()
@@ -129,7 +125,7 @@ class GUIWidget(QtWebKitWidgets.QWebView):
     def __init__(self, parent=None):
         super(GUIWidget, self).__init__(parent)
 
-        self.html_url = QtCore.QUrl.fromLocalFile(os.path.join(CURR_DIRECTORY, "src","trnco_fe","trnco_fe.html"))
+        self.html_url = QtCore.QUrl.fromLocalFile(os.path.join(CURR_DIR, "src","trnco_fe","trnco_fe.html"))
         self.load(self.html_url)
 
      #def create(self, mimeType, url, names, values):
@@ -254,8 +250,8 @@ def main():
 
     app  = get_app_qt5()
 
-    app.setWindowIcon(QtGui.QIcon(os.path.join(CURR_DIRECTORY,"src/trnco_fe/img/tmplogo_pink.png")))
-    file = QFile(os.path.join(CURR_DIRECTORY,"src","trnco_fe","qdarkstyle_custom.qss"))
+    app.setWindowIcon(QtGui.QIcon(os.path.join(CURR_DIR,"src/trnco_fe/img/tmplogo_pink.png")))
+    file = QFile(os.path.join(CURR_DIR,"src","trnco_fe","qdarkstyle_custom.qss"))
     file.open(QFile.ReadOnly | QFile.Text)
     stream = QTextStream(file)
     app.setStyleSheet(stream.readAll())

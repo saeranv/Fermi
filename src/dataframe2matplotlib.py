@@ -2,7 +2,7 @@ from __future__ import print_function
 from loadenv import *
 from jinja2 import Template
 from jinja2 import Environment, FileSystemLoader
-import parse_osm
+import osm_parse
 
 # set background style
 
@@ -111,6 +111,6 @@ def save_as_canvas():
 
 if __name__ == "__main__":
 
-    df,osm,ops = parse_osm.main()
+    df,osm,ops = osm_parse.main()
     scatterplot(df)
     #to_frontend()
