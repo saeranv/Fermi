@@ -69,6 +69,10 @@ def load_osm(osm_file_path, ops):
 
     return osm
 
+def save_osm(new_file_path, osm, ops):
+    
+    osm.save(ops.Path(new_file_path), True))
+
 if __name__ == "__main__":
 
     print("use load_osm.py to load openstudio files.")
