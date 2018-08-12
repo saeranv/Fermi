@@ -1,10 +1,10 @@
-%matplotlib inline
+#%matplotlib inline
 import pandas as pd
 import os
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
-from IPython.display import clear_output
+#from IPython.display import clear_output
 from mpl_toolkits.mplot3d import Axes3D
 
 import math
@@ -21,7 +21,7 @@ L = []
 for x_,y_ in  zip(np.ravel(X), np.ravel(Y)):
     z_ = math.sin(x_) + math.sin(y_)
     L.append(z_)
-print L
+#print L
 zs = np.array(L)
 
 Z = zs.reshape(X.shape)

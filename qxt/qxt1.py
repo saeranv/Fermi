@@ -47,14 +47,14 @@ def print_process_id():
 
 class ConsoleWidget(RichJupyterWidget):
 
-    qdoc = ("%run -m src.osm_parse $-default # osm from default dir\n"
+    qdoc = ("%run -m qxt.osm_parse $-default # osm from default dir\n"
     "pp(filter(lambda o: 'Space' in o, oman)) # search osm\n"
-    "%run -m src.epw - print(epwdoc)\n"
-    "%run -m src.doe - print(doedoc)\n"
+    "%run -m qxt.epw - print(epwdoc)\n"
+    "%run -m qxt.doe - print(doedoc)\n"
     "!clear to clear screen\n"
     "Batch scripts:\n"
-    "%run -m src.run_batch start\n"
-    "%run -m src.run_batch git\n"
+    "%run -m qxt.run_batch start\n"
+    "%run -m qxt.run_batch git\n"
     "Ctrl Q: quit\n"
     "df.to_json(jsonpath) # pushes df to json\n"
     "Ctrl D: reload html\n"
@@ -67,7 +67,7 @@ class ConsoleWidget(RichJupyterWidget):
         getghargs = str(sys.argv[1]) if len(sys.argv)>1 else "None"
         self.qdoc += (
             "Check GH args: " + getghargs + "\n"
-            "PID: {}\n".format(os.getpid())
+            "PID: {}\n\n".format(os.getpid())
             )
 
         self.banner = "qxt\n" + self.qdoc
@@ -82,7 +82,7 @@ class ConsoleWidget(RichJupyterWidget):
         monokai = qtconsole.styles.default_dark_style_sheet
         self.style_sheet = monokai
 
-        self.execute_command("%run -m src.loadenv")
+        self.execute_command("%run -m qxt.loadenv")
         self.execute_command("%matplotlib inline\n")
 
         self.push_vars({"qdoc": self.qdoc})
@@ -125,7 +125,7 @@ class GUIWidget(QtWebKitWidgets.QWebView):
     def __init__(self, parent=None):
         super(GUIWidget, self).__init__(parent)
 
-        self.html_url = QtCore.QUrl.fromLocalFile(os.path.join(CURR_DIR, "src","trnco_fe","trnco_fe.html"))
+        self.html_url = QtCore.QUrl.fromLocalFile(os.path.join(CURR_DIR, "qxt","trnco_fe","trnco_fe.html"))
         self.load(self.html_url)
 
      #def create(self, mimeType, url, names, values):
@@ -140,7 +140,7 @@ class MainWidget(QtWidgets.QMainWindow):
         self.mainWidget = QtWidgets.QWidget(self)
         self.setCentralWidget(self.mainWidget)
 
-        self.jsonpath = os.path.join(CURR_DIR,"src","trnco_fe","qxt.json")
+        self.jsonpath = os.path.join(CURR_DIR,"qxt","trnco_fe","qxt.json")
 
         self.layout = QtWidgets.QVBoxLayout(self.mainWidget)
 
@@ -250,8 +250,8 @@ def main():
 
     app  = get_app_qt5()
 
-    app.setWindowIcon(QtGui.QIcon(os.path.join(CURR_DIR,"src/trnco_fe/img/tmplogo_pink.png")))
-    file = QFile(os.path.join(CURR_DIR,"src","trnco_fe","qdarkstyle_custom.qss"))
+    app.setWindowIcon(QtGui.QIcon(os.path.join(CURR_DIR,"qxt/trnco_fe/img/tmplogo_pink.png")))
+    file = QFile(os.path.join(CURR_DIR,"qxt","trnco_fe","qdarkstyle_custom.qss"))
     file.open(QFile.ReadOnly | QFile.Text)
     stream = QTextStream(file)
     app.setStyleSheet(stream.readAll())

@@ -1,1 +1,0 @@
-https://stackoverflow.com/questions/7975522/mesh-generation-for-computational-science-in-python
