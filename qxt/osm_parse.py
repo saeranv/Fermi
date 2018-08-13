@@ -119,8 +119,6 @@ def plot_osm_surface_2d(space_vec,linecolor='b'):
                 y.append(p[1])
         plt.plot(x,y,linecolor)
 
-
-
 def plot_osm_surface_3d(space_vec,linecolor='b'):
 
     fig = plt.figure()

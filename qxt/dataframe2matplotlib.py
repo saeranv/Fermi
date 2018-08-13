@@ -93,7 +93,7 @@ def scatterplot(df):
     save_as_static_img()
 
 def save_as_static_img():
-    img_dir = os.path.join(CURR_DIR,"src","trnco_fe","img")
+    img_dir = os.path.join(CURR_DIR,"qxt","trnco_fe","img")
     img_path = os.path.join(img_dir, "matplotlib.png")
 
     plt.savefig(img_path, bbox_inches='tight')
