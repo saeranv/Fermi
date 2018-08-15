@@ -106,8 +106,7 @@ def plot_osm_surface_2d(space_vec,linecolor='b'):
 
         x = []
         y = []
-
-
+        
         len_srf = np.size(space_,0) # rows = surfaces
         len_pts = np.size(space_,1) # cols = vertices
 

@@ -17,8 +17,7 @@ def list_to_tree(input, none_and_holes=True, source=[0]):
                 elif item is not None: tree.Add(item,path)
     if input is not None: t=Tree[object]();proc(input,t,source[:]);return t
 
-
-    # written by Giulio Piacentino, giulio@mcneel.com
+# written by Giulio Piacentino, giulio@mcneel.com
 def tree_to_list(input, retrieve_base = lambda x: x[0]):
     """Returns a list representation of a Grasshopper DataTree"""
     def extend_at(path, index, simple_input, rest_list):
@@ -34,3 +33,18 @@ def tree_to_list(input, retrieve_base = lambda x: x[0]):
         path = input.Path(i)
         extend_at(path, 0, input.Branch(path), all)
     return retrieve_base(all)
+
+def alt_tree_to_list(tree,nest=True):
+    nested_lst = []
+    for i in range(tree.BranchCount):
+        branchList = tree.Branch(i)
+        #change from listobject
+        lst = []
+        for b in branchList:
+            if nest:
+                lst.append(b)
+            else:
+                nested_lst.append(b)
+        if nest:
+            nested_lst.append(lst)
+    return nested_lst
