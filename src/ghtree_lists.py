@@ -1,5 +1,20 @@
 #https://gist.github.com/piac/ef91ac83cb5ee92a1294
-
+# modified by sv
+def tree_to_list(input, retrieve_base = lambda x: x[0]):
+    """Returns a list representation of a Grasshopper DataTree"""
+    def append_at(path, index, simple_input, rest_list):
+        target = path[index]
+        if len(rest_list) <= target: rest_list.append([None]*(target-len(rest_list)+1))
+        if index == path.Length - 1:
+            rest_list[target] = list(simple_input)
+        else:
+            if rest_list[target] is None: rest_list[target] = []
+            append_at(path, index+1, simple_input, rest_list[target])
+    all = []
+    for i in range(input.BranchCount):
+        path = input.Path(i)
+        append_at(path, 0, input.Branch(path), all)
+    return retrieve_base(all)
 
 def list_to_tree(input, none_and_holes=True, source=[0]):
     """Transforms nestings of lists or tuples to a Grasshopper DataTree"""
@@ -17,24 +32,8 @@ def list_to_tree(input, none_and_holes=True, source=[0]):
                 elif item is not None: tree.Add(item,path)
     if input is not None: t=Tree[object]();proc(input,t,source[:]);return t
 
-# written by Giulio Piacentino, giulio@mcneel.com
-def tree_to_list(input, retrieve_base = lambda x: x[0]):
-    """Returns a list representation of a Grasshopper DataTree"""
-    def extend_at(path, index, simple_input, rest_list):
-        target = path[index]
-        if len(rest_list) <= target: rest_list.extend([None]*(target-len(rest_list)+1))
-        if index == path.Length - 1:
-            rest_list[target] = list(simple_input)
-        else:
-            if rest_list[target] is None: rest_list[target] = []
-            extend_at(path, index+1, simple_input, rest_list[target])
-    all = []
-    for i in range(input.BranchCount):
-        path = input.Path(i)
-        extend_at(path, 0, input.Branch(path), all)
-    return retrieve_base(all)
-
-def alt_tree_to_list(tree,nest=True):
+"""
+def tree_to_list(tree,nest=True):
     nested_lst = []
     for i in range(tree.BranchCount):
         branchList = tree.Branch(i)
@@ -48,3 +47,4 @@ def alt_tree_to_list(tree,nest=True):
         if nest:
             nested_lst.append(lst)
     return nested_lst
+"""
