@@ -16,7 +16,34 @@ def cheat():
     vecdot = vec.dot(vec2)
     #print vecdot
 
-def rsq_deep():
+def circle_to_square():
+    """ https://stackoverflow.com/questions/4788892/draw-square-with-polar-coordinates """
+    st = 5
+    ce = 360 + st
+    rad = []
+    c = 0
+    sqlen = 10
+    for phi in np.arange(0,ce,st):
+        #print  "deg ", phi, (phi+45)%90-45, "cos ", math.cos(phi)
+        phi_ = ((phi+45)%90-45)/180.*math.pi
+        #phi_ = phi*180.*math.pi
+        r = sqlen/math.cos(phi_)
+        rad.append(r)
+
+    theta = np.arange(0,ce/st)
+
+
+    x = [1]*len(theta)
+    y = [1]*len(theta)
+
+    for t in xrange(len(theta)):
+        delta = (rad[t] - sqlen)
+        r = rad[t] - delta*1/5.
+        x[t] = math.cos(t*st*math.pi/180.)*r
+        y[t] = math.sin(t*st*math.pi/180.)*r
+    plt.plot(x,y,'r')
+
+def circle_to_square_iterative():
     """ https://stackoverflow.com/questions/4788892/draw-square-with-polar-coordinates """
     st = 5
     ce = 360 + st
@@ -54,7 +81,8 @@ def plot():
     plt.show()
 
 if __name__ == "__main__":
-    rsq_deep()
+    #circle_to_square_iterative()
+    circle_to_square()
 
     # ctrl w to close plot window
     if len(sys.argv)> 1 and sys.argv[1]=="p":
