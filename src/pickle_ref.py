@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import loadenv
 
 import cPickle
@@ -15,10 +17,10 @@ def pickle(uwg):
     uwg_pickle.close()
 
 def unpickle(pkl_file_path):
-    pkl_file = open(pkl_file_path, 'rb')  # open pickle file in binary form
-    unpickled_object = cPickle.load(pkl_file)
-    pkl_file.close()
+    unpickled_object = None
 
+    with open(pkl_file_path, "rb") as inf:
+        unpickled_object = cPickle.load(inf)
     return unpickled_object
 
 
