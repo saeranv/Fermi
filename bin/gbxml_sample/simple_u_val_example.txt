@@ -1,0 +1,1336 @@
+<gbXML version="6.01" areaUnit="SquareMeters" volumeUnit="CubicMeters" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.gbxml.org/schema" xsi:schemaLocation="http://www.gbxml.org/schema http://gbxml.org/schema/6-01/GreenBuildingXML_Ver6.01.xsd" SurfaceReferenceLocation="Centerline" useSIUnitsForResults="true" lengthUnit="Meters" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" temperatureUnit="C">
+  <Campus id="Facility">
+    <Name>Facility</Name>
+    <Building buildingType="Unknown" id="Building_1">
+      <Name>Building 1</Name>
+      <Area>0.000000</Area>
+      <Space buildingStoreyIdRef="area_level_basement" id="Area">
+        <Name>Area</Name>
+        <Area>413.035146</Area>
+        <Volume>2014.289801</Volume>
+      </Space>
+      <Space buildingStoreyIdRef="area_level_1" id="Area_1">
+        <Name>Area 1</Name>
+        <Area>127.818138</Area>
+        <Volume>623.343497</Volume>
+      </Space>
+      <Space buildingStoreyIdRef="area_level_1" id="Area_2">
+        <Name>Area 2</Name>
+        <Area>127.818122</Area>
+        <Volume>623.343418</Volume>
+      </Space>
+      <BuildingStorey id="area_level_basement">
+        <Name>area_level_basement</Name>
+        <Level>-4.572000</Level>
+      </BuildingStorey>
+      <BuildingStorey id="area_level_1">
+        <Name>area_level_1</Name>
+        <Level>0.304800</Level>
+      </BuildingStorey>
+    </Building>
+    <Surface constructionIdRef="Typical_Interior_Floor" id="Area_Floor">
+      <AdjacentSpaceId spaceIdRef="Area"/>
+      <RectangularGeometry>
+        <Azimuth>90</Azimuth>
+        <CartesianPoint>
+          <Coordinate>29.789286</Coordinate>
+          <Coordinate>0.000000</Coordinate>
+          <Coordinate>-4.572000</Coordinate>
+        </CartesianPoint>
+        <Tilt>180</Tilt>
+        <Width>29.789286</Width>
+        <Height>13.865225</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>-4.572000</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>-4.572000</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>-4.572000</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>-4.572000</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+    </Surface>
+    <Surface constructionIdRef="Typical_Insulated_Exterior_Mass_Wall" surfaceType="ExteriorWall" id="Area_Wall_5">
+      <AdjacentSpaceId spaceIdRef="Area_1"/>
+      <RectangularGeometry>
+        <Azimuth>270</Azimuth>
+        <CartesianPoint>
+          <Coordinate>11.352062</Coordinate>
+          <Coordinate>13.865225</Coordinate>
+          <Coordinate>0.304800</Coordinate>
+        </CartesianPoint>
+        <Tilt>90</Tilt>
+        <Width>13.865225</Width>
+        <Height>4.876800</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>11.352062</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>11.352062</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>11.352062</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>11.352062</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+      <Opening windowTypeIdRef="U_1.22_SHGC_0.25_Sgl_Elec_Ref_Colored_6mm" openingType="FixedWindow" id="Undefined.0_Window_4">
+        <RectangularGeometry>
+          <Azimuth>270</Azimuth>
+          <CartesianPoint>
+            <Coordinate>11.352062</Coordinate>
+            <Coordinate>13.839825</Coordinate>
+            <Coordinate>1.304800</Coordinate>
+          </CartesianPoint>
+          <Tilt>90</Tilt>
+          <Width>13.814425</Width>
+          <Height>1.957893</Height>
+        </RectangularGeometry>
+        <PlanarGeometry>
+          <PolyLoop>
+            <CartesianPoint>
+              <Coordinate>11.352062</Coordinate>
+              <Coordinate>13.839825</Coordinate>
+              <Coordinate>3.262693</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>11.352062</Coordinate>
+              <Coordinate>13.839825</Coordinate>
+              <Coordinate>1.304800</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>11.352062</Coordinate>
+              <Coordinate>0.025400</Coordinate>
+              <Coordinate>1.304800</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>11.352062</Coordinate>
+              <Coordinate>0.025400</Coordinate>
+              <Coordinate>3.262693</Coordinate>
+            </CartesianPoint>
+          </PolyLoop>
+        </PlanarGeometry>
+      </Opening>
+    </Surface>
+    <Surface constructionIdRef="Typical_Insulated_Exterior_Mass_Wall" surfaceType="ExteriorWall" id="Area_Wall_1">
+      <AdjacentSpaceId spaceIdRef="Area"/>
+      <RectangularGeometry>
+        <Azimuth>0</Azimuth>
+        <CartesianPoint>
+          <Coordinate>29.789286</Coordinate>
+          <Coordinate>13.865225</Coordinate>
+          <Coordinate>-4.572000</Coordinate>
+        </CartesianPoint>
+        <Tilt>90</Tilt>
+        <Width>29.789286</Width>
+        <Height>4.876800</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>-4.572000</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>-4.572000</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+      <Opening windowTypeIdRef="U_1.22_SHGC_0.25_Sgl_Elec_Ref_Colored_6mm" openingType="FixedWindow" id="Undefined.0_Window">
+        <RectangularGeometry>
+          <Azimuth>0</Azimuth>
+          <CartesianPoint>
+            <Coordinate>29.763886</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>-3.572000</Coordinate>
+          </CartesianPoint>
+          <Tilt>90</Tilt>
+          <Width>29.738486</Width>
+          <Height>1.954052</Height>
+        </RectangularGeometry>
+        <PlanarGeometry>
+          <PolyLoop>
+            <CartesianPoint>
+              <Coordinate>29.763886</Coordinate>
+              <Coordinate>13.865225</Coordinate>
+              <Coordinate>-1.617948</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>29.763886</Coordinate>
+              <Coordinate>13.865225</Coordinate>
+              <Coordinate>-3.572000</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>0.025400</Coordinate>
+              <Coordinate>13.865225</Coordinate>
+              <Coordinate>-3.572000</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>0.025400</Coordinate>
+              <Coordinate>13.865225</Coordinate>
+              <Coordinate>-1.617948</Coordinate>
+            </CartesianPoint>
+          </PolyLoop>
+        </PlanarGeometry>
+      </Opening>
+    </Surface>
+    <Surface constructionIdRef="Typical_Insulated_Exterior_Mass_Wall" surfaceType="ExteriorWall" id="Area_Wall_2">
+      <AdjacentSpaceId spaceIdRef="Area"/>
+      <RectangularGeometry>
+        <Azimuth>270</Azimuth>
+        <CartesianPoint>
+          <Coordinate>0.000000</Coordinate>
+          <Coordinate>13.865225</Coordinate>
+          <Coordinate>-4.572000</Coordinate>
+        </CartesianPoint>
+        <Tilt>90</Tilt>
+        <Width>13.865225</Width>
+        <Height>4.876800</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>-4.572000</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>-4.572000</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+      <Opening windowTypeIdRef="U_1.22_SHGC_0.25_Sgl_Elec_Ref_Colored_6mm" openingType="FixedWindow" id="Undefined.0_Window_1">
+        <RectangularGeometry>
+          <Azimuth>270</Azimuth>
+          <CartesianPoint>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>13.839825</Coordinate>
+            <Coordinate>-3.572000</Coordinate>
+          </CartesianPoint>
+          <Tilt>90</Tilt>
+          <Width>13.814425</Width>
+          <Height>1.957893</Height>
+        </RectangularGeometry>
+        <PlanarGeometry>
+          <PolyLoop>
+            <CartesianPoint>
+              <Coordinate>0.000000</Coordinate>
+              <Coordinate>13.839825</Coordinate>
+              <Coordinate>-1.614107</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>0.000000</Coordinate>
+              <Coordinate>13.839825</Coordinate>
+              <Coordinate>-3.572000</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>0.000000</Coordinate>
+              <Coordinate>0.025400</Coordinate>
+              <Coordinate>-3.572000</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>0.000000</Coordinate>
+              <Coordinate>0.025400</Coordinate>
+              <Coordinate>-1.614107</Coordinate>
+            </CartesianPoint>
+          </PolyLoop>
+        </PlanarGeometry>
+      </Opening>
+    </Surface>
+    <Surface constructionIdRef="Typical_Insulated_Metal_Building_Roof" surfaceType="Roof" id="Area_Roof">
+      <AdjacentSpaceId spaceIdRef="Area"/>
+      <RectangularGeometry>
+        <Azimuth>90</Azimuth>
+        <CartesianPoint>
+          <Coordinate>29.789286</Coordinate>
+          <Coordinate>13.865225</Coordinate>
+          <Coordinate>0.304800</Coordinate>
+        </CartesianPoint>
+        <Tilt>0</Tilt>
+        <Width>29.789286</Width>
+        <Height>13.865225</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+    </Surface>
+    <Surface constructionIdRef="Typical_Insulated_Exterior_Mass_Wall" surfaceType="ExteriorWall" id="Area_Wall_3">
+      <AdjacentSpaceId spaceIdRef="Area"/>
+      <RectangularGeometry>
+        <Azimuth>180</Azimuth>
+        <CartesianPoint>
+          <Coordinate>0.000000</Coordinate>
+          <Coordinate>0.000000</Coordinate>
+          <Coordinate>-4.572000</Coordinate>
+        </CartesianPoint>
+        <Tilt>90</Tilt>
+        <Width>29.789286</Width>
+        <Height>4.876800</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>-4.572000</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>-4.572000</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+      <Opening windowTypeIdRef="U_1.22_SHGC_0.25_Sgl_Elec_Ref_Colored_6mm" openingType="FixedWindow" id="Undefined.0_Window_2">
+        <RectangularGeometry>
+          <Azimuth>180</Azimuth>
+          <CartesianPoint>
+            <Coordinate>0.025400</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>-3.572000</Coordinate>
+          </CartesianPoint>
+          <Tilt>90</Tilt>
+          <Width>29.738486</Width>
+          <Height>1.954052</Height>
+        </RectangularGeometry>
+        <PlanarGeometry>
+          <PolyLoop>
+            <CartesianPoint>
+              <Coordinate>0.025400</Coordinate>
+              <Coordinate>0.000000</Coordinate>
+              <Coordinate>-1.617948</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>0.025400</Coordinate>
+              <Coordinate>0.000000</Coordinate>
+              <Coordinate>-3.572000</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>29.763886</Coordinate>
+              <Coordinate>0.000000</Coordinate>
+              <Coordinate>-3.572000</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>29.763886</Coordinate>
+              <Coordinate>0.000000</Coordinate>
+              <Coordinate>-1.617948</Coordinate>
+            </CartesianPoint>
+          </PolyLoop>
+        </PlanarGeometry>
+      </Opening>
+    </Surface>
+    <Surface constructionIdRef="Typical_Insulated_Exterior_Mass_Wall" surfaceType="ExteriorWall" id="Area_Wall_6">
+      <AdjacentSpaceId spaceIdRef="Area_1"/>
+      <RectangularGeometry>
+        <Azimuth>180</Azimuth>
+        <CartesianPoint>
+          <Coordinate>11.352062</Coordinate>
+          <Coordinate>0.000000</Coordinate>
+          <Coordinate>0.304800</Coordinate>
+        </CartesianPoint>
+        <Tilt>90</Tilt>
+        <Width>9.218613</Width>
+        <Height>4.876800</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>11.352062</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>11.352062</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+      <Opening windowTypeIdRef="U_1.22_SHGC_0.25_Sgl_Elec_Ref_Colored_6mm" openingType="FixedWindow" id="Undefined.0_Window_5">
+        <RectangularGeometry>
+          <Azimuth>180</Azimuth>
+          <CartesianPoint>
+            <Coordinate>11.377462</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>1.304800</Coordinate>
+          </CartesianPoint>
+          <Tilt>90</Tilt>
+          <Width>9.167813</Width>
+          <Height>1.961529</Height>
+        </RectangularGeometry>
+        <PlanarGeometry>
+          <PolyLoop>
+            <CartesianPoint>
+              <Coordinate>11.377462</Coordinate>
+              <Coordinate>0.000000</Coordinate>
+              <Coordinate>3.266329</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>11.377462</Coordinate>
+              <Coordinate>0.000000</Coordinate>
+              <Coordinate>1.304800</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>20.545275</Coordinate>
+              <Coordinate>0.000000</Coordinate>
+              <Coordinate>1.304800</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>20.545275</Coordinate>
+              <Coordinate>0.000000</Coordinate>
+              <Coordinate>3.266329</Coordinate>
+            </CartesianPoint>
+          </PolyLoop>
+        </PlanarGeometry>
+      </Opening>
+    </Surface>
+    <Surface windowTypeIdRef="AirWall" surfaceType="Air" id="Area_Wall_10">
+      <AdjacentSpaceId spaceIdRef="Area_2"/>
+      <AdjacentSpaceId spaceIdRef="Area_1"/>
+      <RectangularGeometry>
+        <Azimuth>270</Azimuth>
+        <CartesianPoint>
+          <Coordinate>20.570675</Coordinate>
+          <Coordinate>13.790612</Coordinate>
+          <Coordinate>0.304800</Coordinate>
+        </CartesianPoint>
+        <Tilt>90</Tilt>
+        <Width>13.790612</Width>
+        <Height>4.876800</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>13.790612</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>13.790612</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+    </Surface>
+    <Surface constructionIdRef="Typical_Insulated_Exterior_Mass_Wall" surfaceType="ExteriorWall" id="Area_Wall_4">
+      <AdjacentSpaceId spaceIdRef="Area"/>
+      <RectangularGeometry>
+        <Azimuth>90</Azimuth>
+        <CartesianPoint>
+          <Coordinate>29.789286</Coordinate>
+          <Coordinate>0.000000</Coordinate>
+          <Coordinate>-4.572000</Coordinate>
+        </CartesianPoint>
+        <Tilt>90</Tilt>
+        <Width>13.865225</Width>
+        <Height>4.876800</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>-4.572000</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>-4.572000</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+      <Opening windowTypeIdRef="U_1.22_SHGC_0.25_Sgl_Elec_Ref_Colored_6mm" openingType="FixedWindow" id="Undefined.0_Window_3">
+        <RectangularGeometry>
+          <Azimuth>90</Azimuth>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>0.025400</Coordinate>
+            <Coordinate>-3.572000</Coordinate>
+          </CartesianPoint>
+          <Tilt>90</Tilt>
+          <Width>13.814425</Width>
+          <Height>1.957893</Height>
+        </RectangularGeometry>
+        <PlanarGeometry>
+          <PolyLoop>
+            <CartesianPoint>
+              <Coordinate>29.789286</Coordinate>
+              <Coordinate>0.025400</Coordinate>
+              <Coordinate>-1.614107</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>29.789286</Coordinate>
+              <Coordinate>0.025400</Coordinate>
+              <Coordinate>-3.572000</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>29.789286</Coordinate>
+              <Coordinate>13.839825</Coordinate>
+              <Coordinate>-3.572000</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>29.789286</Coordinate>
+              <Coordinate>13.839825</Coordinate>
+              <Coordinate>-1.614107</Coordinate>
+            </CartesianPoint>
+          </PolyLoop>
+        </PlanarGeometry>
+      </Opening>
+    </Surface>
+    <Surface constructionIdRef="Typical_Insulated_Metal_Building_Roof" surfaceType="Roof" id="Area_Roof_1">
+      <AdjacentSpaceId spaceIdRef="Area_1"/>
+      <RectangularGeometry>
+        <Azimuth>90</Azimuth>
+        <CartesianPoint>
+          <Coordinate>20.570675</Coordinate>
+          <Coordinate>13.865225</Coordinate>
+          <Coordinate>5.181600</Coordinate>
+        </CartesianPoint>
+        <Tilt>0</Tilt>
+        <Width>9.218613</Width>
+        <Height>13.865225</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>11.352062</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>11.352062</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+    </Surface>
+    <Surface constructionIdRef="Typical_Interior_Floor" id="Area_Floor_1">
+      <AdjacentSpaceId spaceIdRef="Area_1"/>
+      <RectangularGeometry>
+        <Azimuth>90</Azimuth>
+        <CartesianPoint>
+          <Coordinate>20.570675</Coordinate>
+          <Coordinate>0.000000</Coordinate>
+          <Coordinate>0.304800</Coordinate>
+        </CartesianPoint>
+        <Tilt>180</Tilt>
+        <Width>9.218613</Width>
+        <Height>13.865225</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>11.352062</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>11.352062</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+    </Surface>
+    <Surface constructionIdRef="Typical_Interior_Floor" id="Area_Floor_2">
+      <AdjacentSpaceId spaceIdRef="Area_2"/>
+      <RectangularGeometry>
+        <Azimuth>90</Azimuth>
+        <CartesianPoint>
+          <Coordinate>29.789286</Coordinate>
+          <Coordinate>0.000000</Coordinate>
+          <Coordinate>0.304800</Coordinate>
+        </CartesianPoint>
+        <Tilt>180</Tilt>
+        <Width>9.218612</Width>
+        <Height>13.865225</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>13.790612</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+    </Surface>
+    <Surface constructionIdRef="Typical_Insulated_Exterior_Mass_Wall" surfaceType="ExteriorWall" id="Area_Wall_12">
+      <AdjacentSpaceId spaceIdRef="Area_2"/>
+      <RectangularGeometry>
+        <Azimuth>90</Azimuth>
+        <CartesianPoint>
+          <Coordinate>29.789286</Coordinate>
+          <Coordinate>0.000000</Coordinate>
+          <Coordinate>0.304800</Coordinate>
+        </CartesianPoint>
+        <Tilt>90</Tilt>
+        <Width>13.865225</Width>
+        <Height>4.876800</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+      <Opening windowTypeIdRef="U_1.22_SHGC_0.25_Sgl_Elec_Ref_Colored_6mm" openingType="FixedWindow" id="Undefined.0_Window_8">
+        <RectangularGeometry>
+          <Azimuth>90</Azimuth>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>0.025400</Coordinate>
+            <Coordinate>1.304800</Coordinate>
+          </CartesianPoint>
+          <Tilt>90</Tilt>
+          <Width>13.814425</Width>
+          <Height>1.957893</Height>
+        </RectangularGeometry>
+        <PlanarGeometry>
+          <PolyLoop>
+            <CartesianPoint>
+              <Coordinate>29.789286</Coordinate>
+              <Coordinate>0.025400</Coordinate>
+              <Coordinate>3.262693</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>29.789286</Coordinate>
+              <Coordinate>0.025400</Coordinate>
+              <Coordinate>1.304800</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>29.789286</Coordinate>
+              <Coordinate>13.839825</Coordinate>
+              <Coordinate>1.304800</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>29.789286</Coordinate>
+              <Coordinate>13.839825</Coordinate>
+              <Coordinate>3.262693</Coordinate>
+            </CartesianPoint>
+          </PolyLoop>
+        </PlanarGeometry>
+      </Opening>
+    </Surface>
+    <Surface windowTypeIdRef="AirWall" surfaceType="Air" id="Area_Wall_8">
+      <AdjacentSpaceId spaceIdRef="Area_1"/>
+      <AdjacentSpaceId spaceIdRef="Area_2"/>
+      <RectangularGeometry>
+        <Azimuth>90</Azimuth>
+        <CartesianPoint>
+          <Coordinate>20.570675</Coordinate>
+          <Coordinate>13.790612</Coordinate>
+          <Coordinate>0.304800</Coordinate>
+        </CartesianPoint>
+        <Tilt>90</Tilt>
+        <Width>0.074613</Width>
+        <Height>4.876800</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>13.790612</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>13.790612</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+    </Surface>
+    <Surface constructionIdRef="Typical_Insulated_Exterior_Mass_Wall" surfaceType="ExteriorWall" id="Area_Wall_9">
+      <AdjacentSpaceId spaceIdRef="Area_1"/>
+      <RectangularGeometry>
+        <Azimuth>0</Azimuth>
+        <CartesianPoint>
+          <Coordinate>20.570675</Coordinate>
+          <Coordinate>13.865225</Coordinate>
+          <Coordinate>0.304800</Coordinate>
+        </CartesianPoint>
+        <Tilt>90</Tilt>
+        <Width>9.218613</Width>
+        <Height>4.876800</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>11.352062</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>11.352062</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+      <Opening windowTypeIdRef="U_1.22_SHGC_0.25_Sgl_Elec_Ref_Colored_6mm" openingType="FixedWindow" id="Undefined.0_Window_6">
+        <RectangularGeometry>
+          <Azimuth>0</Azimuth>
+          <CartesianPoint>
+            <Coordinate>20.545275</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>1.304800</Coordinate>
+          </CartesianPoint>
+          <Tilt>90</Tilt>
+          <Width>9.167813</Width>
+          <Height>1.961529</Height>
+        </RectangularGeometry>
+        <PlanarGeometry>
+          <PolyLoop>
+            <CartesianPoint>
+              <Coordinate>20.545275</Coordinate>
+              <Coordinate>13.865225</Coordinate>
+              <Coordinate>3.266329</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>20.545275</Coordinate>
+              <Coordinate>13.865225</Coordinate>
+              <Coordinate>1.304800</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>11.377462</Coordinate>
+              <Coordinate>13.865225</Coordinate>
+              <Coordinate>1.304800</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>11.377462</Coordinate>
+              <Coordinate>13.865225</Coordinate>
+              <Coordinate>3.266329</Coordinate>
+            </CartesianPoint>
+          </PolyLoop>
+        </PlanarGeometry>
+      </Opening>
+    </Surface>
+    <Surface constructionIdRef="Typical_Insulated_Exterior_Mass_Wall" surfaceType="ExteriorWall" id="Area_Wall_11">
+      <AdjacentSpaceId spaceIdRef="Area_2"/>
+      <RectangularGeometry>
+        <Azimuth>180</Azimuth>
+        <CartesianPoint>
+          <Coordinate>20.570675</Coordinate>
+          <Coordinate>0.000000</Coordinate>
+          <Coordinate>0.304800</Coordinate>
+        </CartesianPoint>
+        <Tilt>90</Tilt>
+        <Width>9.218612</Width>
+        <Height>4.876800</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+      <Opening windowTypeIdRef="U_1.22_SHGC_0.25_Sgl_Elec_Ref_Colored_6mm" openingType="FixedWindow" id="Undefined.0_Window_7">
+        <RectangularGeometry>
+          <Azimuth>180</Azimuth>
+          <CartesianPoint>
+            <Coordinate>20.596075</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>1.304800</Coordinate>
+          </CartesianPoint>
+          <Tilt>90</Tilt>
+          <Width>9.167812</Width>
+          <Height>1.961529</Height>
+        </RectangularGeometry>
+        <PlanarGeometry>
+          <PolyLoop>
+            <CartesianPoint>
+              <Coordinate>20.596075</Coordinate>
+              <Coordinate>0.000000</Coordinate>
+              <Coordinate>3.266329</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>20.596075</Coordinate>
+              <Coordinate>0.000000</Coordinate>
+              <Coordinate>1.304800</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>29.763886</Coordinate>
+              <Coordinate>0.000000</Coordinate>
+              <Coordinate>1.304800</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>29.763886</Coordinate>
+              <Coordinate>0.000000</Coordinate>
+              <Coordinate>3.266329</Coordinate>
+            </CartesianPoint>
+          </PolyLoop>
+        </PlanarGeometry>
+      </Opening>
+    </Surface>
+    <Surface constructionIdRef="Typical_Insulated_Exterior_Mass_Wall" surfaceType="ExteriorWall" id="Area_Wall_13">
+      <AdjacentSpaceId spaceIdRef="Area_2"/>
+      <RectangularGeometry>
+        <Azimuth>0</Azimuth>
+        <CartesianPoint>
+          <Coordinate>29.789286</Coordinate>
+          <Coordinate>13.865225</Coordinate>
+          <Coordinate>0.304800</Coordinate>
+        </CartesianPoint>
+        <Tilt>90</Tilt>
+        <Width>9.218612</Width>
+        <Height>4.876800</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>0.304800</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+      <Opening windowTypeIdRef="U_1.22_SHGC_0.25_Sgl_Elec_Ref_Colored_6mm" openingType="FixedWindow" id="Undefined.0_Window_9">
+        <RectangularGeometry>
+          <Azimuth>0</Azimuth>
+          <CartesianPoint>
+            <Coordinate>29.763886</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>1.304800</Coordinate>
+          </CartesianPoint>
+          <Tilt>90</Tilt>
+          <Width>9.167812</Width>
+          <Height>1.961529</Height>
+        </RectangularGeometry>
+        <PlanarGeometry>
+          <PolyLoop>
+            <CartesianPoint>
+              <Coordinate>29.763886</Coordinate>
+              <Coordinate>13.865225</Coordinate>
+              <Coordinate>3.266329</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>29.763886</Coordinate>
+              <Coordinate>13.865225</Coordinate>
+              <Coordinate>1.304800</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>20.596075</Coordinate>
+              <Coordinate>13.865225</Coordinate>
+              <Coordinate>1.304800</Coordinate>
+            </CartesianPoint>
+            <CartesianPoint>
+              <Coordinate>20.596075</Coordinate>
+              <Coordinate>13.865225</Coordinate>
+              <Coordinate>3.266329</Coordinate>
+            </CartesianPoint>
+          </PolyLoop>
+        </PlanarGeometry>
+      </Opening>
+    </Surface>
+    <Surface constructionIdRef="Typical_Insulated_Metal_Building_Roof" surfaceType="Roof" id="Area_Roof_2">
+      <AdjacentSpaceId spaceIdRef="Area_2"/>
+      <RectangularGeometry>
+        <Azimuth>90</Azimuth>
+        <CartesianPoint>
+          <Coordinate>29.789286</Coordinate>
+          <Coordinate>13.865225</Coordinate>
+          <Coordinate>5.181600</Coordinate>
+        </CartesianPoint>
+        <Tilt>0</Tilt>
+        <Width>9.218612</Width>
+        <Height>13.865225</Height>
+      </RectangularGeometry>
+      <PlanarGeometry>
+        <PolyLoop>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>13.790612</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>0.000000</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>29.789286</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+          <CartesianPoint>
+            <Coordinate>20.570675</Coordinate>
+            <Coordinate>13.865225</Coordinate>
+            <Coordinate>5.181600</Coordinate>
+          </CartesianPoint>
+        </PolyLoop>
+      </PlanarGeometry>
+    </Surface>
+  </Campus>
+  <Construction id="Typical_Insulated_Carpeted_6in_Slab_Floor">
+    <Name>Typical Insulated Carpeted 6in Slab Floor</Name>
+    <LayerId layerIdRef="Typical_Insulation_Layer"/>
+    <LayerId layerIdRef="id_6_in._Normalweight_Concrete_Floor_Layer"/>
+    <LayerId layerIdRef="Typical_Carpet_Pad_Layer"/>
+  </Construction>
+  <Construction id="Typical_Insulated_Exterior_Mass_Wall">
+    <Name>Typical Insulated Exterior Mass Wall</Name>
+    <LayerId layerIdRef="id_1IN_Stucco_Layer"/>
+    <LayerId layerIdRef="id_8IN_CONCRETE_HW_RefBldg_Layer"/>
+    <LayerId layerIdRef="Typical_Insulation_Layer"/>
+    <LayerId layerIdRef="id_1_2IN_Gypsum_Layer"/>
+  </Construction>
+  <Construction id="Typical_Insulated_Metal_Building_Roof">
+    <Name>Typical Insulated Metal Building Roof</Name>
+    <LayerId layerIdRef="Metal_Roof_Surface_Layer"/>
+    <LayerId layerIdRef="Typical_Insulation_Layer"/>
+  </Construction>
+  <Construction id="Typical_Interior_Ceiling">
+    <Name>Typical Interior Ceiling</Name>
+    <LayerId layerIdRef="CP02_CARPET_PAD_Layer"/>
+    <LayerId layerIdRef="id_100mm_Normalweight_concrete_floor_Layer"/>
+  </Construction>
+  <Construction id="Typical_Interior_Floor">
+    <Name>Typical Interior Floor</Name>
+    <LayerId layerIdRef="id_100mm_Normalweight_concrete_floor_Layer"/>
+    <LayerId layerIdRef="CP02_CARPET_PAD_Layer"/>
+  </Construction>
+  <WindowType id="AirWall">
+    <Name>AirWall</Name>
+    <Transmittance unit="Fraction" surfaceType="Both" type="Visible">1</Transmittance>
+  </WindowType>
+  <WindowType id="U_1.22_SHGC_0.25_Sgl_Elec_Ref_Colored_6mm">
+    <Name>U 1.22 SHGC 0.25 Sgl Elec Ref Colored 6mm</Name>
+    <Transmittance unit="Fraction" surfaceType="Both" type="Visible">9.7824e-312</Transmittance>
+  </WindowType>
+  <Layer id="id_6_in._Normalweight_Concrete_Floor_Layer">
+    <Name>6 in. Normalweight Concrete Floor Layer</Name>
+    <MaterialId materialIdRef="id_6_in._Normalweight_Concrete_Floor"/>
+  </Layer>
+  <Layer id="id_100mm_Normalweight_concrete_floor_Layer">
+    <Name>100mm Normalweight concrete floor Layer</Name>
+    <MaterialId materialIdRef="id_100mm_Normalweight_concrete_floor"/>
+  </Layer>
+  <Layer id="CP02_CARPET_PAD_Layer">
+    <Name>CP02 CARPET PAD Layer</Name>
+    <MaterialId materialIdRef="CP02_CARPET_PAD"/>
+  </Layer>
+  <Layer id="Typical_Carpet_Pad_Layer">
+    <Name>Typical Carpet Pad Layer</Name>
+    <MaterialId materialIdRef="Typical_Carpet_Pad"/>
+  </Layer>
+  <Layer id="id_8IN_CONCRETE_HW_RefBldg_Layer">
+    <Name>8IN CONCRETE HW RefBldg Layer</Name>
+    <MaterialId materialIdRef="id_8IN_CONCRETE_HW_RefBldg"/>
+  </Layer>
+  <Layer id="Typical_Insulation_Layer">
+    <Name>Typical Insulation Layer</Name>
+    <MaterialId materialIdRef="Typical_Insulation"/>
+  </Layer>
+  <Layer id="id_1IN_Stucco_Layer">
+    <Name>1IN Stucco Layer</Name>
+    <MaterialId materialIdRef="id_1IN_Stucco"/>
+  </Layer>
+  <Layer id="id_1_2IN_Gypsum_Layer">
+    <Name>1/2IN Gypsum Layer</Name>
+    <MaterialId materialIdRef="id_1_2IN_Gypsum"/>
+  </Layer>
+  <Layer id="Metal_Roof_Surface_Layer">
+    <Name>Metal Roof Surface Layer</Name>
+    <MaterialId materialIdRef="Metal_Roof_Surface"/>
+  </Layer>
+  <Material id="id_6_in._Normalweight_Concrete_Floor">
+    <Name>6 in. Normalweight Concrete Floor</Name>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtIR">0.1</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntIR">0.1</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtSolar">0.3</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntSolar">0.3</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtVisible">0.3</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntVisible">0.3</Reflectance>
+    <Roughness value="MediumRough"/>
+    <Thickness unit="Meters">0.1524</Thickness>
+    <Conductivity unit="WPerMeterK">2.31</Conductivity>
+    <Density unit="KgPerCubicM">2322</Density>
+    <SpecificHeat unit="JPerKgK">832.001</SpecificHeat>
+    <Absorptance unit="Fraction" type="ExtIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="IntIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="ExtSolar">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntSolar">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="ExtVisible">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntVisible">0.7</Absorptance>
+  </Material>
+  <Material id="id_100mm_Normalweight_concrete_floor">
+    <Name>100mm Normalweight concrete floor</Name>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtIR">0.1</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntIR">0.1</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtSolar">0.3</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntSolar">0.3</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtVisible">0.3</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntVisible">0.3</Reflectance>
+    <Roughness value="MediumRough"/>
+    <Thickness unit="Meters">0.1016</Thickness>
+    <Conductivity unit="WPerMeterK">2.31045</Conductivity>
+    <Density unit="KgPerCubicM">2322</Density>
+    <SpecificHeat unit="JPerKgK">832.557</SpecificHeat>
+    <Absorptance unit="Fraction" type="ExtIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="IntIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="ExtSolar">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntSolar">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="ExtVisible">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntVisible">0.7</Absorptance>
+  </Material>
+  <Material id="CP02_CARPET_PAD">
+    <Name>CP02 CARPET PAD</Name>
+    <Roughness value="VeryRough"/>
+    <R-value unit="SquareMeterKPerW">0.21648</R-value>
+    <Absorptance unit="Fraction" type="ExtIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="IntIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="ExtSolar">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntSolar">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="ExtVisible">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntVisible">0.7</Absorptance>
+  </Material>
+  <Material id="Typical_Carpet_Pad">
+    <Name>Typical Carpet Pad</Name>
+    <Roughness value="VeryRough"/>
+    <R-value unit="SquareMeterKPerW">0.21648</R-value>
+    <Absorptance unit="Fraction" type="ExtIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="IntIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="ExtSolar">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntSolar">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="ExtVisible">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntVisible">0.7</Absorptance>
+  </Material>
+  <Material id="id_8IN_CONCRETE_HW_RefBldg">
+    <Name>8IN CONCRETE HW RefBldg</Name>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtIR">0.1</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntIR">0.1</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtSolar">0.3</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntSolar">0.3</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtVisible">0.3</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntVisible">0.3</Reflectance>
+    <Roughness value="Rough"/>
+    <Thickness unit="Meters">0.2032</Thickness>
+    <Conductivity unit="WPerMeterK">1.311</Conductivity>
+    <Density unit="KgPerCubicM">2240</Density>
+    <SpecificHeat unit="JPerKgK">836.801</SpecificHeat>
+    <Absorptance unit="Fraction" type="ExtIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="IntIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="ExtSolar">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntSolar">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="ExtVisible">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntVisible">0.7</Absorptance>
+  </Material>
+  <Material id="Typical_Insulation">
+    <Name>Typical Insulation</Name>
+    <Roughness value="MediumSmooth"/>
+    <R-value unit="SquareMeterKPerW">0.0282222</R-value>
+    <Absorptance unit="Fraction" type="ExtIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="IntIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="ExtSolar">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntSolar">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="ExtVisible">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntVisible">0.7</Absorptance>
+  </Material>
+  <Material id="id_1IN_Stucco">
+    <Name>1IN Stucco</Name>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtIR">0.1</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntIR">0.1</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtSolar">0.3</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntSolar">0.3</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtVisible">0.3</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntVisible">0.3</Reflectance>
+    <Roughness value="Smooth"/>
+    <Thickness unit="Meters">0.0253</Thickness>
+    <Conductivity unit="WPerMeterK">0.6918</Conductivity>
+    <Density unit="KgPerCubicM">1858</Density>
+    <SpecificHeat unit="JPerKgK">837.001</SpecificHeat>
+    <Absorptance unit="Fraction" type="ExtIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="IntIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="ExtSolar">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntSolar">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="ExtVisible">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntVisible">0.7</Absorptance>
+  </Material>
+  <Material id="id_1_2IN_Gypsum">
+    <Name>1/2IN Gypsum</Name>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtIR">0.1</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntIR">0.1</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtSolar">0.6</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntSolar">0.6</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtVisible">0.3</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntVisible">0.3</Reflectance>
+    <Roughness value="Smooth"/>
+    <Thickness unit="Meters">0.0127</Thickness>
+    <Conductivity unit="WPerMeterK">0.16</Conductivity>
+    <Density unit="KgPerCubicM">784.9</Density>
+    <SpecificHeat unit="JPerKgK">830.001</SpecificHeat>
+    <Absorptance unit="Fraction" type="ExtIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="IntIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="ExtSolar">0.4</Absorptance>
+    <Absorptance unit="Fraction" type="IntSolar">0.4</Absorptance>
+    <Absorptance unit="Fraction" type="ExtVisible">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntVisible">0.7</Absorptance>
+  </Material>
+  <Material id="Metal_Roof_Surface">
+    <Name>Metal Roof Surface</Name>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtIR">0.1</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntIR">0.1</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtSolar">0.3</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntSolar">0.3</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="ExtVisible">0.3</Reflectance>
+    <Reflectance unit="Fraction" surfaceType="Both" type="IntVisible">0.3</Reflectance>
+    <Roughness value="Smooth"/>
+    <Thickness unit="Meters">0.0008</Thickness>
+    <Conductivity unit="WPerMeterK">45.28</Conductivity>
+    <Density unit="KgPerCubicM">7824</Density>
+    <SpecificHeat unit="JPerKgK">500</SpecificHeat>
+    <Absorptance unit="Fraction" type="ExtIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="IntIR">0.9</Absorptance>
+    <Absorptance unit="Fraction" type="ExtSolar">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntSolar">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="ExtVisible">0.7</Absorptance>
+    <Absorptance unit="Fraction" type="IntVisible">0.7</Absorptance>
+  </Material>
+  <DocumentHistory>
+    <CreatedBy programId="openstudio" date="2018-10-04T18:51:15-04:00" personId="unknown"/>
+    <ProgramInfo id="openstudio">
+      <ProductName>OpenStudio</ProductName>
+      <Version>2.5.0</Version>
+      <Platform>Windows</Platform>
+      <ProjectEntity/>
+    </ProgramInfo>
+    <PersonInfo id="unknown">
+      <FirstName>Unknown</FirstName>
+      <LastName>Unknown</LastName>
+    </PersonInfo>
+  </DocumentHistory>
+</gbXML>
