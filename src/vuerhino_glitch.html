@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hello!</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    
+    <!-- include A-Frame obviously -->
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <!-- include ar.js for A-Frame -->
+<!--     <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+     
+    <style>
+      #app {
+        width: 100%; height: 100%;
+      }
+      video{
+        z-index:0 !important;
+      }
+      a-scene{
+/*         z-index: 4 */
+      }
+    </style>
+  </head>
+  <body style="margin : 0px; overflow: hidden;">
+      <div id="app">
+          <v-app>
+            <v-navigation-drawer
+              v-model="drawer"
+              fixed
+              app
+            >
+              <v-container
+                fluid
+              >
+                <v-layout
+                  row
+                  wrap
+                >
+                  <v-flex>
+                    <v-slider
+                      v-model="xSpacing"
+                      label="X Spacing"
+                      min="1"
+                      max="10"
+                    ></v-slider>
+                  </v-flex>
+                  <v-flex>
+                    <v-slider
+                      v-model="ySpacing"
+                      label="Y Spacing"
+                      min="1"
+                      max="10"
+                    ></v-slider>
+                  </v-flex>
+                  <v-flex>
+                    <v-slider
+                      v-model="circleRadius"
+                      label="Radius"
+                      min="1"
+                      max="10"
+                    ></v-slider>
+                  </v-flex>
+                  <v-flex>
+                    <v-slider
+                      v-model="fritWidth"
+                      label="Overall Width"
+                      min="10"
+                      max="50"
+                    ></v-slider>
+                  </v-flex>
+                  <v-flex>
+                    <v-slider
+                      v-model="fritHeight"
+                      label="Overall Height"
+                      min="10"
+                      max="50"
+                    ></v-slider>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+            </v-navigation-drawer>
+            <v-toolbar color="indigo" dark fixed app>
+              <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+              <v-toolbar-title>Application</v-toolbar-title>
+            </v-toolbar>
+            <v-content>
+              <v-container fluid fill-height>
+              
+                <a-scene>
+                  <a-assets>
+                    <img id="frit" src="https://cdn.glitch.com/38d2fc19-efec-4266-a0e4-3ca2d5351d42%2Ffrit.png?1540682468722">
+                  </a-assets>
+                  <a-entity rotation="-90 0 0" :position="`-${fritWidth/2} 0 -${fritHeight}`">
+                    <a-plane v-for="(g,i) in grid" :key="i" :position="`${g.x} 0 ${g.y}`" :width="circleRadius" :height="circleRadius" rotation="-90 0 0" material="side: double; color: #f51e1e; transparent: true; opacity: 0.5"></a-plane>
+                  </a-entity>
+<!--                   <a-marker-camera preset="hiro"></a-marker-camera> -->
+                  <a-sky color="#ECECEC"></a-sky>
+                </a-scene>
+              
+              </v-container>
+            </v-content>
+          </v-app>
+        
+      </div>
+
+      <script>
+        Vue.config.ignoredElements = [
+          'a-scene',
+          'a-plane',
+          'a-camera',
+          'a-marker',
+          'a-assets'
+        ];
+      //   Vue.component('vue-furniture', {
+      // props: ['furnitureId', 'index'],
+      // template: `
+      //   <a-entity :io3d-furniture="furnitureId" :position="pos">
+      //     <a-box height="0.04" :color="rndColor" :width="stepSize" :depth="stepSize" position="0 -0.02 0"></a-box>
+      //   </a-entity>`,
+      //         data () {
+      //           return {
+      //             stepSize: 3
+      //           }
+      //         },
+      //         computed: {
+      //           rndColor: function(){
+      //             // magic pastel color formula
+      //             var hue = Math.floor(Math.random() * 290) - 40
+      //             var saturation = Math.floor(Math.random() * 20) + 20
+      //             var lightness = Math.floor(Math.random() * 20) + 70
+      //             return `hsl(${hue < 0 ? hue + 360 : hue}, ${saturation}%, ${lightness}%)`
+      //           },
+      //           pos: function() {
+      //             // we want rows of 5
+      //             var xPos = this.index % 5 * this.stepSize - this.stepSize * 2
+      //             var zPos = Math.floor(this.index / 5) * -this.stepSize -2
+      //             return `${xPos} 0 ${zPos}`
+      //           }
+      //         }
+      //       });
+        new Vue({ 
+            el: '#app',
+            data: {
+              drawer: null,
+              xSpacing: 5,
+              ySpacing: 5,
+              circleRadius: 1,
+              fritWidth: 50,
+              fritHeight: 50
+            },
+            computed:{
+              grid: function () {
+                // return array of javascript objects
+                // [ {x: 25, y: 35 }, {x:30, y:40},... ]
+                // let gridCoords = [];
+                // let xNum;
+                // xNum = this.fritWidth/this.xSpacing;
+                // yNum = this.fritHeight/this.ySpacing;
+                // let iX;
+                // for( iX=0; iX < this.friWidth;){
+                //   console.log('test');
+                //   iX+=this.circleRadius+this.xSpacing;
+                //   let iY;
+                //   for (iY = 0; iY < this.fritHeight;) {
+                //     iY+=this.circleRadius+this.ySpacing;
+                //     gridCoords.push({ x: iX, y: iY });
+                //   }
+                // }
+                // return gridCoords;
+                let gridCoords = [];
+                let xNum;
+                xNum = this.fritWidth/this.xSpacing;
+                yNum = this.fritHeight/this.ySpacing;
+                let ix;
+                for (ix = 0; ix < xNum; ix++) {
+                  let iy;
+                  for (iy = 0;  iy < yNum; iy++){
+                    let _x = ix*this.xSpacing;
+                    let _y = iy*this.ySpacing;
+                    gridCoords.push({ x: _x, y: _y });
+                  }
+                }
+                this.makeThings();
+                return gridCoords;
+              }
+            },
+          
+           methods: {
+            makeThings () {
+              if(window.loaded){
+                
+                let m = new Module.Sphere([0,0,0], 10);
+                console.log(m);
+              }
+            }
+           }
+          
+        });
+            window.loaded = false;
+      var Module = {
+        onRuntimeInitialized: function() { 
+          console.log('rhino3dm loaded');
+          window.loaded = true;
+          // init();
+        } 
+      };
+      </script>
+    <script async type="text/javascript" src="https://files.mcneel.com/rhino3dm/js/latest/rhino3dm.js"></script>
+  </body>
+</html>
+
