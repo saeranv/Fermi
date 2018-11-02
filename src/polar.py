@@ -102,7 +102,9 @@ def circle_to_square_dot():
         y = math.sin(deg * math.pi/180.0) * radius
         vec = np.array([x,y])
         unit_vec = vec/np.linalg.norm(vec)
-        proj_vec = np.dot(unit_vec, ref_vec) * ref_vec * radius
+        # proj_vec is equivalent to:
+        # proj_vec = np.cos(theta) * radius * ref_vec
+        proj_vec = np.dot(unit_vec, ref_vec) * radius * ref_vec
         proj_vec = proj_vec + np.array([radius,0])
         xlst.append(proj_vec[0])
         ylst.append(proj_vec[1])
