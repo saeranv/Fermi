@@ -86,6 +86,11 @@ def plot():
     plt.show()
 
 def circle_to_square_dot():
+    """
+    Better method since it's clearer how we use the
+    projection formula to derive the polar coordinates
+    :return:
+    """
     theta = range(90)
     radius = 10.0
     xlst = []
@@ -93,8 +98,8 @@ def circle_to_square_dot():
     ref_vec = np.array([0,1])
 
     for deg in theta:
-        x = math.cos(deg) * radius
-        y = math.sin(deg) * radius
+        x = math.cos(deg * math.pi/180.0) * radius
+        y = math.sin(deg * math.pi/180.0) * radius
         vec = np.array([x,y])
         unit_vec = vec/np.linalg.norm(vec)
         proj_vec = np.dot(unit_vec, ref_vec) * ref_vec * radius
