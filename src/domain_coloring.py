@@ -5,6 +5,8 @@ import matplotlib.colors as mcolors
 from matplotlib.colors import hsv_to_rgb
 
 # https://github.com/hernanat/dcolor
+# for julia fractal
+# http://users.mai.liu.se/hanlu09/complex/domain_coloring.html
 
 def plot():
     plt.grid()
