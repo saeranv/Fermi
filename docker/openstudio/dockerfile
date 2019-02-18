@@ -1,0 +1,48 @@
+FROM ubuntu:16.04
+
+WORKDIR /app
+
+# Set arguments for python bindings
+#ARG OPENSTUDIO_VERSION=2.6.0
+
+# To solve bug: Error opening terminal: unknown.
+ENV TERM xterm
+
+# Make port 80 available to the world outside this container
+EXPOSE 80
+
+# Copy the current directory contents into the container at /app
+#COPY . /app
+
+RUN apt-get update && apt-get install -y dpkg-dev git cmake-curses-gui cmake-gui libssl-dev libxt-dev libncurses5-dev libgl1-mesa-dev autoconf libexpat1-dev libpng12-dev libfreetype6-dev libdbus-glib-1-dev libglib2.0-dev libfontconfig1-dev libxi-dev libxrender-dev libgeographic-dev chrpath byacc
+
+RUN apt install wget \
+    && wget https://cmake.org/files/v3.7/cmake-3.7.1.tar.gz \
+    && tar -xzf cmake-3.7.1.tar.gz \
+    && cd cmake-3.7.1/ \
+    && ./configure \
+    && make \
+    && make install
+
+#RUN apt-get install -y python2.7-dev
+#RUN git clone --branch v${OPENSTUDIO_VERSION} https://github.com/NREL/OpenStudio.git
+
+#RUN cd OpenStudio \
+#    && mkdir build \
+#    && cd build \
+#    && ccmake ../openstudiocore
+
+#Run and to keep running and then access in interactive terminal
+#docker run -p 4000:80 -it -d linx4
+
+# To access bash
+#docker exec -it fervent_bhaskara /bin/bash
+# ctrl d to exit
+
+# To copy file back to host's pwd
+# docker cp <containerId>:app/OpenStudio/build/ ${PWD}
+
+# To push image
+# docker login
+# docker tag image username/repository:tag
+# docker push username/repository:tag
