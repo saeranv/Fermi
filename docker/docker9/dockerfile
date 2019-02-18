@@ -1,0 +1,42 @@
+FROM ubuntu:18.04
+
+RUN apt-get update && apt-get install -y build-essential git cmake-curses-gui cmake-gui libssl-dev libxt-dev libncurses5-dev libgl1-mesa-dev autoconf libexpat1-dev libpng-dev libfreetype6-dev libdbus-glib-1-dev libglib2.0-dev libfontconfig1-dev libxi-dev libxrender-dev libgeographic-dev libicu-dev chrpath bison libffi-dev libgdbm-dev libqdbm-dev libreadline-dev libyaml-dev libharfbuzz-dev libgmp-dev
+
+RUN apt remove -y libharfbuzz-dev
+RUN apt-get install -y software-properties-common \
+    && apt-add-repository -y ppa:jonathonf/texlive
+RUN apt update
+RUN apt install -y libharfbuzz-dev
+
+RUN apt install wget
+RUN apt remove -y cmake \
+    && wget https://cmake.org/files/v3.12/cmake-3.12.4.tar.gz \
+    && tar xzf cmake-3.12.4.tar.gz \
+    && cd cmake-3.12.4 \
+    && ./configure \
+    && make \
+    && make install
+
+#RUN git clone  https://github.com/NREL/OpenStudio.git \
+#    && cd OpenStudio \
+#    && git reset --hard 9cae34291ddb630f8a7a9d0207c85d8bf5ab4aed
+
+#RUN cd OpenStudio \
+#    && mkdir build \
+#    && cd build \
+#    && ccmake ../openstudiocore
+
+#Run and to keep running and then access in interactive terminal
+#docker run -p 4000:80 -it -d linx4
+
+# To access bash
+#docker exec -it fervent_bhaskara /bin/bash
+# ctrl d to exit
+
+# To copy file back to host's pwd
+# docker cp <containerId>:app/OpenStudio/build/ ${PWD}
+
+# To push image
+# docker login
+# docker tag image username/repository:tag
+# docker push username/repository:tag
